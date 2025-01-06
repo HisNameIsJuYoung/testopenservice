@@ -1,0 +1,37 @@
+server:
+    port: 18081
+    servlet.context-path: /
+spring:
+    application.name: testopenservice
+    datasource:
+        url: jdbc:mariadb://localhost:3306/misdb?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false
+        driver-class-name: org.mariadb.jdbc.Driver
+        username: misadmin
+        password: misrhkstpcjd32!
+    jpa:
+        show_sql: true
+        hibernate:
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+            ddl-auto: update
+    mvc:
+        view:
+            prefix: /
+            suffix: .html
+    servlet:
+        multipart:
+            max-file-size: 10MB
+            max-request-size: 10MB
+        # static-path-pattern: /**
+    # devtools:
+    #     restart:
+    #         enabled: false
+
+# docker run -d \
+#   --name mis_v.0.1 \
+#   --network mynetwork \
+#   -e SPRING_DATASOURCE_URL=jdbc:mariadb://mariadb:3306/misdb \
+#   -e SPRING_DATASOURCE_USERNAME=misadmin \
+#   -e SPRING_DATASOURCE_PASSWORD=misrhkstpcjd32! \
+#   -p 18080:18080 \
+#   914a4f95995c
