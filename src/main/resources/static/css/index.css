@@ -29,9 +29,10 @@ li, a {
     text-decoration: none;
     color: inherit;
 }
+
 button {
     height: 30px;
-    margin: 10px 10px 10px 0;
+    margin: 20px 10px 20px 0;
     padding: 0 20px;
     font-size: 18px;
 }
@@ -65,6 +66,7 @@ button {
 /* footer */
 .thanks {
     padding: 30px;
+    margin-top: 10px;
     border-top: 2px solid #FFE869;
     text-align: center;
 }
@@ -74,7 +76,7 @@ button {
     display: flex;
     flex-direction: column;
     width: 370px;
-    padding-top: 100px;
+    padding-top: 60px;
 }
 .cfa::after {
     content: "";
@@ -98,31 +100,43 @@ button {
     width: 250px;
     height: 30px;
 }
+.welcomeEmoji {
+    float: left;
+    font-size: 150px;
+    margin: 20px 0;
+}
+.welcomeText {
+    float: left;
+    font-size: 60px;
+    margin: 120px 0 0 20px;
+}
 
 /* menu-contents */
-.menu-contents {
-    width: 1200px;
-}
 .menu {
-    float: left;
-    width: 250px;
+    margin-bottom: 30px;
     background-color: #FFFBCB;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
-li {
+.menu-item {
+    float: left;
+    width: 300px;
     height: 50px;
-    line-height: 60px;
-    padding: 0 30px;
-    list-style-type: none;
+    font-size: 25px;
+    text-align: center;
+    padding-top: 10px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
 .selected-menu, .menu-item:hover {
     background-color: #FFE869;
     font-weight: bold;
 }
-#contents, #insertPost {
-    float: left;
+#contents {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     overflow: auto;
-    width: 950px;
-    padding: 30px;
 }
 
 /* insertPost-process */
@@ -134,6 +148,7 @@ li {
     width: 890px;
 }
 #title-info {
+    width: 890px;
     height: 30px;
 }
 #write-info, #post-info {
@@ -142,18 +157,19 @@ li {
 
 /* info */
 .menu-item-name {
+    width: 1000px;
+    margin: 25px 0 15px;
     font-size: 30px;
-    padding: 0 0 15px 20px;
 }
 .info {
+    width: 900px;
     border-bottom: #77D1C9 2px solid;
 }
 .item-fl {
     float: left;
-    height: 50px;
-    padding-top: 15px;
+    padding: 15px 0;
 }
-.info-item-head{
+.info-item-head, .checklist-item-head {
     background-color: #77D1C9;
     border-radius: 10px;
 }
@@ -172,10 +188,10 @@ li {
     padding-left: 20px;
 }
 .head-date, .date {
-    width: 140px;
+    width: 150px;
     text-align: center;
 }
-.info-item {
+.info-item, .checklist-item {
     border-bottom: #77D1C9 1px dashed;
 }
 .info-item:hover {
@@ -201,4 +217,7 @@ li {
 }
 .dspnon {
     display: none;
+}
+.info-button {
+    width: 890px;
 }

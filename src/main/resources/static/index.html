@@ -22,35 +22,33 @@
 
         <div class="nav-bottom"></div>
         
-        <div class="menu-contents cfa">
-            <div class="menu">
-                <ul class="menu-list">
-                    <li class="menu-item menu-info"><a href="/">공지사항</a></li>
-                    <li class="menu-item menu-checklist"><a href="/menu2">체크리스트</a></li>
-                    <li class="menu-item menu-board"><a href="/menu3">추진단 게시판</a></li>
-                </ul>
-            </div>
-            <div id="contents">
-                <div class="menu-item-name">공지사항</div>
-                <div class="info">
-                    <div class="info-item-head cfa">
-                        <div class="item-fl head-number">순번</div>
-                        <div class="item-fl head-title">제목</div>
-                        <div class="item-fl head-date">게시일</div>
-                    </div>
-                    <div class="info-item" id="info-template">
-                        <div class="info-item-summary cfa">
-                            <div class="item-fl number"></div>
-                            <div class="item-fl title"></div>
-                            <div class="item-fl date"></div>
-                        </div>
-                        <div class="modify-delete dspnon">
-                            <button id="modify">수정</button>
-                            <button id="delete">삭제</button>
-                        </div>
-                        <div class="content dspnon"></div>
-                    </div>
+        <div class="menu cfa">
+            <div class="menu-item menu-info" style="background-color: #FFE869;"><a href="/">공지사항</a></div>
+            <div class="menu-item menu-checklist"><a href="/checklist">체크리스트</a></div>
+            <div class="menu-item menu-board"><a href="/menu3">추진단 게시판</a></div>
+        </div>
+
+        <div id="contents">
+            <div class="info">
+                <div class="info-item-head cfa">
+                    <div class="item-fl head-number">순번</div>
+                    <div class="item-fl head-title">제목</div>
+                    <div class="item-fl head-date">게시일</div>
                 </div>
+                <div class="info-item" id="info-template">
+                    <div class="info-item-summary cfa">
+                        <div class="item-fl number"></div>
+                        <div class="item-fl title"></div>
+                        <div class="item-fl date"></div>
+                    </div>
+                    <div class="modify-delete dspnon">
+                        <button id="modify">수정</button>
+                        <button id="delete">삭제</button>
+                    </div>
+                    <div class="content dspnon"></div>
+                </div>
+            </div>
+            <div class="info-button">
                 <button onclick="writeInfo()" id="write-info">공지작성</button>
             </div>
         </div>

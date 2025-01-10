@@ -216,3 +216,10 @@ document.addEventListener('DOMContentLoaded', () => {
     heightResize();
     loadInfoItems();
 });
+
+
+LOAD DATA local INFILE '/Users/ysh/Downloads/testing.csv'
+INTO TABLE checklist
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'

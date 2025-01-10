@@ -33,7 +33,7 @@ public class LoginController {
             if (user.getPassword().equals(findUser.getPassword())) {
                 session.setAttribute("loginUser", findUser);
                 return new ResponseDTO<>(HttpStatus.OK.value()
-                , user.getUserid() + "님 환영합니다.");
+                , findUser.getUser_name() + "님 환영합니다.");
             } else {
                 return new ResponseDTO<>(HttpStatus.BAD_REQUEST.value()
                 , "비밀번호가 일치하지 않습니다.");

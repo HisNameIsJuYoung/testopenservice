@@ -1,0 +1,42 @@
+.checklist {
+    width: 1450px;
+    border-bottom: #77D1C9 2px solid;
+}
+.checklist-item-head{
+    background-color: #77D1C9;
+    border-radius: 10px;
+}
+.head-numb, .numb {
+    width: 50px;
+    text-align: center;
+}
+.head-chec-list-id, .chec-list-id {
+    width: 120px;
+    text-align: center;
+}
+.head-syst-name, .syst-name {
+    width: 160px;
+    text-align: center;
+}
+.head-fron-vari-id, .fron-vari-id {
+    width: 170px;
+    text-align: center;
+}
+.head-fron-vari-step {
+    width: 580px;
+    text-align: center;
+}
+.fron-vari-step {
+    width: 580px;
+}
+.head-vari-resu, .vari-resu {
+    width: 360px;
+    text-align: center;
+}
+#resu-pass, #resu-fail, #noauthority {
+    margin: 0 10px 10px 0;
+    float: right;
+}
+.resu-text {
+    margin-bottom: 5px;
+}
