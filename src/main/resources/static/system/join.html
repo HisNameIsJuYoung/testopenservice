@@ -6,7 +6,7 @@
     <title>Unipass 4.5</title>
     <link rel="icon" href="/unipass45.ico" type="image/x-icon">
     <link rel="stylesheet" href="/css/index.css">
-    <script defer src="/js/login.js"></script>
+    <script defer type="text/javascript" src="/js/join.js"></script>
     <!-- RSA 자바스크립트 라이브러리 -->
     <script defer type="text/javascript" src="/js/RSA/jsbn.js"></script>
     <script defer type="text/javascript" src="/js/RSA/rsa.js"></script>
@@ -21,15 +21,10 @@
                 <a href="/">전환사업 추진단</a>
             </div>
         </div>
-
+        
         <div class="nav-bottom"></div>
         
-        <div class="cfa">
-            <div class="welcomeEmoji">😊</div>
-            <div class="welcomeText">초기 아이디와 패스워드는 직원부호!</div>
-        </div>
-        
-        <div class="login-process">
+        <div class="join-process">
             <form>
                 <input type="hidden" id="RSAModulus" /><!-- 서버에서 전달한값을 셋팅한다. -->
                 <input type="hidden" id="RSAExponent" /><!-- 서버에서 전달한값을 셋팅한다. -->
@@ -45,8 +40,31 @@
                         <input type="password" id="password">
                     </div>
                 </div>
+                <div class="pw cfa">
+                    <div class="textbox-name">비밀번호 확인</div>
+                    <div class="input">
+                        <input type="password" id="passwordConfirm">
+                    </div>
+                </div>
             </form>
-            <button id="button-login">로그인</button>
+            <div class="customsDepartment cfa" id="dropdown1">
+                <div class="textbox-name">세관/부서선택</div>
+                <div class="input">
+                    <select class="dropdown">
+                        <option value="" disabled selected>세관을 선택해 주세요.</option>
+                        <option value="donghae">동해세관</option>
+                        <option value="seoul">서울세관</option>
+                        <option value="seongnam">성남세관</option>
+                        <option value="sokcho">속초세관</option>
+                        <option value="anYang">안양세관</option>
+                        <option value="cheonan">천안세관</option>
+                        <option value="cheongju">청주세관</option>
+                        <option value="paju">파주세관</option>
+                    </select>
+                </div>
+            </div>
+            <div class="attachSelectElement"></div>
+            <button id="button-join">확인</button>
         </div>
     </div>
     <div class="thanks">Thanks, Always</div>

@@ -73,9 +73,7 @@ button {
 
 /* login-join */
 .login-process, .join-process {
-    display: flex;
-    flex-direction: column;
-    width: 370px;
+    width: 400px;
     padding-top: 60px;
 }
 .cfa::after {
@@ -85,20 +83,27 @@ button {
 }
 .textbox-name {
     float: left;
-    width: 120px;
-    padding-top: 5px;
+    width: 150px;
+    padding-top: 10px;
 }
 .input {
     float: left;
     width: 250px;
 }
-#userid, #password, #email {
+#userid, #password, #passwordConfirm, .dropdown {
     width: 250px;
     height: 30px;
 }
-.button-login, .button-join {
+.dropdown {
+    margin: 5px 0;
+    padding-left: 10px;
+    font-size: 20px;
+}
+#button-login, #button-join {
+    float: right;
     width: 250px;
     height: 30px;
+    margin-right: 0;
 }
 .welcomeEmoji {
     float: left;

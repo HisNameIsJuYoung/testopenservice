@@ -26,4 +26,15 @@ public class UserService {
         user.setRole(RoleType.USER);
         return userRepository.save(user);
     }
+
+    @Transactional
+    public User putUser(User user) {
+        System.out.println(user);
+        User findUser = userRepository.findByUserid(user.getUserid()).get();
+        findUser.setPassword(user.getPassword());
+        findUser.setCustoms(user.getCustoms());
+        findUser.setDepartment(user.getDepartment());
+        System.out.println(findUser);
+        return userRepository.save(findUser);
+    }
 }

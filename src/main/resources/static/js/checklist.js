@@ -49,7 +49,6 @@ const loadChecklistItem = async () => {
         const response = await restHandler('GET', '/getChecklist', null);
         const checklistItemTemplate = document.querySelector('#checklist-item-template');
         let itemNumber = response.data.length;
-        console.log(response.data);
         response.data.forEach(res => {
             let checklistItem = checklistItemTemplate.cloneNode(true);
             let tempResult = res.variResu

@@ -31,13 +31,16 @@ public class User {
     private String userid;
 
     @Column(nullable = false, length = 5)
-    private String user_name;
+    private String userName;
 
-    @Column(nullable = false, length = 128)
+    @Column(nullable = false, length = 1200)
     private String password;
 
-    @Column(nullable = false, length = 100)
-    private String email;
+    @Column(nullable = false, length = 3)
+    private String customs;
+
+    @Column(nullable = false, length = 2)
+    private String department;
 
     @Enumerated(EnumType.STRING)
     private RoleType role;
