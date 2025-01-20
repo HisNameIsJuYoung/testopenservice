@@ -29,7 +29,6 @@ li, a {
     text-decoration: none;
     color: inherit;
 }
-
 button {
     height: 30px;
     margin: 20px 10px 20px 0;
@@ -55,7 +54,16 @@ button {
 }
 .auth {
     float: right;
-    margin: 50px 0px 0px 20px;
+}
+.login {
+    margin: 50px 20px 0 0;
+}
+.user-id {
+    margin: 50px 50px 0 5px;   
+}
+.user-name {
+    margin: 45px 2px 0 0;   
+    font-size: 25px;
 }
 .nav-bottom {
     width: 100%;
@@ -75,11 +83,6 @@ button {
 .login-process, .join-process {
     width: 400px;
     padding-top: 60px;
-}
-.cfa::after {
-    content: "";
-    display: block;
-    clear: both;
 }
 .textbox-name {
     float: left;

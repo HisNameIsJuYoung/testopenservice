@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import toy.testopenservice.domain.Info;
 import toy.testopenservice.domain.User;
+import toy.testopenservice.dto.CommonResponseDTO;
 import toy.testopenservice.dto.ResponseDTO;
 import toy.testopenservice.service.InfoService;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,8 +30,15 @@ public class InfoController {
 	// private WebApplicationContext context; 
     
     @GetMapping("/getInfo")
-    public @ResponseBody ResponseDTO<?> getInfo() {
-        return new ResponseDTO<>(HttpStatus.OK.value(), infoService.getInfo());
+    public @ResponseBody ResponseDTO<?> getInfo(HttpSession session) {
+        User user = ((User) session.getAttribute("loginUser"));
+        String userId = user.getUserId();
+        String userName = user.getUserName();
+        Object data = infoService.getInfo();
+
+        CommonResponseDTO commonResponseDTO = new CommonResponseDTO(userId, userName, data);
+
+        return new ResponseDTO<>(HttpStatus.OK.value(), commonResponseDTO);
     }
 
     @PostMapping("/postInfo")

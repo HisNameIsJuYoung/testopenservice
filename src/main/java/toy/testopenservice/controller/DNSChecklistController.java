@@ -4,41 +4,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import jakarta.servlet.http.HttpSession;
 import toy.testopenservice.domain.Checklist;
 import toy.testopenservice.domain.User;
-import toy.testopenservice.dto.CommonResponseDTO;
 import toy.testopenservice.dto.ResponseDTO;
 import toy.testopenservice.service.ChecklistService;
-import org.springframework.web.bind.annotation.PutMapping;
-
 
 @Controller
-public class ChecklistController {
+public class DNSChecklistController {
     @Autowired
     private ChecklistService checklistService;
 
-    @GetMapping("/checklist")
+    @GetMapping("/DNSChecklist")
     public String login() {
-        return "/checklist/checklist";
+        return "/checklist/DNSChecklist";
     }
 
-    @GetMapping("/getChecklist")
+    @GetMapping("/getDNSChecklist")
     public @ResponseBody ResponseDTO<?> getChecklist(HttpSession session) {
         User user = (User) session.getAttribute("loginUser");
-        String userId = user.getUserId();
-        String userName = user.getUserName();
-        Object data = checklistService.getChecklist(userId);
-        CommonResponseDTO commonResponseDTO = new CommonResponseDTO(userId, userName, data);
-
-        return new ResponseDTO<>(HttpStatus.OK.value(), commonResponseDTO);
+        String loginUser = user.getUserId();
+        return new ResponseDTO<>(HttpStatus.OK.value(), "DNSChecklist");
     }
 
-    @PutMapping("putChecklist")
+    @PutMapping("putDNSChecklist")
     public @ResponseBody ResponseDTO<?> putChecklist(@RequestBody Checklist checklist) {
-        checklistService.putChecklist(checklist.getId(), checklist.getVariResu());
+        // checklistService.putChecklist(checklist.getId(), checklist.getVariResu());
         return new ResponseDTO<>(HttpStatus.OK.value(), null);
     }
 }

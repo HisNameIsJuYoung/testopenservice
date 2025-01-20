@@ -44,11 +44,23 @@ const putChecklist = async (id, variResu, itemElement) => {
     itemElement.querySelector('.resu-text').innerText = insertVariResult[data.variResu];
 }
 
+const timeFormat = (date) => {
+    let time = new Date(date);
+    return time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate()
+        + ' ' + time.getHours() + ':' + time.getMinutes();
+}
+
 const loadChecklistItem = async () => {
     try {
-        const response = await restHandler('GET', '/getChecklist', null);
-        const checklistItemTemplate = document.querySelector('#checklist-item-template');
+        let response = await restHandler('GET', '/getChecklist', null);
+        let checklistItemTemplate = document.querySelector('#checklist-item-template');
         let itemNumber = response.data.length;
+        let userId = document.querySelector('.user-id');
+        let userName = document.querySelector('.user-name');
+    
+        response = response.data;
+        userId.innerText = '(' + response.userid + ')';
+        userName.innerText = response.username;
         response.data.forEach(res => {
             let checklistItem = checklistItemTemplate.cloneNode(true);
             let tempResult = res.variResu
@@ -71,8 +83,7 @@ const loadChecklistItem = async () => {
             
             if (tempResult) {
                 checklistItem.querySelector('.resu-text').innerText = insertVariResult[tempResult];
-                checklistItem.querySelector('.crea-date').innerText
-                    = (res.creaDate).substr(0, 10) + '   ' + (res.creaDate).substr(11, 5);
+                checklistItem.querySelector('.crea-date').innerText = timeFormat(res.creaDate);
             } else checklistItem.querySelector('.resu-text').innerText = '미수행'
             itemNumber -= 1;
             checklistItemTemplate.after(checklistItem);

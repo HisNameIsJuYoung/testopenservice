@@ -57,9 +57,15 @@ const contentClose = (infoItem) => {
 
 const loadInfoItems = async () => {
     try {
-        const response = await restHandler('GET', '/getInfo', null);
-        const infoTemplate = document.querySelector('#info-template');
+        let response = await restHandler('GET', '/getInfo', null);
+        let userId = document.querySelector('.user-id');
+        let userName = document.querySelector('.user-name');
+        let infoTemplate = document.querySelector('#info-template');
         let itemNumber = 1;
+        response = response.data;
+        userId.innerText = '(' + response.userid + ')';
+        userName.innerText = response.username;
+        
         response.data.forEach(res => {
             let infoItem = infoTemplate.cloneNode(true);
             infoItem.id = 'item' + res.id;

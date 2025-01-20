@@ -1,0 +1,30 @@
+.menu-DNSChecklist {
+    background-color: #FFE869;
+}
+.DNSChecklist {
+    width: 900px;
+    border-bottom: #77D1C9 2px solid;
+}
+.DNSChecklist-item-head{
+    width: 900px;
+    background-color: #77D1C9;
+    border-radius: 10px;
+}
+.head-numb, .numb {
+    width: 200px;
+    text-align: center;
+}
+.head-PC-user, .PC-user {
+    width: 200px;
+    text-align: center;
+}
+.head-dns-resu, .dns-resu {
+    width: 500px;
+    text-align: center;
+}
+#dns-resu {
+    margin: 0 10px 10px 0;
+}
+.crea-date {
+    margin-bottom: 5px;
+}
