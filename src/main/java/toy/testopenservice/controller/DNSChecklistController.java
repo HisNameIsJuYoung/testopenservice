@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import jakarta.servlet.http.HttpSession;
 import toy.testopenservice.domain.Checklist;
 import toy.testopenservice.domain.User;
+import toy.testopenservice.dto.CommonResponseDTO;
 import toy.testopenservice.dto.ResponseDTO;
-import toy.testopenservice.service.ChecklistService;
+import toy.testopenservice.service.DNSChecklistService;
 
 @Controller
 public class DNSChecklistController {
     @Autowired
-    private ChecklistService checklistService;
+    private DNSChecklistService dNSChecklistService;
 
     @GetMapping("/DNSChecklist")
     public String login() {
@@ -25,10 +26,16 @@ public class DNSChecklistController {
     }
 
     @GetMapping("/getDNSChecklist")
-    public @ResponseBody ResponseDTO<?> getChecklist(HttpSession session) {
+    public @ResponseBody ResponseDTO<?> getDNSChecklist(HttpSession session) {
         User user = (User) session.getAttribute("loginUser");
-        String loginUser = user.getUserId();
-        return new ResponseDTO<>(HttpStatus.OK.value(), "DNSChecklist");
+        String userId = user.getUserId();
+        String userName = user.getUserName();
+        String customs = user.getCustoms();
+        String department = user.getDepartment();
+        Object data = dNSChecklistService.getDNSChecklist(customs, department);
+        CommonResponseDTO commonResponseDTO = new CommonResponseDTO(userId, userName, data);
+        
+        return new ResponseDTO<>(HttpStatus.OK.value(), commonResponseDTO);
     }
 
     @PutMapping("putDNSChecklist")

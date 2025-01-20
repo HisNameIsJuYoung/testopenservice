@@ -30,15 +30,15 @@ public class ChecklistController {
         User user = (User) session.getAttribute("loginUser");
         String userId = user.getUserId();
         String userName = user.getUserName();
-        Object data = checklistService.getChecklist(userId);
+        Object data = checklistService.getChecklist(user.getCustoms(), user.getDepartment());
+        System.out.println(user);
         CommonResponseDTO commonResponseDTO = new CommonResponseDTO(userId, userName, data);
-
         return new ResponseDTO<>(HttpStatus.OK.value(), commonResponseDTO);
     }
 
-    @PutMapping("putChecklist")
+    @PutMapping("/putChecklist")
     public @ResponseBody ResponseDTO<?> putChecklist(@RequestBody Checklist checklist) {
         checklistService.putChecklist(checklist.getId(), checklist.getVariResu());
-        return new ResponseDTO<>(HttpStatus.OK.value(), null);
+        return new ResponseDTO<>(HttpStatus.OK.value(), checklistService.getChecklistById(checklist.getId()));
     }
 }

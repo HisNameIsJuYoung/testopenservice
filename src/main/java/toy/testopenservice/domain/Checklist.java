@@ -47,6 +47,12 @@ public class Checklist {
 
     @Column(length = 16)
     private String userId;
+    
+    @Column(length = 3)
+    private String customs;
+    
+    @Column(length = 2)
+    private String department;
 
     @CreationTimestamp
     private Timestamp creaDate;

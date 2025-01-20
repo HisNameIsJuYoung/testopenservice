@@ -55,7 +55,7 @@ const contentClose = (infoItem) => {
     infoItem.querySelector('.content').classList.add('dspnon');
 };
 
-const loadInfoItems = async () => {
+const getInfoItems = async () => {
     try {
         let response = await restHandler('GET', '/getInfo', null);
         let userId = document.querySelector('.user-id');
@@ -170,16 +170,33 @@ const uploadImage = async (file, editor) => {
     let formData = new FormData();
     formData.append('file', file);
 
-    try {
-        const data = await restHandler('POST', '/imageUpload', formData, true);
-        const imageUrl = `/Users/ysh/workspace/testopenservice/src/main/resources/static/image/${data.fileName}`;
-        $(editor).summernote('insertImage', imageUrl, function($image) {
-            $image.attr('data-filename', data.fileName);
-            $image.css('width', "100%");
-        });
-    } catch (error) {
-        console.error('Error uploading image:', error);
-    }
+    $.ajax({                                                              
+		data : formData,
+		type : "POST",
+        // url은 자신의 이미지 업로드 처리 컨트롤러 경로로 설정해주세요.
+		url : '/post/imageUpload',  
+		contentType : false,
+		processData : false,
+		enctype : 'multipart/form-data',                                  
+		success : function(data) {   
+			$(editor).summernote('insertImage', './image/' + data, function($image) {
+				$image.css('width', "100%");
+			});
+            // 값이 잘 넘어오는지 콘솔 확인 해보셔도됩니다.
+			console.log(data);
+		}
+	});
+    // try {
+    //     let response = await restHandler('POST', '/imageUpload', formData, true);
+    //     let imageUrl = `/Users/ysh/workspace/testopenservice/src/main/resources/static/image/${response.data}`;
+    //     $(editor).summernote('insertImage', imageUrl, function($image) {
+    //         $image.attr('img', imageUrl);
+    //         $image.css('width', "100%");
+    //     });
+    //     console.log(response.data)
+    // } catch (error) {
+    //     console.error('Error uploading image:', error);
+    // }
 };
 
 const postInfo = async () => {
@@ -220,5 +237,5 @@ const putInfo = async () => {
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
     heightResize();
-    loadInfoItems();
+    getInfoItems();
 });

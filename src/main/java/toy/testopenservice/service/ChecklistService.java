@@ -14,9 +14,8 @@ public class ChecklistService {
     private ChecklistRepository checklistRepository;
     
     @Transactional(readOnly = true)
-    public List<Checklist> getChecklist(String userId) {
-        System.out.println(userId);
-        return checklistRepository.findByUserId(userId);
+    public List<Checklist> getChecklist(String customs, String department) {
+        return checklistRepository.findByCustomsAndDepartment(customs, department);
     }
     
     @Transactional
@@ -25,5 +24,10 @@ public class ChecklistService {
         Checklist findChecklist = checklistRepository.findById(id).get();
         findChecklist.setVariResu(variResu);
         findChecklist.setCreaDate(timestamp);
+    }
+
+    @Transactional(readOnly = true)
+    public Checklist getChecklistById(int id) {
+        return checklistRepository.findById(id).get();
     }
 }

@@ -10,21 +10,28 @@
     background-color: #77D1C9;
     border-radius: 10px;
 }
+.DNSChecklist-item {
+    border-bottom: #77D1C9 1px dashed;
+}
 .head-numb, .numb {
+    width: 100px;
+    text-align: center;
+}
+.head-user, .user {
     width: 200px;
     text-align: center;
 }
-.head-PC-user, .PC-user {
+.head-put-resu, .put-resu {
     width: 200px;
     text-align: center;
 }
-.head-dns-resu, .dns-resu {
-    width: 500px;
+.head-crea-date, .crea-date {
+    width: 400px;
     text-align: center;
 }
-#dns-resu {
-    margin: 0 10px 10px 0;
+.numb, .user, .crea-date {
+    padding-top: 20px;
 }
-.crea-date {
-    margin-bottom: 5px;
+#dns-chck-rslt {
+    margin: 0 10px;
 }

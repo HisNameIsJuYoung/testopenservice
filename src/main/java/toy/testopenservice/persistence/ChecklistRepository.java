@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import toy.testopenservice.domain.Checklist;
 
 public interface ChecklistRepository extends JpaRepository<Checklist, Integer> {
-    List<Checklist> findByUserId(String logiUser);
+    List<Checklist> findByCustomsAndDepartment(String customs, String department);
 }

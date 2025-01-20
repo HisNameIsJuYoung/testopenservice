@@ -4,7 +4,7 @@ const insertVariResult = {
     'N' : '권한없음'
 }
 
-const restHandler = async (method, url, data = null, isFormData = false) => {
+const rest = async (method, url, data = null, isFormData = false) => {
     try {
         const options = {
             method: method,
@@ -30,13 +30,21 @@ const heightResize = () => {
 };
 window.addEventListener('resize', heightResize);
 
+const timeFormat = (date) => {
+    let time = new Date(date);
+    return time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate()
+        + ' ' + time.getHours() + ':' + time.getMinutes();
+}
+
 const putChecklist = async (id, variResu, itemElement) => {
     let data = {
         id: id,
         variResu: variResu
     }
     try {
-        const response = await restHandler('PUT', '/putChecklist', data);
+        const response = await rest('PUT', '/putChecklist', data);
+        itemElement.querySelector('.crea-date').innerText = timeFormat(response.data.creaDate);
+
     } catch (error) {
         alert(response.data);
         location.reload();
@@ -44,21 +52,15 @@ const putChecklist = async (id, variResu, itemElement) => {
     itemElement.querySelector('.resu-text').innerText = insertVariResult[data.variResu];
 }
 
-const timeFormat = (date) => {
-    let time = new Date(date);
-    return time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate()
-        + ' ' + time.getHours() + ':' + time.getMinutes();
-}
-
-const loadChecklistItem = async () => {
+const getChecklistItem = async () => {
     try {
-        let response = await restHandler('GET', '/getChecklist', null);
+        let response = await rest('GET', '/getChecklist', null);
+        response = response.data;
         let checklistItemTemplate = document.querySelector('#checklist-item-template');
         let itemNumber = response.data.length;
         let userId = document.querySelector('.user-id');
         let userName = document.querySelector('.user-name');
     
-        response = response.data;
         userId.innerText = '(' + response.userid + ')';
         userName.innerText = response.username;
         response.data.forEach(res => {
@@ -97,5 +99,5 @@ const loadChecklistItem = async () => {
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
     heightResize();
-    loadChecklistItem();
+    getChecklistItem();
 });

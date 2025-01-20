@@ -29,7 +29,7 @@ public class DNSChecklist {
     @Column(nullable = false, length = 32)
     private String userId;
 
-    @Column(nullable = false, length = 32)
+    @Column(length = 32)
     private String userName;
 
     @Column(nullable = false, length = 3)
@@ -38,8 +38,8 @@ public class DNSChecklist {
     @Column(nullable = false, length = 2)
     private String department;
 
-    @Column(nullable = false)
-    private boolean DNSVariResu;
+    @Column(nullable = true)
+    private Boolean DNSVariResu;
 
     @CreationTimestamp
     private Timestamp creaDate;
