@@ -46,7 +46,7 @@ let loginObject = {
         } else {
             password = rsa.encrypt(password);  //사용자 계정정보 암호화처리
             let data = {
-                userid : document.getElementById("userid").value,
+                userId : document.getElementById("userid").value,
                 password : password
             }
             console.log('password : ', password);
@@ -55,7 +55,7 @@ let loginObject = {
                 alert(response.data);
                 if (response.status == 200) {
                     window.location = '/';
-                } else if (response.status == data.userid) {
+                } else if (response.status == data.userId) {
                     window.location = '/auth/join';
                 } else {
                     window.location = '/auth/login';

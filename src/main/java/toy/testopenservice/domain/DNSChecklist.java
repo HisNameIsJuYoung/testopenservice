@@ -1,7 +1,9 @@
 package toy.testopenservice.domain;
 
 import java.sql.Timestamp;
+
 import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,35 +20,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "checklist")
-public class Checklist {
+@Table(name = "DNSChecklist")
+public class DNSChecklist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(nullable = false, length = 32)
-    private String checListId;
-
-    @Column(nullable = false, length = 32)
-    private String swVariId;
-
-    @Column(nullable = false, length = 32)
-    private String systName;
-
-    @Column(nullable = false, length = 32)
-    private String fronVariId;
-
-    @Column(nullable = false, length = 1024)
-    private String fronVariStep;
-
-    @Column(length = 32)
-    private String manaUser;
-
-    @Column(length = 2)
-    private String variResu;
-
-    @Column(length = 16)
     private String userId;
+
+    @Column(nullable = false, length = 32)
+    private String userName;
+
+    @Column(nullable = false, length = 3)
+    private String customs;
+
+    @Column(nullable = false, length = 2)
+    private String department;
+
+    @Column(nullable = false)
+    private boolean DNSVariResu;
 
     @CreationTimestamp
     private Timestamp creaDate;

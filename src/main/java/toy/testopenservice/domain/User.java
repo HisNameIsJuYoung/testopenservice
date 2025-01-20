@@ -28,7 +28,7 @@ public class User {
     private int id;
 
     @Column(nullable = false, length = 32, unique = true)
-    private String userid;
+    private String userId;
 
     @Column(nullable = false, length = 5)
     private String userName;

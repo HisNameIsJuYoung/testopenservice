@@ -29,9 +29,9 @@ public class UserController {
 
     @PutMapping("/auth/join")
     public @ResponseBody ResponseDTO<?> putUser(@RequestBody User user, HttpSession session) {
-        User findUser = userService.getUser(user.getUserid());
+        User findUser = userService.getUser(user.getUserId());
         
-        if (findUser.getUserid().equals(user.getUserid())) {
+        if (findUser.getUserId().equals(user.getUserId())) {
             PrivateKey privateKey = (PrivateKey) session.getAttribute("_RSA_WEB_Key_");
             String password = loginController.decryptRsa(privateKey, user.getPassword());
             if (password.length() < 9) {
@@ -40,11 +40,11 @@ public class UserController {
                 password = loginController.encodeSha256(password);
                 user.setPassword(password);
                 userService.insertUser(user);
-                return new ResponseDTO<>(HttpStatus.OK.value(), user.getUserid() + " 계정이 생성되었습니다.");
+                return new ResponseDTO<>(HttpStatus.OK.value(), user.getUserId() + " 계정이 생성되었습니다.");
             }
         } else {
             return new ResponseDTO<>(HttpStatus.BAD_REQUEST.value()
-                , "요청하신 계정 " + user.getUserid() + "이(가) 이미 존재합니다.");
+                , "요청하신 계정 " + user.getUserId() + "이(가) 이미 존재합니다.");
         }
     }
 }

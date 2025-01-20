@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import toy.testopenservice.domain.User;
 import toy.testopenservice.dto.RSAPublicKeyDTO;
@@ -107,19 +106,19 @@ public class LoginController {
     @PostMapping("/auth/login")
     public @ResponseBody ResponseDTO<?> login(@RequestBody User user, HttpSession session) {
         PrivateKey privateKey = (PrivateKey) session.getAttribute("_RSA_WEB_Key_");
-        User findUser = userService.getUser(user.getUserid());
+        User findUser = userService.getUser(user.getUserId());
         String decryptPassword = decryptRsa(privateKey, user.getPassword());
         String Sha256Password = this.encodeSha256(decryptPassword);
 
-        String userid = user.getUserid();
+        String userid = user.getUserId();
 
-        if (findUser.getUserid() == null) {
-            return new ResponseDTO<>(HttpStatus.BAD_REQUEST.value(), "요청하신 계정 " + user.getUserid() + "이(가) 존재하지 않습니다.");
+        if (findUser.getUserId() == null) {
+            return new ResponseDTO<>(HttpStatus.BAD_REQUEST.value(), "요청하신 계정 " + user.getUserId() + "이(가) 존재하지 않습니다.");
         } else {
             if (Sha256Password.equals(findUser.getPassword())) {
                 if (userid.equals(decryptPassword)) {
                     session.setAttribute("loginUser", user);
-                    return new ResponseDTO<>(Integer.parseInt(user.getUserid()), "패스워드를 변경해 주세요.");
+                    return new ResponseDTO<>(Integer.parseInt(user.getUserId()), "패스워드를 변경해 주세요.");
                 } else {
                     session.setAttribute("loginUser", findUser);
                     return new ResponseDTO<>(HttpStatus.OK.value(), findUser.getUserName() + "님 환영합니다.");

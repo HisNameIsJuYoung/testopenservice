@@ -14,8 +14,8 @@ public class UserService {
     private UserRepository userRepository;
 
     @Transactional(readOnly = true)
-    public User getUser(String userid) {
-        User findUser = userRepository.findByUserid(userid).orElseGet(() -> {
+    public User getUser(String userId) {
+        User findUser = userRepository.findByUserId(userId).orElseGet(() -> {
                 return new User();
             });
         return findUser;
@@ -30,7 +30,7 @@ public class UserService {
     @Transactional
     public User putUser(User user) {
         System.out.println(user);
-        User findUser = userRepository.findByUserid(user.getUserid()).get();
+        User findUser = userRepository.findByUserId(user.getUserId()).get();
         findUser.setPassword(user.getPassword());
         findUser.setCustoms(user.getCustoms());
         findUser.setDepartment(user.getDepartment());

@@ -14,9 +14,9 @@ public class ChecklistService {
     private ChecklistRepository checklistRepository;
     
     @Transactional(readOnly = true)
-    public List<Checklist> getChecklist(String logiUser) {
-        System.out.println(logiUser);
-        return checklistRepository.findByLogiUser(logiUser);
+    public List<Checklist> getChecklist(String userId) {
+        System.out.println(userId);
+        return checklistRepository.findByUserId(userId);
     }
     
     @Transactional

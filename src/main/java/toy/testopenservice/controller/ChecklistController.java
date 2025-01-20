@@ -1,6 +1,5 @@
 package toy.testopenservice.controller;
 
-import org.hibernate.annotations.Check;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -28,7 +27,7 @@ public class ChecklistController {
     @GetMapping("/getChecklist")
     public @ResponseBody ResponseDTO<?> getChecklist(HttpSession session) {
         User user = (User) session.getAttribute("loginUser");
-        String loginUser = user.getUserid();
+        String loginUser = user.getUserId();
         return new ResponseDTO<>(HttpStatus.OK.value(), checklistService.getChecklist(loginUser));
     }
 
