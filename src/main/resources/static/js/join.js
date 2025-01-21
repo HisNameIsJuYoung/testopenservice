@@ -146,12 +146,12 @@ const makeDropdownElement = (optionList, userSelection) => {
 
 const restHandler = async (method, url, data = null, isFormData = false) => {
     try {
-        const options = {
+        let options = {
             method: method,
             headers: isFormData ? {} : { 'Content-Type': 'application/json' }
         };
         if (data) options.body = isFormData ? data : JSON.stringify(data);
-        const response = await fetch(url, options);
+        let response = await fetch(url, options);
         if (!response.ok) {
             const errorMessage = await response.text();
             throw new Error(errorMessage || '요청할 수 없습니다.');
@@ -191,14 +191,14 @@ let loginObject = {
         } else {
             password = rsa.encrypt(password)  //사용자 계정정보 암호화처리
             let data = {
-                userid : document.getElementById("userid").value,
+                userId : document.getElementById("userid").value,
                 password : password,
                 customs : cstmCode,
                 department : dptmCode
             }
             console.log('password : ', password);
             try {
-                const response = await restHandler('PUT', '/auth/join', data);
+                let response = await restHandler('PUT', '/auth/join', data);
                 alert(response.data);
                 if (response.status != 200) {
                     window.location = '/auth/join';

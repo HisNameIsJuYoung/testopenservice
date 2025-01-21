@@ -9,7 +9,6 @@ import toy.testopenservice.persistence.UserRepository;
 
 @Service
 public class UserService {
-
     @Autowired
     private UserRepository userRepository;
 
@@ -29,12 +28,10 @@ public class UserService {
 
     @Transactional
     public User putUser(User user) {
-        System.out.println(user);
         User findUser = userRepository.findByUserId(user.getUserId()).get();
         findUser.setPassword(user.getPassword());
         findUser.setCustoms(user.getCustoms());
         findUser.setDepartment(user.getDepartment());
-        System.out.println(findUser);
         return userRepository.save(findUser);
     }
 }

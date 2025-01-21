@@ -37,10 +37,11 @@ public class UserController {
             if (password.length() < 9) {
                 return new ResponseDTO<>(HttpStatus.BAD_REQUEST.value(), "비밀번호를 9자 이상으로 해 주세요.");
             } else {
-                password = loginController.encodeSha256(password);
+                // password = loginController.encodeSha256(password);
                 user.setPassword(password);
-                userService.insertUser(user);
-                return new ResponseDTO<>(HttpStatus.OK.value(), user.getUserId() + " 계정이 생성되었습니다.");
+                userService.putUser(user);
+                
+                return new ResponseDTO<>(HttpStatus.OK.value(), user.getUserId() + " 계정이 업데이트되었습니다.");
             }
         } else {
             return new ResponseDTO<>(HttpStatus.BAD_REQUEST.value()

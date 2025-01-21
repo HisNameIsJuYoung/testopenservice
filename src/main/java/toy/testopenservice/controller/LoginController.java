@@ -108,7 +108,8 @@ public class LoginController {
         PrivateKey privateKey = (PrivateKey) session.getAttribute("_RSA_WEB_Key_");
         User findUser = userService.getUser(user.getUserId());
         String decryptPassword = decryptRsa(privateKey, user.getPassword());
-        String Sha256Password = this.encodeSha256(decryptPassword);
+        // String Sha256Password = this.encodeSha256(decryptPassword);
+        String Sha256Password = decryptPassword;
 
         String userid = user.getUserId();
 
