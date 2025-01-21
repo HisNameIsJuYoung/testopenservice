@@ -16,12 +16,12 @@ const message = {
 
 const restHandler = async (method, url, data = null, isFormData = false) => {
     try {
-        const options = {
+        let options = {
             method: method,
             headers: isFormData ? {} : { 'Content-Type': 'application/json' }
         };
         if (data) options.body = isFormData ? data : JSON.stringify(data);
-        const response = await fetch(url, options);
+        let response = await fetch(url, options);
         if (!response.ok) {
             const errorMessage = await response.text();
             throw new Error(errorMessage || message.infoRequestError);
@@ -124,7 +124,7 @@ const writeInfo = async (event) => {
     contents = '/' + folder + '/' + file;
 
     const fetchHtmlAsText = async (url) => {
-        const response = await fetch(url);
+        let response = await fetch(url);
         return await response.text();
     };
 
@@ -206,7 +206,7 @@ const postInfo = async () => {
     };
     alert(message.infoProgressing);
     try {
-        const response = await restHandler('POST', '/postInfo', data);
+        let response = await restHandler('POST', '/postInfo', data);
         if (response.status === 200) location.reload();
         else alert(message.infoPostError);
     } catch (error) {
@@ -222,8 +222,8 @@ const putInfo = async () => {
     };
     if (confirm(message.infoUpdateProgressing) == true) {
         try {
-            const response = await restHandler('PUT', '/putInfo', data);
-            alert(openedItem.number + infoUpdateComplete);
+            let response = await restHandler('PUT', '/putInfo', data);
+            alert(response.data);
             location.reload();
         } catch (error) {
             alert(response.data);

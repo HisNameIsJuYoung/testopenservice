@@ -26,20 +26,20 @@ public class DNSChecklist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false, length = 32)
+    @Column(length = 32)
     private String userId;
 
     @Column(length = 32)
     private String userName;
 
-    @Column(nullable = false, length = 3)
+    @Column(length = 3)
     private String customs;
 
-    @Column(nullable = false, length = 2)
+    @Column(length = 2)
     private String department;
 
     @Column(nullable = true)
-    private Boolean DNSVariResu;
+    private String DNSVariResu;
 
     @CreationTimestamp
     private Timestamp creaDate;

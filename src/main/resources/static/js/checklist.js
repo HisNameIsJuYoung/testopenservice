@@ -6,14 +6,14 @@ const insertVariResult = {
 
 const rest = async (method, url, data = null, isFormData = false) => {
     try {
-        const options = {
+        let options = {
             method: method,
             headers: isFormData ? {} : { 'Content-Type': 'application/json' }
         };
         if (data) options.body = isFormData ? data : JSON.stringify(data);
-        const response = await fetch(url, options);
+        let response = await fetch(url, options);
         if (!response.ok) {
-            const errorMessage = await response.text();
+            let errorMessage = await response.text();
             throw new Error(errorMessage || '요청할 수 없습니다.');
         }
         return await response.json();
@@ -42,7 +42,8 @@ const putChecklist = async (id, variResu, itemElement) => {
         variResu: variResu
     }
     try {
-        const response = await rest('PUT', '/putChecklist', data);
+        let response = await rest('PUT', '/putChecklist', data);
+        console.log(response.data);
         itemElement.querySelector('.crea-date').innerText = timeFormat(response.data.creaDate);
 
     } catch (error) {

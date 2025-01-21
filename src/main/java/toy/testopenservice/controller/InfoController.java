@@ -59,6 +59,7 @@ public class InfoController {
 
     @PutMapping("/putInfo")
     public @ResponseBody ResponseDTO<?> putInfo(@RequestBody Info info) {
+        System.out.println(info);
         infoService.putInfo(info);
         return new ResponseDTO<>(HttpStatus.OK.value(), info.getId() + "번 공지사항이 수정되었습니다.");
     }

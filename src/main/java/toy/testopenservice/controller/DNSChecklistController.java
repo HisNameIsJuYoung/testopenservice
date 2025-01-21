@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import jakarta.servlet.http.HttpSession;
-import toy.testopenservice.domain.Checklist;
+import toy.testopenservice.domain.DNSChecklist;
 import toy.testopenservice.domain.User;
 import toy.testopenservice.dto.CommonResponseDTO;
 import toy.testopenservice.dto.ResponseDTO;
@@ -38,9 +37,10 @@ public class DNSChecklistController {
         return new ResponseDTO<>(HttpStatus.OK.value(), commonResponseDTO);
     }
 
-    @PutMapping("putDNSChecklist")
-    public @ResponseBody ResponseDTO<?> putChecklist(@RequestBody Checklist checklist) {
-        // checklistService.putChecklist(checklist.getId(), checklist.getVariResu());
-        return new ResponseDTO<>(HttpStatus.OK.value(), null);
+    @PutMapping("/putDNSChecklist")
+    public @ResponseBody ResponseDTO<?> putDNSChecklist(@RequestBody DNSChecklist dNSChecklist) {
+        System.out.println("DNS controller : " + dNSChecklist);
+        dNSChecklistService.putDNSChecklist(dNSChecklist);
+        return new ResponseDTO<>(HttpStatus.OK.value(), dNSChecklistService.getDNSChecklistById(dNSChecklist.getId()));
     }
 }

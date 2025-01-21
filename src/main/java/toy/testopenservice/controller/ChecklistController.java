@@ -39,6 +39,7 @@ public class ChecklistController {
     @PutMapping("/putChecklist")
     public @ResponseBody ResponseDTO<?> putChecklist(@RequestBody Checklist checklist) {
         checklistService.putChecklist(checklist.getId(), checklist.getVariResu());
+        System.out.println(checklist);
         return new ResponseDTO<>(HttpStatus.OK.value(), checklistService.getChecklistById(checklist.getId()));
     }
 }

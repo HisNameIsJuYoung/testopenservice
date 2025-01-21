@@ -6,12 +6,12 @@ const insertVariResult = {
 
 const rest = async (method, url, data = null, isFormData = false) => {
     try {
-        const options = {
+        let options = {
             method: method,
             headers: isFormData ? {} : { 'Content-Type': 'application/json' }
         };
         if (data) options.body = isFormData ? data : JSON.stringify(data);
-        const response = await fetch(url, options);
+        let response = await fetch(url, options);
         if (!response.ok) {
             const errorMessage = await response.text();
             throw new Error(errorMessage || '요청할 수 없습니다.');
@@ -30,24 +30,28 @@ const heightResize = () => {
 };
 window.addEventListener('resize', heightResize);
 
-const putDNSChecklist = async (id, variResu, itemElement) => {
+const timeFormat = (date) => {
+    let time = new Date(date);
+    return time.getFullYear() + '-' + ('0' + (time.getMonth() + 1)).slice(-2)
+        + '-' + ('0' + time.getDate()).slice(-2) + ' ' 
+        + ('0' + time.getHours()).slice(-2) + ':' + ('0' + time.getMinutes()).slice(-2);
+}
+
+const putDNSChecklist = async (id, dnsvariResu, itemElement) => {
+    let creaDate = itemElement.querySelector('.crea-date')
     let data = {
         id: id,
-        variResu: variResu
+        dnsvariResu: dnsvariResu
     }
     try {
-        const response = await restHandler('PUT', '/putDNSChecklist', data);
+        let response = await rest('PUT', '/putDNSChecklist', data);
+        console.log(data);
+        console.log(response.data);
+        creaDate.innerText = '완료, ' + timeFormat(response.data.creaDate);
     } catch (error) {
         alert(response.data);
         location.reload();
     }
-    itemElement.querySelector('.resu-text').innerText = insertVariResult[data.variResu];
-}
-
-const timeFormat = (date) => {
-    let time = new Date(date);
-    return time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate()
-        + ' ' + time.getHours() + ':' + time.getMinutes();
 }
 
 const getDNSChecklist = async () => {
@@ -62,18 +66,16 @@ const getDNSChecklist = async () => {
         userId.innerText = '(' + response.userid + ')';
         userName.innerText = response.username;
         response.data.forEach(res => {
-            console.log(res);
-            console.log(res.dnsvariResu);
             let DNSChecklistItem = DNSChecklistItemTemplate.cloneNode(true);
             DNSChecklistItem.id = 'item' + res.id;
             DNSChecklistItem.querySelector('.numb').innerText = itemNumber;
             DNSChecklistItem.querySelector('.user').innerText = res.userName;
             
             DNSChecklistItem.querySelector('#dns-chck-rslt').addEventListener('click', () => {
-                putDNSChecklist(res.id);
+                putDNSChecklist(res.id, 'Y', DNSChecklistItem);
             });
             DNSChecklistItem.querySelector('.crea-date').innerText
-                = (res.dnsvariResu) ? timeFormat(res.creaDate) : '미수행';
+                = (res.dnsvariResu) ? '완료, ' + timeFormat(res.creaDate) : '미수행';
             DNSChecklistItemTemplate.after(DNSChecklistItem);
             itemNumber -= 1;
         });
