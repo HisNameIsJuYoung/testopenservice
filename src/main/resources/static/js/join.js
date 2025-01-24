@@ -95,6 +95,16 @@ const deleteSelectElement = () => {
     if (document.querySelector('#dropdown3')) document.querySelector('#dropdown3').remove();
 }
 
+const keyboardFunction = (element, executeFunction) => {
+    if (element) {
+        element.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                executeFunction;
+            }
+        });
+    }
+}
+
 const userSelectResultProcprocess = (event) => {
     let userSelection = event.currentTarget.options[event.currentTarget.options.selectedIndex].value;
     if (optnCstm[userSelection]) makeDropdownElement(optnCstm[userSelection], userSelection);
@@ -223,6 +233,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Error loading info items:', error);
     }
     loginObject.init()
+    let passwordConfirm = document.getElementById("passwordConfirm");
+    keyboardFunction(passwordConfirm, loginObject.login);
     let dropdownElement = customsDepartment.querySelector('select.dropdown')
     dropdownElement.addEventListener('change', (event) => {
         resetUserValueSelectBefore();

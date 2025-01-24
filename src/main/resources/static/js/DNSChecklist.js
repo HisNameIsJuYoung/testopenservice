@@ -38,16 +38,17 @@ const timeFormat = (date) => {
 }
 
 const putDNSChecklist = async (id, dnsvariResu, itemElement) => {
-    let creaDate = itemElement.querySelector('.crea-date')
+    let cretDate = itemElement.querySelector('.cret-date')
+    let dnsNchc = itemElement.querySelector('.nchc-rslt')
     let data = {
         id: id,
         dnsvariResu: dnsvariResu
     }
     try {
         let response = await rest('PUT', '/putDNSChecklist', data);
-        console.log(data);
-        console.log(response.data);
-        creaDate.innerText = '완료, ' + timeFormat(response.data.creaDate);
+        cretDate.innerText = '완료, ' + timeFormat(response.data.cretDate);
+        cretDate
+        dnsNchc.innerHTML = `<button id="dns-nchc" onclick="deleteRslt()">취소</button>`;
     } catch (error) {
         alert(response.data);
         location.reload();
@@ -62,11 +63,12 @@ const getDNSChecklist = async () => {
         let itemNumber = response.data.length;
         let userId = document.querySelector('.user-id');
         let userName = document.querySelector('.user-name');
-        
+        console.log(response);
         userId.innerText = '(' + response.userid + ')';
         userName.innerText = response.username;
         response.data.forEach(res => {
             let DNSChecklistItem = DNSChecklistItemTemplate.cloneNode(true);
+            let cretDate = DNSChecklistItem.querySelector('.cret-date');
             DNSChecklistItem.id = 'item' + res.id;
             DNSChecklistItem.querySelector('.numb').innerText = itemNumber;
             DNSChecklistItem.querySelector('.user').innerText = res.userName;
@@ -74,8 +76,7 @@ const getDNSChecklist = async () => {
             DNSChecklistItem.querySelector('#dns-chck-rslt').addEventListener('click', () => {
                 putDNSChecklist(res.id, 'Y', DNSChecklistItem);
             });
-            DNSChecklistItem.querySelector('.crea-date').innerText
-                = (res.dnsvariResu) ? '완료, ' + timeFormat(res.creaDate) : '미수행';
+            cretDate.innerText = (res.dnschckRslt) ? '완료, ' + timeFormat(res.cretDate) : '미수행';
             DNSChecklistItemTemplate.after(DNSChecklistItem);
             itemNumber -= 1;
         });

@@ -25,11 +25,11 @@
     width: 200px;
     text-align: center;
 }
-.head-crea-date, .crea-date {
+.head-cret-date, .cret-date {
     width: 400px;
     text-align: center;
 }
-.numb, .user, .crea-date {
+.numb, .user, .cret-date {
     padding-top: 20px;
 }
 #dns-chck-rslt {

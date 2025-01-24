@@ -1,13 +1,14 @@
 package toy.testopenservice.domain;
 
-import java.sql.Timestamp;
-import org.hibernate.annotations.CreationTimestamp;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.CascadeType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,7 +24,7 @@ public class Checklist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    
     @Column(nullable = false, length = 32)
     private String checListId;
 
@@ -39,21 +40,9 @@ public class Checklist {
     @Column(nullable = false, length = 1024)
     private String fronVariStep;
 
-    @Column(length = 32)
-    private String manaUser;
-
-    @Column(length = 2)
-    private String variResu;
-
-    @Column(length = 16)
-    private String userId;
-    
-    @Column(length = 3)
+    @Column(nullable = false, length = 3)
     private String customs;
     
-    @Column(length = 2)
+    @Column(nullable = false, length = 2)
     private String department;
-
-    @CreationTimestamp
-    private Timestamp creaDate;
 }

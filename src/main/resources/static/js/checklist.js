@@ -1,4 +1,4 @@
-const insertVariResult = {
+const chckRsltValu = {
     'P' : '이상없음',
     'F' : '오류발견',
     'N' : '권한없음'
@@ -32,25 +32,23 @@ window.addEventListener('resize', heightResize);
 
 const timeFormat = (date) => {
     let time = new Date(date);
-    return time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate()
-        + ' ' + time.getHours() + ':' + time.getMinutes();
+    return time.getFullYear() + '-' + ('0' + (time.getMonth() + 1)).slice(-2)
+        + '-' + ('0' + time.getDate()).slice(-2) + ' ' 
+        + ('0' + time.getHours()).slice(-2) + ':' + ('0' + time.getMinutes()).slice(-2);
 }
 
-const putChecklist = async (id, variResu, itemElement) => {
+const putChecklist = async (id, chckRslt, itemElement) => {
     let data = {
         id: id,
-        variResu: variResu
+        chckRslt: chckRslt
     }
     try {
         let response = await rest('PUT', '/putChecklist', data);
-        console.log(response.data);
-        itemElement.querySelector('.crea-date').innerText = timeFormat(response.data.creaDate);
-
+        itemElement.querySelector('.crea-date').innerText = timeFormat(response.data.createDate);
     } catch (error) {
         alert(response.data);
         location.reload();
     }
-    itemElement.querySelector('.resu-text').innerText = insertVariResult[data.variResu];
 }
 
 const getChecklistItem = async () => {
@@ -66,7 +64,7 @@ const getChecklistItem = async () => {
         userName.innerText = response.username;
         response.data.forEach(res => {
             let checklistItem = checklistItemTemplate.cloneNode(true);
-            let tempResult = res.variResu
+            let tempResult = res.chckRslt
             checklistItem.id = 'item' + res.id;
             checklistItem.querySelector('.numb').innerText = itemNumber;
             checklistItem.querySelector('.chec-list-id').innerText = res.checListId;
@@ -74,9 +72,9 @@ const getChecklistItem = async () => {
             checklistItem.querySelector('.fron-vari-id').innerText = res.fronVariId;
             checklistItem.querySelector('.fron-vari-step').innerText = res.fronVariStep;
             
-            const attachEventListener = (selector, status, text) => {
+            const attachEventListener = (selector, checkResult, text) => {
                 checklistItem.querySelector(selector).addEventListener('click', () => {
-                    putChecklist(res.id, status, checklistItem);
+                    putChecklist(res.id, checkResult, checklistItem);
                     checklistItem.querySelector('.resu-text').innerText = text;
                 });
             };
@@ -85,8 +83,8 @@ const getChecklistItem = async () => {
             attachEventListener('#resu-pass', 'P', '이상없음');
             
             if (tempResult) {
-                checklistItem.querySelector('.resu-text').innerText = insertVariResult[tempResult];
-                checklistItem.querySelector('.crea-date').innerText = timeFormat(res.creaDate);
+                checklistItem.querySelector('.resu-text').innerText = chckRsltValu[tempResult];
+                checklistItem.querySelector('.crea-date').innerText = timeFormat(res.createDate);
             } else checklistItem.querySelector('.resu-text').innerText = '미수행'
             itemNumber -= 1;
             checklistItemTemplate.after(checklistItem);

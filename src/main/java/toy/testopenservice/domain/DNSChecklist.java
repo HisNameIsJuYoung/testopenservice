@@ -39,8 +39,8 @@ public class DNSChecklist {
     private String department;
 
     @Column(nullable = true)
-    private String DNSVariResu;
+    private String DNSChckRslt;
 
-    @CreationTimestamp
-    private Timestamp creaDate;
+    @Column
+    private Timestamp cretDate;
 }

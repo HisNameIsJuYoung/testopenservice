@@ -6,13 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PutMapping;
 import jakarta.servlet.http.HttpSession;
-import toy.testopenservice.domain.Checklist;
+import toy.testopenservice.domain.ChecklistResult;
 import toy.testopenservice.domain.User;
 import toy.testopenservice.dto.CommonResponseDTO;
 import toy.testopenservice.dto.ResponseDTO;
 import toy.testopenservice.service.ChecklistService;
-import org.springframework.web.bind.annotation.PutMapping;
 
 
 @Controller
@@ -30,16 +30,14 @@ public class ChecklistController {
         User user = (User) session.getAttribute("loginUser");
         String userId = user.getUserId();
         String userName = user.getUserName();
-        Object data = checklistService.getChecklist(user.getCustoms(), user.getDepartment());
-        System.out.println(user);
+        Object data = checklistService.getChecklist(userId, user.getCustoms(), user.getDepartment());
         CommonResponseDTO commonResponseDTO = new CommonResponseDTO(userId, userName, data);
         return new ResponseDTO<>(HttpStatus.OK.value(), commonResponseDTO);
     }
 
     @PutMapping("/putChecklist")
-    public @ResponseBody ResponseDTO<?> putChecklist(@RequestBody Checklist checklist) {
-        checklistService.putChecklist(checklist.getId(), checklist.getVariResu());
-        System.out.println(checklist);
-        return new ResponseDTO<>(HttpStatus.OK.value(), checklistService.getChecklistById(checklist.getId()));
+    public @ResponseBody ResponseDTO<?> putChecklist(@RequestBody ChecklistResult checklistResult) {
+        ChecklistResult updatedChecklistResult = checklistService.putChecklist(checklistResult.getId(), checklistResult.getChckRslt());
+        return new ResponseDTO<>(HttpStatus.OK.value(), updatedChecklistResult);
     }
 }

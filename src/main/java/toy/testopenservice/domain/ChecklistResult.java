@@ -1,9 +1,6 @@
 package toy.testopenservice.domain;
 
 import java.sql.Timestamp;
-
-import org.hibernate.annotations.CreationTimestamp;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,19 +23,18 @@ public class ChecklistResult {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false, length = 32)
+    @Column(length = 32)
     private String checListId;
 
-    @Column(nullable = false, length = 16)
+    @Column(length = 16)
     private String userId;
     
     @Column(length = 5)
     private String userName;
 
     @Column(length = 2)
-    private String rslt;
+    private String chckRslt;
     
-    
-    @CreationTimestamp
+    @Column
     private Timestamp createDate;
 }

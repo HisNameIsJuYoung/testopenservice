@@ -6,4 +6,5 @@ import toy.testopenservice.domain.Checklist;
 
 public interface ChecklistRepository extends JpaRepository<Checklist, Integer> {
     List<Checklist> findByCustomsAndDepartment(String customs, String department);
+    List<Checklist> findChecListIdByCustomsAndDepartment(String customs, String department);
 }
