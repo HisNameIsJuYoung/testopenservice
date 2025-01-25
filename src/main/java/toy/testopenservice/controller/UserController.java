@@ -29,7 +29,7 @@ public class UserController {
 
     @PutMapping("/auth/join")
     public @ResponseBody ResponseDTO<?> putUser(@RequestBody User user, HttpSession session) {
-        User findUser = userService.getUser(user.getUserId());
+        User findUser = (User) session.getAttribute("loginUser");
         
         if (findUser.getUserId().equals(user.getUserId())) {
             PrivateKey privateKey = (PrivateKey) session.getAttribute("_RSA_WEB_Key_");
@@ -38,10 +38,10 @@ public class UserController {
                 return new ResponseDTO<>(HttpStatus.BAD_REQUEST.value(), "비밀번호를 9자 이상으로 해 주세요.");
             } else {
                 // password = loginController.encodeSha256(password);
-                user.setPassword(password);
-                userService.putUser(user);
-                
-                return new ResponseDTO<>(HttpStatus.OK.value(), user.getUserId() + " 계정이 업데이트되었습니다.");
+                findUser.setPassword(password);
+                userService.putUser(findUser, user);
+                session.invalidate();
+                return new ResponseDTO<>(HttpStatus.OK.value(), user.getUserId() + " 계정이 업데이트되었습니다.\n다시 로그인 해 주세요.");
             }
         } else {
             return new ResponseDTO<>(HttpStatus.BAD_REQUEST.value()

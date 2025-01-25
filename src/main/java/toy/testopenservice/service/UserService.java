@@ -2,11 +2,14 @@ package toy.testopenservice.service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import jakarta.servlet.http.HttpSession;
 import toy.testopenservice.domain.Checklist;
 import toy.testopenservice.domain.ChecklistResult;
 import toy.testopenservice.domain.DNSChecklist;
@@ -33,10 +36,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User getUser(String userId) {
-        User findUser = userRepository.findByUserId(userId).orElseGet(() -> {
-                return new User();
-            });
-        return findUser;
+        return userRepository.findByUserId(userId).orElseGet(User::new);
     }
 
     @Transactional
@@ -46,38 +46,41 @@ public class UserService {
     }
 
     @Transactional
-    public void generateChecklistResult(User user) {
-        List<Checklist> findChecklist = checklistRepository.findChecListIdByCustomsAndDepartment(user.getCustoms(), user.getDepartment());
-        
-        for (Checklist checklist : findChecklist) {
-            ChecklistResult checklistResult = new ChecklistResult();
-            checklistResult.setUserId(user.getUserId());
-            checklistResult.setUserName(user.getUserName());
-            checklistResult.setChecListId(checklist.getChecListId());
-            checklistResultRepository.save(checklistResult);
-        }
+    public CompletableFuture<Void> generateChecklistResult(User user) {
+        return CompletableFuture.runAsync(() -> {
+            List<Checklist> findChecklist = checklistRepository.findChecListIdByCustomsAndDepartment(user.getCustoms(), user.getDepartment());
+            for (Checklist checklist : findChecklist) {
+                ChecklistResult checklistResult = new ChecklistResult();
+                checklistResult.setUserId(user.getUserId());
+                checklistResult.setUserName(user.getUserName());
+                checklistResult.setChecListId(checklist.getChecListId());
+                checklistResultRepository.save(checklistResult);
+            }
+        });
     }
 
     @Transactional
-    public void generateDNSChecklist(User user) {
-        DNSChecklist dNSChecklist = new DNSChecklist();
-        dNSChecklist.setUserId(user.getUserId());
-        dNSChecklist.setUserName(user.getUserName());
-        dNSChecklist.setCustoms(user.getCustoms());
-        dNSChecklist.setDepartment(user.getDepartment());
-        dNSChecklistRepository.save(dNSChecklist);
+    public CompletableFuture<Void> generateDNSChecklist(User user) {
+        return CompletableFuture.runAsync(() -> {
+            DNSChecklist dNSChecklist = new DNSChecklist();
+            dNSChecklist.setUserId(user.getUserId());
+            dNSChecklist.setUserName(user.getUserName());
+            dNSChecklist.setCustoms(user.getCustoms());
+            dNSChecklist.setDepartment(user.getDepartment());
+            dNSChecklistRepository.save(dNSChecklist);
+        });
     }
-
     @Transactional
-    public User putUser(User user) {
+    public User putUser(User findUser, User user) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        User findUser = userRepository.findByUserId(user.getUserId()).get();
-        findUser.setPassword(user.getPassword());
         findUser.setCustoms(user.getCustoms());
         findUser.setDepartment(user.getDepartment());
         findUser.setCreateDate(timestamp);
-        this.generateChecklistResult(user);
-        this.generateDNSChecklist(findUser);
+
+        CompletableFuture<Void> checklistFuture = generateChecklistResult(findUser);
+        CompletableFuture<Void> dnsChecklistFuture = generateDNSChecklist(findUser);
+        CompletableFuture.allOf(checklistFuture, dnsChecklistFuture).join();
+
         return userRepository.save(findUser);
     }
 }

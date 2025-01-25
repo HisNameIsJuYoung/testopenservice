@@ -206,7 +206,6 @@ let loginObject = {
                 customs : cstmCode,
                 department : dptmCode
             }
-            console.log('password : ', password);
             try {
                 let response = await restHandler('PUT', '/auth/join', data);
                 alert(response.data);

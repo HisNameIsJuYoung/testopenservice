@@ -117,11 +117,10 @@ public class LoginController {
             return new ResponseDTO<>(HttpStatus.BAD_REQUEST.value(), "요청하신 계정 " + user.getUserId() + "이(가) 존재하지 않습니다.");
         } else {
             if (Sha256Password.equals(findUser.getPassword())) {
+                session.setAttribute("loginUser", findUser);
                 if (userid.equals(decryptPassword)) {
-                    session.setAttribute("loginUser", user);
                     return new ResponseDTO<>(Integer.parseInt(user.getUserId()), "패스워드를 변경해 주세요.");
                 } else {
-                    session.setAttribute("loginUser", findUser);
                     return new ResponseDTO<>(HttpStatus.OK.value(), findUser.getUserName() + "님 환영합니다.");
                 }
             } else {

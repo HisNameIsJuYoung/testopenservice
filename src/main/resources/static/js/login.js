@@ -6,10 +6,8 @@ window.addEventListener('resize', heightResize);
 
 const restHandler = async (method, url, data = null, isFormData = false) => {
     try {
-        const options = {
-            method: method,
-            headers: isFormData ? {} : { 'Content-Type': 'application/json' }
-        };
+        const options = { method: method,
+            headers: isFormData ? {} : { 'Content-Type': 'application/json' } };
         if (data) options.body = isFormData ? data : JSON.stringify(data);
         const response = await fetch(url, options);
         if (!response.ok) {
@@ -25,17 +23,16 @@ const restHandler = async (method, url, data = null, isFormData = false) => {
 
 let loginObject = {
     init : function() {
-        document.querySelector("#button-login").onclick = () => {
-            this.login();
-        };
+        document.querySelector("#button-login").onclick = () => this.login();
     },
-
+    
     login : async function() {
         let rsa = new RSAKey();  // RSA 암호화 키 생성
+        let password = document.getElementById("password").value
+        
         rsa.setPublic(document.querySelector('#RSAModulus').value,
             document.querySelector('#RSAExponent').value);
-
-        let password = document.getElementById("password").value
+        password = rsa.encrypt(password);  //사용자 계정정보 암호화처리
         
         if (!userid) {
             alert("아이디를 입력해주세요.")
@@ -44,12 +41,8 @@ let loginObject = {
             alert("비밀번호를 입력해주세요.")
             window.location = '/auth/login'
         } else {
-            password = rsa.encrypt(password);  //사용자 계정정보 암호화처리
-            let data = {
-                userId : document.getElementById("userid").value,
-                password : password
-            }
-            console.log('password : ', password);
+            let data = { userId : document.getElementById("userid").value,
+                password : password }
             try {
                 const response = await restHandler('POST', '/auth/login', data);
                 alert(response.data);
@@ -60,17 +53,12 @@ let loginObject = {
                 } else {
                     window.location = '/auth/login';
                 }
-            } catch (error) {
-                console.error('error in login.js : ', error);
-            }
+            } catch (error) { console.error('error in login.js : ', error); }
         }
     }
 }
 
-loginObject.init()
-
 document.addEventListener('DOMContentLoaded', async () => {
-    heightResize();
     try {
         let response = await restHandler('GET', '/auth/getRSA', null);
         document.querySelector('#RSAModulus').value = response.data.module;
@@ -78,5 +66,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Error loading info items:', error);
     }
-    loginObject.init()
+    heightResize(); loginObject.init()
+    document.querySelector('#password').addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') loginObject.login();
+    })
 });

@@ -9,7 +9,7 @@ spring:
         username: misadmin
         password: misrhkstpcjd32!
     jpa:
-        show_sql: true
+        show_sql: false
         hibernate:
             naming:
                 physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
