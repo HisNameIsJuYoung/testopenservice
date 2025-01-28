@@ -5,11 +5,9 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.servlet.http.HttpSession;
 import toy.testopenservice.domain.Checklist;
 import toy.testopenservice.domain.ChecklistResult;
 import toy.testopenservice.domain.DNSChecklist;

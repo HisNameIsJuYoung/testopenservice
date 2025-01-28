@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unipass 4.5</title>
+    <link rel="icon" href="/unipass45.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/manager.css">
+    <script defer src="/js/manager.js"></script>
+</head>
+<body>
+    <div class="container"> <!-- container -->
+        <div class="nav cfa">
+            <div class="toy-proj-name">
+                <a href="/">체크리스트 게시판</a>
+            </div>
+            <a class="auth login" href="/auth/logout">로그아웃</a>
+            <div class="auth user-id"></div>
+            <div class="auth user-name"></div>
+        </div>
+
+        <div class="nav-bottom"></div>
+        
+        <div class="menu cfa">
+            <div class="menu-item menu-info"><a href="/">공지사항</a></div>
+            <div class="menu-item menu-checklist"><a href="/checklist">체크리스트</a></div>
+            <div class="menu-item menu-DNSChecklist"><a href="/DNSChecklist">DNS변경 체크리스트</a></div>
+            <div class="menu-item menu-manager"><a href="/manager">관리자</a></div>
+        </div>
+
+        <div class="srch-cstm-dprt cfa">
+            <div class="textbox-name">세관/부서선택</div>
+            <div class="cstm-dprt" id="dropdown1">
+                <select class="drop-down">
+                    <option value="" disabled selected>세관을 선택해 주세요.</option>
+                    <option value="donghae">동해세관</option>
+                    <option value="seoul">서울세관</option>
+                    <option value="seongnam">성남세관</option>
+                    <option value="sokcho">속초세관</option>
+                    <option value="anYang">안양세관</option>
+                    <option value="cheonan">천안세관</option>
+                    <option value="cheongju">청주세관</option>
+                    <option value="paju">파주세관</option>
+                </select>
+            </div>
+            <div class="bttn" style="float: right">
+                <button id="dprt-chck-list">검색</button>
+            </div>
+        </div>
+
+        <div id="contents">
+            <div class="DNSChecklist">
+                <div class="bord-name">시험운영 체크리스트</div>
+                <div class="DNSChecklist-item-head cfa">
+                    <div class="item-fl head-cstm">세관명</div>
+                    <div class="item-fl head-dprt">부서명</div>
+                    <div class="item-fl head-empl-name">직원명</div>
+                    <div class="item-fl head-chck-amnt">점검수량</div>
+                    <div class="item-fl head-chck-rslt">완료</div>
+                    <div class="item-fl head-un-chck">미완료</div>
+                    <div class="item-fl head-chck-prcn">완료율</div>
+                    <div class="item-fl head-unch-prcn">미완료율</div>
+                </div>
+                <div class="DNSChecklist-item cfa" id="DNSChecklist-item-template">
+                    <div class="item-fl cstm">서울세관</div>
+                    <div class="item-fl dprt">수출입기업지원센터</div>
+                    <div class="item-fl empl-name">홍길동(123456)</div>
+                    <div class="item-fl chck-amnt">25</div>
+                    <div class="item-fl chck-rslt">20</div>
+                    <div class="item-fl un-chck">5</div>
+                    <div class="item-fl chck-prcn">80.0</div>
+                    <div class="item-fl unch-prcn">20.0</div>
+                </div>
+            </div>
+            <div class="DNSChecklist">
+                <div class="bord-name">DNS 체크리스트</div>
+                <div class="DNSChecklist-item-head cfa">
+                    <div class="item-fl head-cstm">세관명</div>
+                    <div class="item-fl head-dprt">부서명</div>
+                    <div class="item-fl head-empl-cont">직원수</div>
+                    <div class="item-fl head-chck-rslt">변경완료</div>
+                    <div class="item-fl head-un-chck">미완료</div>
+                    <div class="item-fl head-chck-prcn">완료율</div>
+                    <div class="item-fl head-unch-prcn">미완료율</div>
+                    <div class="item-fl head-unch-empl">미완료직원</div>
+                </div>
+                <div class="DNSChecklist-item cfa" id="DNSChecklist-item-template">
+                    <div class="item-fl cstm">서울세관</div>
+                    <div class="item-fl dprt">수출입기업지원센터</div>
+                    <div class="item-fl empl-cont">25</div>
+                    <div class="item-fl chck-rslt">20</div>
+                    <div class="item-fl un-chck">5</div>
+                    <div class="item-fl chck-prcn">80.0</div>
+                    <div class="item-fl unch-prcn">20.0</div>
+                    <div class="item-fl unch-empl">홍길동(123456)<br>김길동(098765)<br>이길동(909090)</div>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- container end -->
+    <div class="thanks">Thanks, Always</div>
+</body>
+</html>

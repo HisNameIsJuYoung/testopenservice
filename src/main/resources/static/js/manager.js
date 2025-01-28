@@ -14,7 +14,7 @@ optnCstm.anYang = ['통관지원과', '조사심사과']
 optnCstm.cheonan = ['통관지원과', '조사심사과']
 optnCstm.cheongju = ['통관지원과', '조사심사과', '여행자통관과', '충주지원센터']
 optnCstm.paju = ['파주세관', '도라산지원센터', '의정부지원센터']
-const cstmDptmCode = {
+const cstmDprtCode = {
     '동해세관동해세관' : '100D9',  /***********/
     '동해세관원주지원센터' : '102D9',
     '서울세관감사담당관' : '010CA',  /***********/
@@ -88,11 +88,11 @@ const heightResize = () => {
     document.querySelector('.container').style.width = window.innerWidth + 'px';
 };
 window.addEventListener('resize', heightResize);
-const customsDepartment = document.querySelector('.customsDepartment')
+const cstmDprt = document.querySelector('.cstm-dprt')
 
 const deleteSelectElement = () => {
-    if (document.querySelector('#dropdown2')) document.querySelector('#dropdown2').remove();
-    if (document.querySelector('#dropdown3')) document.querySelector('#dropdown3').remove();
+    if (document.querySelector('#drop-down2')) document.querySelector('#drop-down2').remove();
+    if (document.querySelector('#drop-down3')) document.querySelector('#drop-down3').remove();
 }
 
 const keyboardFunction = (element, executeFunction) => {
@@ -104,27 +104,25 @@ const keyboardFunction = (element, executeFunction) => {
 
 const userSelectResultProcprocess = (event) => {
     let userSelection = event.currentTarget.options[event.currentTarget.options.selectedIndex].value;
-    if (optnCstm[userSelection]) makeDropdownElement(optnCstm[userSelection], userSelection);
+    if (optnCstm[userSelection]) makeDropDownElmn(optnCstm[userSelection], userSelection);
 }
-
 const userSelectSeoulProcess = (event) => {
     let userSelection = event.currentTarget.options[event.currentTarget.options.selectedIndex].value;
     let optionList = optnCstm.seoul[userSelection];
-    makeDropdownElement(optionList, userSelection);
+    makeDropDownElmn(optionList, userSelection);
 }
 
-const selectElementReset = (selectCustomsDepartment, selectElement, userSelection) => {
-    selectCustomsDepartment.querySelector('.textbox-name').innerText = '';
-    selectCustomsDepartment.id = 'dropdown' + userValue.number;
+const slctElmnRest = (cstmDprtElmn, slctDropDown, userSlct) => {
+    cstmDprtElmn.id = 'drop-down' + userValue.number;
     userValue.number++;
-    let stageName = (userSelection == 'seoul') ? '국(局)/직속을' : '부서를';
-    selectElement.innerHTML = `<option value="" disabled selected>${stageName} 선택해 주세요.</option>`;
+    let stageName = (userSlct == 'seoul') ? '국(局)/직속을' : '부서를';
+    slctDropDown.innerHTML = `<option value="" disabled selected>${stageName} 선택해 주세요.</option>`;
 };
 
-const makeSelectOptions = (optionList, userSelection, selectElement) => {
-    optionList.forEach((option, index) => {
+const makeSlctOptn = (optnList, userSlct, selectElement) => {
+    optnList.forEach((option, index) => {
         let optionElement = document.createElement("option");
-        optionElement.value = (userSelection != 'seoul') ? option : optnCstm.seoulEn[index];
+        optionElement.value = (userSlct != 'seoul') ? option : optnCstm.seoulEn[index];
         optionElement.text = option;
         selectElement.appendChild(optionElement);
     });
@@ -132,7 +130,7 @@ const makeSelectOptions = (optionList, userSelection, selectElement) => {
         userSelectResultProcprocess(event);
         userValue.selectBefore02 = event.currentTarget.options[event.currentTarget.options.selectedIndex].text;
         event.stopPropagation();
-        if (userSelection == 'seoul') {
+        if (userSlct == 'seoul') {
             userSelectSeoulProcess(event);
             userValue.selectBefore03 = event.currentTarget.options[event.currentTarget.options.selectedIndex].text;
         }
@@ -142,16 +140,16 @@ const makeSelectOptions = (optionList, userSelection, selectElement) => {
     });
 }
 
-const makeDropdownElement = (optionList, userSelection) => {
-    let selectCustomsDepartment = customsDepartment.cloneNode(true);
-    let attachSelectElement = document.querySelector('.attachSelectElement');
-    let selectElement = selectCustomsDepartment.querySelector('select.dropdown');
-    selectElementReset(selectCustomsDepartment, selectElement, userSelection)
-    makeSelectOptions(optionList, userSelection, selectElement);
-    attachSelectElement.before(selectCustomsDepartment);
+const makeDropDownElmn = (optnList, userSlct) => {
+    let cstmDprtElmn = cstmDprt.cloneNode(true);
+    let bttn = document.querySelector('.bttn');
+    let slctDropDown = cstmDprtElmn.querySelector('select.drop-down');
+    slctElmnRest(cstmDprtElmn, slctDropDown, userSlct)
+    makeSlctOptn(optnList, userSlct, slctDropDown);
+    bttn.before(cstmDprtElmn);
 }
 
-const restHandler = async (method, url, data = null, isFormData = false) => {
+const rest = async (method, url, data = null, isFormData = false) => {
     try {
         let options = {
             method: method,
@@ -170,68 +168,36 @@ const restHandler = async (method, url, data = null, isFormData = false) => {
     }
 };
 
-let loginObject = {
+let managerObject = {
     init : function() {
-        document.querySelector("#button-join").onclick = () => {
-            this.login();
-        };
+        document.querySelector("#dprt-chck-list").onclick = () => { this.search(); };
     },
 
-    login : async function() {
-        let rsa = new RSAKey();  // RSA 암호화 키 생성
-        rsa.setPublic(document.querySelector('#RSAModulus').value,
-            document.querySelector('#RSAExponent').value);
-
-        let password = document.getElementById("password").value;
-        let passwordConfirm = document.getElementById("passwordConfirm").value;
-        let cstmCode = cstmDptmCode[userValue.customsDepartment].substr(0, 3);
-        let dptmCode = cstmDptmCode[userValue.customsDepartment].substr(3);
+    search : async function() {
+        let cstmCode = cstmDprtCode[userValue.customsDepartment].substr(0, 3);
+        let dprtCode = cstmDprtCode[userValue.customsDepartment].substr(3);
         
-        if (!userid) {
-            alert("아이디를 입력해주세요.")
-        } else if (password != passwordConfirm) {
-            alert("비밀번호가 일치하지 않습니다.")
-        } else if (!cstmCode) {
-            alert("세관을 선택해주세요.")
-        } else if (!dptmCode) {
-            alert("부서를 선택해주세요.")
-        } else {
-            password = rsa.encrypt(password)  //사용자 계정정보 암호화처리
-            let data = {
-                userId : document.getElementById("userid").value,
-                password : password,
-                customs : cstmCode,
-                department : dptmCode
-            }
+        if (!cstmCode) alert("세관을 선택해주세요.")
+        else if (!dprtCode) alert("부서를 선택해주세요.")
+        else { let data = { customs : cstmCode, department : dprtCode }
             try {
-                let response = await restHandler('PUT', '/auth/join', data);
-                alert(response.data);
-                if (response.status != 200) {
-                    window.location = '/auth/join';
-                } else {
-                    window.location = '/';
-                }
-            } catch (error) {
-                console.error('error in join.js : ', error);
+                let response = await rest('GET', '/auth/manager', null);
+                if (response.status != 200) window.location = '/auth/manager';
+                else window.location = '/';
+            } catch (error) { console.error('error in join.js : ', error);
+                window.location = '/';
             }
         }
     }
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    resetUserValueSelectBefore(); heightResize(); loginObject.init()
-    try { let response = await restHandler('GET', '/auth/getRSA', null);
-        document.querySelector('#RSAModulus').value = response.data.module;
-        document.querySelector('#RSAExponent').value = response.data.exponent;
-    } catch (error) { console.error('Error loading info items:', error); }
-    let passwordConfirm = document.getElementById("passwordConfirm");
-    keyboardFunction(passwordConfirm, loginObject.login);
-    let dropdownElement = customsDepartment.querySelector('select.dropdown')
-    dropdownElement.addEventListener('change', (event) => {
+    resetUserValueSelectBefore(); heightResize(); managerObject.init()
+    let dropDownElmn = cstmDprt.querySelector('select.drop-down')
+    dropDownElmn.addEventListener('change', (event) => {
         resetUserValueSelectBefore(); deleteSelectElement();
         let userSelectedIndex = event.currentTarget.options[event.currentTarget.options.selectedIndex]
         userValue.customsDepartment = (userSelectedIndex.text == '성남세관')
             ? userSelectedIndex.text + userSelectedIndex.text : userSelectResultProcprocess(event, userValue.selectBefore01);
-        userValue.selectBefore01 = userSelectedIndex.text;
-    });
+        userValue.selectBefore01 = userSelectedIndex.text; });
 });

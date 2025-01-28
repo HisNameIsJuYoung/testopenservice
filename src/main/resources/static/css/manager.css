@@ -1,0 +1,202 @@
+/* all */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium';
+  }
+html, body {
+    place-items: center;
+    overflow: hidden;
+    font-size: 20px;
+}
+input {
+    font-size: 20px;
+    margin: 5px 0;
+    padding: 0 10px;
+}
+textarea {
+    font-size: 20px;
+    padding: 10px;
+    line-height: 35px;
+}
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;     /* Arrange children vertically */
+}
+li, a {
+    text-decoration: none;
+    color: inherit;
+}
+button {
+    height: 30px;
+    margin: 20px 10px 20px 0;
+    padding: 0 20px;
+    font-size: 18px;
+}
+.fl {
+    float: left;
+}
+
+/* nav */
+.cfa::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.nav {
+    width: 900px;
+    height: 95px;
+}
+.toy-proj-name {
+    float: left;
+    margin-top: 30px;
+    font-size: 2em;
+    font-weight: 500;
+}
+.auth {
+    float: right;
+}
+.login {
+    margin: 50px 20px 0 0;
+}
+.user-id {
+    margin: 52px 50px 0 5px;   
+}
+.user-name {
+    margin: 45px 2px 0 0;   
+    font-size: 25px;
+}
+.nav-bottom {
+    width: 100%;
+    height: 5px;
+    background-color: #FFE869;;
+}
+button {
+    height: 30px;
+    margin: 0;
+    font-size: 18px;
+}
+
+/* menu-contents */
+.menu {
+    margin-bottom: 30px;
+    background-color: #FFFBCB;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.menu-item {
+    float: left;
+    width: 250px;
+    height: 50px;
+    font-size: 25px;
+    text-align: center;
+    padding-top: 10px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.menu-item:hover {
+    background-color: #FFE869;
+    font-weight: bold;
+}
+.menu-manager {
+    background-color: #FFE869;
+}
+#contents {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: auto;
+}
+.item-fl {
+    float: left;
+    padding: 15px 0;
+    text-align: center;
+}
+/* footer */
+.thanks {
+    padding: 30px;
+    margin-top: 10px;
+    border-top: 2px solid #FFE869;
+    text-align: center;
+}
+
+/* content */
+.textbox-name {
+    float: left;
+    padding: 5px 20px 0 10px;
+}
+.srch-cstm-dprt {
+    width: 1000px;
+}
+.drop-down {
+    width: 220px;
+    height: 30px;
+    padding-left: 10px;
+    font-size: 20px;
+}
+.cstm-dprt {
+    float: left;
+    margin: 0 5px;
+}
+.srch-cstm-dprt {
+    padding: 10px 20px;
+    margin-bottom: 30px;
+    background-color: #d1f1ee;
+    border: 2px solid #77D1C9;
+    border-radius: 10px;
+}
+.DNSChecklist {
+    width: 1000px;
+    border-bottom: #77D1C9 2px solid;
+    margin-bottom: 30px;
+}
+.bord-name {
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+.DNSChecklist-item-head{
+    background-color: #77D1C9;
+    border-radius: 10px;
+}
+.DNSChecklist-item {
+    border-bottom: #77D1C9 1px dashed;
+}
+/* 시험운영 체크리스트 */
+.head-empl-name, .empl-name {
+    width: 160px;
+}
+.head-chck-amnt, .chck-amnt {
+    width: 100px;
+}
+/* DNS 체크리스트 */
+.cstm, .dprt, .empl-cont, .chck-rslt, .un-chck, .chck-prcn, .unch-prcn, .unch-empl {
+    /* 1명이 1줄을 차지함. 1명이 25px을 차지함. */
+}
+.head-cstm, .cstm {
+    width: 100px;
+}
+.head-dprt, .dprt {
+    width: 180px;
+}
+.head-empl-cont, .empl-cont {
+    width: 100px;
+}
+.head-chck-rslt, .chck-rslt {
+    width: 100px;
+}
+.head-un-chck, .un-chck {
+    width: 100px;
+}
+.head-chck-prcn, .chck-prcn{
+    width: 100px;
+}
+.head-unch-prcn, .unch-prcn{
+    width: 100px;
+}
+.head-unch-empl, .unch-empl{
+    width: 200px;
+}
+
+

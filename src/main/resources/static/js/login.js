@@ -3,6 +3,7 @@ const heightResize = () => {
     document.querySelector('.container').style.height = heightCheck + 'px';
 };
 window.addEventListener('resize', heightResize);
+window.setTimeout('window.location.reload()', 1800000);
 
 const restHandler = async (method, url, data = null, isFormData = false) => {
     try {
