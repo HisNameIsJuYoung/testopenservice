@@ -83,7 +83,7 @@ const resetUserValueSelectBefore = () => {
 }
 
 const heightResize = () => {
-    let contentsHeight = (window.innerHeight - 200);
+    let contentsHeight = (window.innerHeight - 90);
     document.querySelector('.container').style.height = contentsHeight + 'px';
     document.querySelector('.container').style.width = window.innerWidth + 'px';
 };
@@ -174,12 +174,12 @@ let managerObject = {
     },
 
     search : async function() {
-        let cstmCode = cstmDprtCode[userValue.customsDepartment].substr(0, 3);
-        let dprtCode = cstmDprtCode[userValue.customsDepartment].substr(3);
+        // let cstmCode = cstmDprtCode[userValue.customsDepartment].substr(0, 3);
+        // let dprtCode = cstmDprtCode[userValue.customsDepartment].substr(3);
         
-        if (!cstmCode) alert("세관을 선택해주세요.")
-        else if (!dprtCode) alert("부서를 선택해주세요.")
-        else { let data = { customs : cstmCode, department : dprtCode }
+        // if (!cstmCode) alert("세관을 선택해주세요.")
+        // else if (!dprtCode) alert("부서를 선택해주세요.")
+        // else { let data = { customs : cstmCode, department : dprtCode }
             try {
                 let response = await rest('GET', '/auth/manager', null);
                 if (response.status != 200) window.location = '/auth/manager';
@@ -187,12 +187,13 @@ let managerObject = {
             } catch (error) { console.error('error in join.js : ', error);
                 window.location = '/';
             }
-        }
+        // }
     }
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
     resetUserValueSelectBefore(); heightResize(); managerObject.init()
+    managerObject.search();
     let dropDownElmn = cstmDprt.querySelector('select.drop-down')
     dropDownElmn.addEventListener('change', (event) => {
         resetUserValueSelectBefore(); deleteSelectElement();

@@ -24,7 +24,7 @@ const rest = async (method, url, data = null, isFormData = false) => {
 };
 
 const heightResize = () => {
-    let contentsHeight = (window.innerHeight - 320);
+    let contentsHeight = (window.innerHeight - 270);
     document.querySelector('#contents').style.height = contentsHeight + 'px';
     document.querySelector('#contents').style.width = window.innerWidth + 'px';
 };

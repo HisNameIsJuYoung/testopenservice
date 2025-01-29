@@ -156,6 +156,11 @@ button {
     font-size: 25px;
     margin-bottom: 5px;
 }
+.bord-name-mssg {
+    font-size: 14px;
+    margin-left: 25px;
+    margin-bottom: 7px;
+}
 .DNSChecklist-item-head{
     background-color: #77D1C9;
     border-radius: 10px;
@@ -163,40 +168,65 @@ button {
 .DNSChecklist-item {
     border-bottom: #77D1C9 1px dashed;
 }
-/* 시험운영 체크리스트 */
-.head-empl-name, .empl-name {
-    width: 160px;
-}
-.head-chck-amnt, .chck-amnt {
-    width: 100px;
-}
-/* DNS 체크리스트 */
-.cstm, .dprt, .empl-cont, .chck-rslt, .un-chck, .chck-prcn, .unch-prcn, .unch-empl {
-    /* 1명이 1줄을 차지함. 1명이 25px을 차지함. */
-}
+
+/* 시험운영-DNS 체크리스트 공통 */
 .head-cstm, .cstm {
-    width: 100px;
+    width: 120px;
 }
 .head-dprt, .dprt {
+    width: 160px;
+}
+
+/* 시험운영 체크리스트 */
+.head-empl-name, .empl-name {
+    width: 140px;
+}
+.head-chck-amnt, .chck-amnt {
+    width: 80px;
+}
+.head-chck-pass, .chck-pass {
+    width: 80px;
+}
+.head-chck-fail, .chck-fail {
+    width: 80px;
+}
+.head-chck-nthr, .chck-nthr {
+    width: 80px;
+}
+.head-un-chck, .un-chck {
+    width: 80px;
+}
+.head-chck-prcn, .chck-prcn{
+    width: 80px;
+}
+.head-unch-prcn, .unch-prcn{
+    width: 80px;
+}
+/* DNS 체크리스트 */
+.head-dprt-dns, .dprt-dns {
     width: 180px;
 }
 .head-empl-cont, .empl-cont {
     width: 100px;
 }
-.head-chck-rslt, .chck-rslt {
+.head-chck-rslt-dns, .chck-rslt-dns {
     width: 100px;
 }
-.head-un-chck, .un-chck {
+.head-un-chck-dns, .un-chck-dns {
     width: 100px;
 }
-.head-chck-prcn, .chck-prcn{
+.head-chck-prcn-dns, .chck-prcn-dns {
     width: 100px;
 }
-.head-unch-prcn, .unch-prcn{
+.head-unch-prcn-dns, .unch-prcn-dns {
     width: 100px;
 }
-.head-unch-empl, .unch-empl{
+.head-unch-empl, .unch-empl {
     width: 200px;
 }
 
-
+.chck-amnt, .chck-pass, .chck-fail, .chck-nthr,
+.un-chck, .chck-prcn, .unch-prcn,
+.empl-cont, .chck-rslt-dns, .un-chck-dns, .chck-prcn-dns, .unch-prcn-dns {
+    padding-top: 18px;
+}

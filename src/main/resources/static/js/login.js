@@ -1,5 +1,5 @@
 const heightResize = () => {
-    let heightCheck = window.innerHeight - 200;
+    let heightCheck = window.innerHeight - 170;
     document.querySelector('.container').style.height = heightCheck + 'px';
 };
 window.addEventListener('resize', heightResize);

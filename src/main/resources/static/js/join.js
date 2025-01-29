@@ -145,7 +145,7 @@ const makeSelectOptions = (optionList, userSelection, selectElement) => {
 const makeDropdownElement = (optionList, userSelection) => {
     let selectCustomsDepartment = customsDepartment.cloneNode(true);
     let attachSelectElement = document.querySelector('.attachSelectElement');
-    let selectElement = selectCustomsDepartment.querySelector('select.dropdown');
+    let selectElement = selectCustomsDepartment.querySelector('select.drop-down');
     selectElementReset(selectCustomsDepartment, selectElement, userSelection)
     makeSelectOptions(optionList, userSelection, selectElement);
     attachSelectElement.before(selectCustomsDepartment);
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) { console.error('Error loading info items:', error); }
     let passwordConfirm = document.getElementById("passwordConfirm");
     keyboardFunction(passwordConfirm, loginObject.login);
-    let dropdownElement = customsDepartment.querySelector('select.dropdown')
+    let dropdownElement = customsDepartment.querySelector('select.drop-down')
     dropdownElement.addEventListener('change', (event) => {
         resetUserValueSelectBefore(); deleteSelectElement();
         let userSelectedIndex = event.currentTarget.options[event.currentTarget.options.selectedIndex]
