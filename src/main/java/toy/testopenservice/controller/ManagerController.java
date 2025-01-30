@@ -23,10 +23,15 @@ public class ManagerController {
     @GetMapping("/manager")
     public String getManager(HttpSession session) {
         User user = (User) session.getAttribute("loginUser");
-        if (user.getRole().equals(RoleType.ADMIN)) {
-            return "/system/manager";
+        
+        if (user == null) {
+            return "로그인이 필요합니다.";
         } else {
-            return "관리자만 접근 가능합니다.";
+            if (user.getRole().equals(RoleType.ADMIN)) {
+                return "/system/manager";
+            } else {
+                return "관리자만 접근 가능합니다.";
+            }
         }
     }
 

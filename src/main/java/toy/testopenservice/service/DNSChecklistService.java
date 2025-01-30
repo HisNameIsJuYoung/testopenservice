@@ -24,7 +24,11 @@ public class DNSChecklistService {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         DNSChecklist findDNSChecklist = dNSChecklistRepository.findById(dNSChecklist.getId()).get();
         findDNSChecklist.setDnsChckRslt(dNSChecklist.getDnsChckRslt());
-        findDNSChecklist.setCretDate(timestamp);
+        if (dNSChecklist.getDnsChckRslt() != null) {
+            findDNSChecklist.setCretDate(timestamp);
+        } else {
+            findDNSChecklist.setCretDate(null);
+        }
         dNSChecklistRepository.save(findDNSChecklist);
     }
 

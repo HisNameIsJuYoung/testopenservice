@@ -37,23 +37,46 @@ const timeFormat = (date) => {
         + ('0' + time.getHours()).slice(-2) + ':' + ('0' + time.getMinutes()).slice(-2);
 }
 
+const cancelButton = (id, cretDate) => {
+    return '완료, ' + timeFormat(cretDate)
+                + `<button id="item${id}" onclick="putDnsChckRest()" style="margin: 0 0 0 25px;">취 소</button>`
+}
+
 const putDnsChecklist = async (id, dnsChckRslt, itemElement) => {
-    let cretDate = itemElement.querySelector('.cret-date')
-    let dnsNchc = itemElement.querySelector('.nchc-rslt')
+    let cretDate = itemElement.querySelector('.cret-date');
+    let dnsChckRsltBttn = itemElement.querySelector('#dns-chck-rslt');
     let data = {
         id: id,
         dnsChckRslt: dnsChckRslt
     }
-    console.log(data);
     try {
         let response = await rest('PUT', '/putDNSChecklist', data);
-        cretDate.innerText = '완료, ' + timeFormat(response.data.cretDate);
-        // cretDate
-        // dnsNchc.innerHTML = `<button id="dns-nchc" onclick="deleteRslt()">취소</button>`;
+        cretDate.innerHTML = cancelButton(id, response.data.cretDate);
+        dnsChckRsltBttn.disabled = true;
     } catch (error) {
         alert(response.data);
         location.reload();
     }
+}
+
+function putDnsChckRest() {
+    let item = event.target.closest('.DNSChecklist-item');
+    let id = item.id.replace('item', '');
+    let cretDate = item.querySelector('.cret-date');
+    let dnsChckRsltBttn = item.querySelector('#dns-chck-rslt');
+    let data = {
+        id: id,
+        cretDate: null
+    }
+    rest('PUT', '/putDNSChecklist', data)
+        .then(() => {
+            cretDate.innerText = '미수행';
+            dnsChckRsltBttn.disabled = false;
+        })
+        .catch((error) => {
+            alert(response.data);
+            location.reload();
+        });
 }
 
 const getDNSChecklist = async () => {
@@ -69,14 +92,13 @@ const getDNSChecklist = async () => {
         response.data.forEach(res => {
             let DNSChecklistItem = DNSChecklistItemTemplate.cloneNode(true);
             let cretDate = DNSChecklistItem.querySelector('.cret-date');
+            let dnsChckRslt = DNSChecklistItem.querySelector('#dns-chck-rslt')
             DNSChecklistItem.id = 'item' + res.id;
             DNSChecklistItem.querySelector('.numb').innerText = itemNumber;
             DNSChecklistItem.querySelector('.user').innerText = res.userName + '(' + res.userId + ')';
-            
-            DNSChecklistItem.querySelector('#dns-chck-rslt').addEventListener('click', () => {
-                putDnsChecklist(res.id, 'Y', DNSChecklistItem);
-            });
-            cretDate.innerText = (res.dnsChckRslt) ? '완료, ' + timeFormat(res.cretDate) : '미수행';
+            dnsChckRslt.disabled = (res.userId == response.userid && !res.dnsChckRslt) ? false : true;
+            dnsChckRslt.addEventListener('click', () => { putDnsChecklist(res.id, 'Y', DNSChecklistItem); });
+            cretDate.innerHTML = (res.dnsChckRslt) ? cancelButton(res.id, res.cretDate) : '미수행';
             DNSChecklistItemTemplate.after(DNSChecklistItem);
             itemNumber -= 1;
         });
