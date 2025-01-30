@@ -23,7 +23,6 @@ public class ManagerController {
     @GetMapping("/manager")
     public String getManager(HttpSession session) {
         User user = (User) session.getAttribute("loginUser");
-        System.out.println(user.getRole());
         if (user.getRole().equals(RoleType.ADMIN)) {
             return "/system/manager";
         } else {

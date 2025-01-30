@@ -147,7 +147,7 @@ button {
     border: 2px solid #77D1C9;
     border-radius: 10px;
 }
-.DNSChecklist {
+.checklist, .DNSChecklist {
     width: 1000px;
     border-bottom: #77D1C9 2px solid;
     margin-bottom: 30px;
@@ -161,23 +161,21 @@ button {
     margin-left: 25px;
     margin-bottom: 7px;
 }
-.DNSChecklist-item-head{
+.checklist-item-head, .DNSChecklist-item-head{
     background-color: #77D1C9;
     border-radius: 10px;
 }
-.DNSChecklist-item {
+.chck-item-detl, .DNSChecklist-item {
     border-bottom: #77D1C9 1px dashed;
 }
 
-/* 시험운영-DNS 체크리스트 공통 */
-.head-cstm, .cstm {
+/* 시험운영 체크리스트 */
+.head-cstm-chck, .cstm-chck {
     width: 120px;
 }
-.head-dprt, .dprt {
+.head-dprt-chck, .dprt-chck {
     width: 160px;
 }
-
-/* 시험운영 체크리스트 */
 .head-empl-name, .empl-name {
     width: 140px;
 }
@@ -202,7 +200,11 @@ button {
 .head-unch-prcn, .unch-prcn{
     width: 80px;
 }
+
 /* DNS 체크리스트 */
+.head-cstm-dns, .cstm-dns {
+    width: 120px;
+}
 .head-dprt-dns, .dprt-dns {
     width: 180px;
 }

@@ -82,6 +82,10 @@ const resetUserValueSelectBefore = () => {
     userValue.number = 2;
 }
 
+const getKeyByValue = (obj, value) => {
+    return Object.keys(obj).find(key => obj[key] === value);
+}
+
 const heightResize = () => {
     let contentsHeight = (window.innerHeight - 90);
     document.querySelector('.container').style.height = contentsHeight + 'px';
@@ -168,26 +172,67 @@ const rest = async (method, url, data = null, isFormData = false) => {
     }
 };
 
+const getCstmDprtName = (objectWithCstmDprtCode) => {
+    let cstmDprt = objectWithCstmDprtCode[0].customs + objectWithCstmDprtCode[0].department;
+    return Object.keys(cstmDprtCode).find(key => cstmDprtCode[key] === cstmDprt);
+}
+
 let managerObject = {
     init : function() {
         document.querySelector("#dprt-chck-list").onclick = () => { this.search(); };
     },
 
     search : async function() {
-        // let cstmCode = cstmDprtCode[userValue.customsDepartment].substr(0, 3);
-        // let dprtCode = cstmDprtCode[userValue.customsDepartment].substr(3);
-        
-        // if (!cstmCode) alert("세관을 선택해주세요.")
-        // else if (!dprtCode) alert("부서를 선택해주세요.")
-        // else { let data = { customs : cstmCode, department : dprtCode }
-            try {
-                let response = await rest('GET', '/auth/manager', null);
-                if (response.status != 200) window.location = '/auth/manager';
-                else window.location = '/';
-            } catch (error) { console.error('error in join.js : ', error);
-                window.location = '/';
+        const chckItemDetl = document.querySelector('.chck-item-detl');
+        const DNSChecklistItem = document.querySelector('.DNSChecklist-item');
+        try {
+            let response = await rest('GET', '/auth/manager', null);
+            if (response.status != 200) window.location = '/';
+            else {
+                document.querySelector('.user-name').innerText = response.data.username;
+                document.querySelector('.user-id').innerText = '(' + response.data.userid + ')';
+                var rspnChckList = response.data.data.checklist;
+                var rspnDnsChckList = response.data.data.dnsChecklist;
+
+                document.querySelector('.cstm-chck').innerText = getCstmDprtName(rspnChckList).substr(0, 4);
+                document.querySelector('.dprt-chck').innerText = getCstmDprtName(rspnChckList).substr(4);
+
+                rspnChckList.forEach(res => {
+                    let itemElement = chckItemDetl.cloneNode(true);
+                    let unchRate = Math.ceil((res.unChck / res.chckAmnt * 100) * 10) / 10;
+                    itemElement.querySelector('.empl-name').innerText = res.userName + '(' + res.userId + ')';
+                    itemElement.querySelector('.chck-amnt').innerText = res.chckAmnt;
+                    itemElement.querySelector('.chck-pass').innerText = res.chckPass;
+                    itemElement.querySelector('.chck-fail').innerText = res.chckFail;
+                    itemElement.querySelector('.chck-nthr').innerText = res.chckNthr;
+                    itemElement.querySelector('.un-chck').innerText = res.unChck;
+                    itemElement.querySelector('.chck-prcn').innerText = 100 - Number(unchRate);
+                    itemElement.querySelector('.unch-prcn').innerText = unchRate;
+                    chckItemDetl.before(itemElement);
+                });
+                chckItemDetl.remove();
+                
+                let allDnsChckList = rspnDnsChckList.length;
+                let unchEmpl = rspnDnsChckList.filter(rspn => rspn.dnsChckRslt == null);
+                let unChckDns = unchEmpl.length;
+                let unchPrcnDns = Math.ceil((unChckDns / allDnsChckList * 100) * 10) / 10;
+                DNSChecklistItem.querySelector('.cstm-dns').innerText = getCstmDprtName(rspnDnsChckList).substr(0, 4);
+                DNSChecklistItem.querySelector('.dprt-dns').innerText = getCstmDprtName(rspnDnsChckList).substr(4);
+                DNSChecklistItem.querySelector('.empl-cont').innerText = allDnsChckList;
+                DNSChecklistItem.querySelector('.chck-rslt-dns').innerText = allDnsChckList - unChckDns;
+                DNSChecklistItem.querySelector('.un-chck-dns').innerText = unChckDns;
+                DNSChecklistItem.querySelector('.chck-prcn-dns').innerText = 100 - Number(unchPrcnDns);
+                DNSChecklistItem.querySelector('.unch-prcn-dns').innerText = unchPrcnDns;
+                
+                let unchEmplName = '';
+                unchEmpl.forEach(rspn => {
+                    unchEmplName += rspn.userName + '(' + rspn.userId + ')<br>';
+                });
+                DNSChecklistItem.querySelector('.unch-empl').innerHTML = unchEmplName;
             }
-        // }
+        } catch (error) { console.error('error in join.js : ', error);
+            window.location = '/';
+        }
     }
 }
 

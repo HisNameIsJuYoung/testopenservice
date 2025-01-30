@@ -49,14 +49,14 @@
         </div>
 
         <div id="contents">
-            <div class="DNSChecklist">
+            <div class="checklist">
                 <div class="bord-name cfa">
                     <div class="bord-name fl">시험운영 체크리스트</div>
                     <div class="bord-name-mssg fl">Ⓜ️ 개인별로 표시됩니다.</div>
                 </div>
-                <div class="DNSChecklist-item-head cfa">
-                    <div class="item-fl head-cstm">세관명</div>
-                    <div class="item-fl head-dprt">부서명</div>
+                <div class="checklist-item-head cfa">
+                    <div class="item-fl head-cstm-chck">세관명</div>
+                    <div class="item-fl head-dprt-chck">부서명</div>
                     <div class="item-fl head-empl-name">직원명</div>
                     <div class="item-fl head-chck-amnt">점검수량</div>
                     <div class="item-fl head-chck-pass">이상없음</div>
@@ -66,17 +66,21 @@
                     <div class="item-fl head-chck-prcn">완료율</div>
                     <div class="item-fl head-unch-prcn">미완료율</div>
                 </div>
-                <div class="DNSChecklist-item cfa" id="DNSChecklist-item-template">
-                    <div class="item-fl cstm">서울세관</div>
-                    <div class="item-fl dprt">수출입기업지원센터</div>
-                    <div class="item-fl empl-name">홍길동(123456)</div>
-                    <div class="item-fl chck-amnt">25</div>
-                    <div class="item-fl chck-pass">10</div>
-                    <div class="item-fl chck-fail">3</div>
-                    <div class="item-fl chck-nthr">7</div>
-                    <div class="item-fl un-chck">5</div>
-                    <div class="item-fl chck-prcn">80.0</div>
-                    <div class="item-fl unch-prcn">20.0</div>
+                <div class="checklist-item cfa" id="checklist-item-template">
+                    <div class="item-fl cstm-chck"></div>
+                    <div class="item-fl dprt-chck"></div>
+                    <div class="fl">
+                        <div class="chck-item-detl cfa">
+                            <div class="item-fl empl-name"></div>
+                            <div class="item-fl chck-amnt"></div>
+                            <div class="item-fl chck-pass"></div>
+                            <div class="item-fl chck-fail"></div>
+                            <div class="item-fl chck-nthr"></div>
+                            <div class="item-fl un-chck"></div>
+                            <div class="item-fl chck-prcn"></div>
+                            <div class="item-fl unch-prcn"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="DNSChecklist">
@@ -85,7 +89,7 @@
                     <div class="bord-name-mssg fl">Ⓜ️ 부서별로 표시됩니다.</div>
                 </div>
                 <div class="DNSChecklist-item-head cfa">
-                    <div class="item-fl head-cstm">세관명</div>
+                    <div class="item-fl head-cstm-dns">세관명</div>
                     <div class="item-fl head-dprt-dns">부서명</div>
                     <div class="item-fl head-empl-cont">직원수</div>
                     <div class="item-fl head-chck-rslt-dns">변경완료</div>
@@ -95,14 +99,14 @@
                     <div class="item-fl head-unch-empl">미완료직원</div>
                 </div>
                 <div class="DNSChecklist-item cfa" id="DNSChecklist-item-template">
-                    <div class="item-fl cstm">서울세관</div>
-                    <div class="item-fl dprt-dns">수출입기업지원센터</div>
-                    <div class="item-fl empl-cont">25</div>
-                    <div class="item-fl chck-rslt-dns">20</div>
-                    <div class="item-fl un-chck-dns">5</div>
-                    <div class="item-fl chck-prcn-dns">80.0</div>
-                    <div class="item-fl unch-prcn-dns">20.0</div>
-                    <div class="item-fl unch-empl">홍길동(123456)<br>김길동(098765)<br>이길동(909090)</div>
+                    <div class="item-fl cstm-dns"></div>
+                    <div class="item-fl dprt-dns"></div>
+                    <div class="item-fl empl-cont"></div>
+                    <div class="item-fl chck-rslt-dns"></div>
+                    <div class="item-fl un-chck-dns"></div>
+                    <div class="item-fl chck-prcn-dns"></div>
+                    <div class="item-fl unch-prcn-dns"></div>
+                    <div class="item-fl unch-empl"></div>
                 </div>
             </div>
         </div>

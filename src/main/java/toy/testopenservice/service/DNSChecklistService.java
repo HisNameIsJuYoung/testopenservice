@@ -20,10 +20,12 @@ public class DNSChecklistService {
 
     @Transactional
     public void putDNSChecklist(DNSChecklist dNSChecklist) {
+        System.out.println("dNSChecklist = " + dNSChecklist);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         DNSChecklist findDNSChecklist = dNSChecklistRepository.findById(dNSChecklist.getId()).get();
-        findDNSChecklist.setDNSChckRslt(dNSChecklist.getDNSChckRslt());
+        findDNSChecklist.setDnsChckRslt(dNSChecklist.getDnsChckRslt());
         findDNSChecklist.setCretDate(timestamp);
+        dNSChecklistRepository.save(findDNSChecklist);
     }
 
     @Transactional(readOnly = true)

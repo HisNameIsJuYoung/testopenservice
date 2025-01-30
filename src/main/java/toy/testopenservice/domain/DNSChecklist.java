@@ -38,8 +38,8 @@ public class DNSChecklist {
     @Column(length = 2)
     private String department;
 
-    @Column(nullable = true)
-    private String DNSChckRslt;
+    @Column(length = 2)
+    private String dnsChckRslt;
 
     @Column
     private Timestamp cretDate;

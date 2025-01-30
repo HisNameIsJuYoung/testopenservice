@@ -55,7 +55,7 @@ public class ManagerService {
         List<DNSChecklist> dnsChecklist = dNSChecklistRepository.findByCustomsAndDepartment(customs, department);
 
         Map<String, Object> result = new HashMap<>();
-        result.put("checklistResults", listManagerChckRsltDTO);
+        result.put("checklist", listManagerChckRsltDTO);
         result.put("dnsChecklist", dnsChecklist);
 
         return result;

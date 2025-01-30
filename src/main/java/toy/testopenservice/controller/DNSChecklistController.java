@@ -39,6 +39,7 @@ public class DNSChecklistController {
 
     @PutMapping("/putDNSChecklist")
     public @ResponseBody ResponseDTO<?> putDNSChecklist(@RequestBody DNSChecklist dNSChecklist) {
+        System.out.println(dNSChecklist);
         dNSChecklistService.putDNSChecklist(dNSChecklist);
         return new ResponseDTO<>(HttpStatus.OK.value(), dNSChecklistService.getDNSChecklistById(dNSChecklist.getId()));
     }
