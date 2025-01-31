@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    ports:
+      - "3306:3306"
+    networks:
+      - mynetwork
+
+  java-app:
+    image: TestOpenService.jar
+    container_name: TestOpenService_v.0.1
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/misdb
+      SPRING_DATASOURCE_USERNAME: misadmin 
+      SPRING_DATASOURCE_PASSWORD: misrhkstpcjd32!
+    ports:
+      - "80:18081"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
+
+
+# docker run -d \
+#   --name mis_v.0.1 \
+#   --network mynetwork \
+#   -e SPRING_DATASOURCE_URL=jdbc:mariadb://mariadb:3306/misdb \
+#   -e SPRING_DATASOURCE_USERNAME=misadmin \
+#   -e SPRING_DATASOURCE_PASSWORD=misrhkstpcjd32! \
+#   -p 18080:18080 \
+#   914a4f95995c

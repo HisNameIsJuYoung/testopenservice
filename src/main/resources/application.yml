@@ -4,7 +4,7 @@ server:
 spring:
     application.name: testopenservice
     datasource:
-        url: jdbc:mariadb://10.132.46.114:3306/misdb?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+        url: jdbc:mariadb://localhost:3306/misdb?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
         driver-class-name: org.mariadb.jdbc.Driver
         username: misadmin
         password: misrhkstpcjd32!
