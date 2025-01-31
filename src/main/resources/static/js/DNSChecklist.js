@@ -105,6 +105,7 @@ const getDNSChecklist = async () => {
         DNSChecklistItemTemplate.remove();
     } catch (error) {
         console.error('Error loading info items:', error);
+        window.location = '/';
     }
 };
 

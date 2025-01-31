@@ -1,11 +1,8 @@
 package toy.testopenservice.dto;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import toy.testopenservice.domain.DNSChecklist;
 
 @Data
 @AllArgsConstructor

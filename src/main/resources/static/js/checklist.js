@@ -18,8 +18,8 @@ const rest = async (method, url, data = null, isFormData = false) => {
         }
         return await response.json();
     } catch (error) {
-        alert(error.message);
-        throw new Error('네트워크 상태를 확인해 주세요.');
+        alert('네트워크 상태를 확인해 주세요.');
+        window.location = '/'
     }
 };
 
@@ -92,6 +92,7 @@ const getChecklistItem = async () => {
         checklistItemTemplate.remove();
     } catch (error) {
         console.error('Error loading info items:', error);
+        window.location = '/'
     }
 };
 

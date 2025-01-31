@@ -25,7 +25,7 @@ public class ManagerController {
         User user = (User) session.getAttribute("loginUser");
         
         if (user == null) {
-            return "로그인이 필요합니다.";
+            return "redirect:/auth/login";
         } else {
             if (user.getRole().equals(RoleType.ADMIN)) {
                 return "/system/manager";

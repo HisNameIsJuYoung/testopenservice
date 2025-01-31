@@ -186,17 +186,6 @@ const uploadImage = async (file, editor) => {
 			console.log(data);
 		}
 	});
-    // try {
-    //     let response = await restHandler('POST', '/imageUpload', formData, true);
-    //     let imageUrl = `/Users/ysh/workspace/testopenservice/src/main/resources/static/image/${response.data}`;
-    //     $(editor).summernote('insertImage', imageUrl, function($image) {
-    //         $image.attr('img', imageUrl);
-    //         $image.css('width', "100%");
-    //     });
-    //     console.log(response.data)
-    // } catch (error) {
-    //     console.error('Error uploading image:', error);
-    // }
 };
 
 const postInfo = async () => {
