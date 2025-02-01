@@ -2,6 +2,7 @@ package toy.testopenservice.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import toy.testopenservice.domain.Checklist;
+import toy.testopenservice.domain.ChecklistResult;
+import toy.testopenservice.domain.DNSChecklist;
 import toy.testopenservice.domain.RoleType;
 import toy.testopenservice.domain.User;
 import toy.testopenservice.dto.CommonResponseDTO;
@@ -68,11 +72,25 @@ public class ManagerController {
         }
     }
 
-    @GetMapping("/auth/result")
+    @GetMapping("/auth/allResult")
     public @ResponseBody ResponseDTO<?> getResult(HttpSession session) {
-        managerService.getAllCheckResult("all", "al");
-        CommonResponseDTO commonResponseDTO = new CommonResponseDTO();
-            return new ResponseDTO<>(HttpStatus.OK.value(), commonResponseDTO);
+        User user = (User) session.getAttribute("loginUser");
+        if (user == null) {
+            return new ResponseDTO<>(HttpStatus.UNAUTHORIZED.value(), "로그인이 필요합니다.");
+        } else {
+            if (user.getRole().equals(RoleType.USER)) {
+                return new ResponseDTO<>(HttpStatus.FORBIDDEN.value(), "관리자만 접근 가능합니다.");
+            } else {
+                String userId = user.getUserId();
+                String userName = user.getUserName();
+                String role = user.getRole().toString();
+                Map<String, Object> allRslt = managerService.getAllResult();
+                
+                CommonResponseDTO commonResponseDTO = new CommonResponseDTO(userId, userName, role, allRslt);
+                
+                return new ResponseDTO<>(HttpStatus.OK.value(), commonResponseDTO);
+            }
+        }
     }
 
     public void getCstmCheckResult() {
