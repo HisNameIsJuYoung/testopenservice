@@ -16,6 +16,7 @@ public class AuthenticateInterceptor implements HandlerInterceptor {
         
         if (loginUser == null) {
             response.sendRedirect("/auth/login");
+            return false;
         }
         return true;
     }

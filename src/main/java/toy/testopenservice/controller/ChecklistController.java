@@ -30,8 +30,9 @@ public class ChecklistController {
         User user = (User) session.getAttribute("loginUser");
         String userId = user.getUserId();
         String userName = user.getUserName();
+        String role = user.getRole().toString();
         Object data = checklistService.getChecklist(userId, user.getCustoms(), user.getDepartment());
-        CommonResponseDTO commonResponseDTO = new CommonResponseDTO(userId, userName, data);
+        CommonResponseDTO commonResponseDTO = new CommonResponseDTO(userId, userName, role, data);
         return new ResponseDTO<>(HttpStatus.OK.value(), commonResponseDTO);
     }
 

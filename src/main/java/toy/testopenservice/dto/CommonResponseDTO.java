@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 public class CommonResponseDTO {
     private String userid;
     private String username;
+    private String role;
     private Object data;
 }

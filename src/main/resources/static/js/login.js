@@ -1,6 +1,9 @@
 const heightResize = () => {
-    let heightCheck = window.innerHeight - 170;
+    let heightCheck = window.innerHeight - 83.5;
+    let widthCheck = window.innerWidth;
     document.querySelector('.container').style.height = heightCheck + 'px';
+    document.querySelector('.nav-bottom').style.width = widthCheck + 'px';
+    document.querySelector('.thanks').style.width = widthCheck + 'px';
 };
 window.addEventListener('resize', heightResize);
 window.setTimeout('window.location.reload()', 1800000);

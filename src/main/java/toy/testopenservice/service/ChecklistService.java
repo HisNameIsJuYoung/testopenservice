@@ -37,6 +37,7 @@ public class ChecklistService {
                     chckRsltDTO.setSystName(checklist.getSystName());
                     chckRsltDTO.setFronVariId(checklist.getFronVariId());
                     chckRsltDTO.setFronVariStep(checklist.getFronVariStep());
+                    chckRsltDTO.setUserName(checklistResult.getUserName());
                     chckRsltDTO.setChckRslt(checklistResult.getChckRslt());
                     chckRsltDTO.setCreateDate(checklistResult.getCreateDate());
                     resultDTOs.add(chckRsltDTO);

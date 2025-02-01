@@ -30,6 +30,9 @@ public class Checklist {
     private String swVariId;
 
     @Column(nullable = false, length = 32)
+    private String swVariName;
+
+    @Column(nullable = false, length = 32)
     private String systName;
 
     @Column(nullable = false, length = 32)
@@ -43,4 +46,10 @@ public class Checklist {
     
     @Column(nullable = false, length = 2)
     private String department;
+
+    @Column(nullable = false, length = 3)
+    private String cstmName;
+    
+    @Column(nullable = false, length = 2)
+    private String dprtName;
 }

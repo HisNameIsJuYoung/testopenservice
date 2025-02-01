@@ -26,19 +26,18 @@
     text-align: center;
 }
 .head-fron-vari-step {
-    width: 580px;
+    width: 550px;
     text-align: center;
 }
 .fron-vari-step {
-    width: 580px;
+    width: 550px;
 }
 .head-vari-resu, .vari-resu {
     width: 360px;
     text-align: center;
 }
 #resu-pass, #resu-fail, #noauthority {
-    margin: 0 10px 10px 0;
-    float: right;
+    width: 110px;
 }
 .resu-text {
     margin-bottom: 5px;

@@ -15,6 +15,7 @@ public class ChckRsltDTO {
     private String systName;
     private String fronVariId;
     private String fronVariStep;
+    private String userName;
     private String chckRslt;
     private Timestamp createDate;
 }

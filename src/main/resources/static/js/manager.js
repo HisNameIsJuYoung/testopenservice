@@ -12,12 +12,15 @@ optnCstm.seoul.josa2 = ['외환조사총괄과', '외환조사1관', '외환조�
 optnCstm.sokcho = ['통관지원과', '조사심사과', '고성지원센터']
 optnCstm.anYang = ['통관지원과', '조사심사과']
 optnCstm.cheonan = ['통관지원과', '조사심사과']
+optnCstm.daejeon = ['통관지원과', '조사심사과']
 optnCstm.cheongju = ['통관지원과', '조사심사과', '여행자통관과', '충주지원센터']
 optnCstm.paju = ['파주세관', '도라산지원센터', '의정부지원센터']
 const cstmDprtCode = {
-    '동해세관동해세관' : '100D9',  /***********/
+    '대전세관조사심사과' : '15064',
+    '대전세관통관지원과' : '150D9',
+    '동해세관동해세관' : '100D9',
     '동해세관원주지원센터' : '102D9',
-    '서울세관감사담당관' : '010CA',  /***********/
+    '서울세관감사담당관' : '010CA',
     '서울세관구로지원지원센터' : '130D9',
     '서울세관납세자보호담당관' : '010D2',
     '서울세관세관운영과' : '01071',
@@ -56,7 +59,7 @@ const cstmDprtCode = {
     '서울세관이사화물과' : '01019',
     '서울세관통관검사1과' : '010C1',
     '서울세관통관검사2과' : '010C2',
-    '성남세관성남세관' : '012D9',  /***********/
+    '성남세관성남세관' : '012D9',
     '속초세관고성지원센터' : '103D9',
     '속초세관조사심사과' : '10146',
     '속초세관통관지원과' : '101D9',
@@ -87,9 +90,12 @@ const getKeyByValue = (obj, value) => {
 }
 
 const heightResize = () => {
-    let contentsHeight = (window.innerHeight - 90);
-    document.querySelector('.container').style.height = contentsHeight + 'px';
-    document.querySelector('.container').style.width = window.innerWidth + 'px';
+    let contentsHeight = (window.innerHeight - 354);
+    let widthCheck = window.innerWidth;
+    document.querySelector('#contents').style.height = contentsHeight + 'px';
+    document.querySelector('#contents').style.width = window.innerWidth + 'px';
+    document.querySelector('.nav-bottom').style.width = widthCheck + 'px';
+    document.querySelector('.thanks').style.width = widthCheck + 'px';
 };
 window.addEventListener('resize', heightResize);
 const cstmDprt = document.querySelector('.cstm-dprt')
@@ -172,23 +178,15 @@ const rest = async (method, url, data = null, isFormData = false) => {
     }
 };
 
-const getCstmDprtName = (objectWithCstmDprtCode) => {
-    let cstmDprt = objectWithCstmDprtCode[0].customs + objectWithCstmDprtCode[0].department;
-    return Object.keys(cstmDprtCode).find(key => cstmDprtCode[key] === cstmDprt);
-}
-
-let managerObject = {
-    init : function() {
-        document.querySelector("#dprt-chck-list").onclick = () => { this.search(); };
-    },
-
-    search : async function() {
-        const chckItemDetl = document.querySelector('.chck-item-detl');
+const setPage = async () => {
+    const chckItemDetl = document.querySelector('.chck-item-detl');
         const DNSChecklistItem = document.querySelector('.DNSChecklist-item');
         try {
             let response = await rest('GET', '/auth/manager', null);
             if (response.status != 200) window.location = '/';
             else {
+                console.log(response.data.role);
+                if (response.data.role != 'ADMIN') document.querySelector('.srch-cstm-dprt').remove()
                 document.querySelector('.user-name').innerText = response.data.username;
                 document.querySelector('.user-id').innerText = '(' + response.data.userid + ')';
                 var rspnChckList = response.data.data.checklist;
@@ -197,6 +195,7 @@ let managerObject = {
                 document.querySelector('.cstm-chck').innerText = getCstmDprtName(rspnChckList).substr(0, 4);
                 document.querySelector('.dprt-chck').innerText = getCstmDprtName(rspnChckList).substr(4);
 
+                let itemNumber = 1;
                 rspnChckList.forEach(res => {
                     let itemElement = chckItemDetl.cloneNode(true);
                     let unchRate = Math.ceil((res.unChck / res.chckAmnt * 100) * 10) / 10;
@@ -208,7 +207,9 @@ let managerObject = {
                     itemElement.querySelector('.un-chck').innerText = res.unChck;
                     itemElement.querySelector('.chck-prcn').innerText = 100 - Number(unchRate);
                     itemElement.querySelector('.unch-prcn').innerText = unchRate;
+                    itemElement.style.borderBottom = (itemNumber == rspnChckList.length) ? '0' : null;
                     chckItemDetl.before(itemElement);
+                    itemNumber += 1;
                 });
                 chckItemDetl.remove();
                 
@@ -216,6 +217,7 @@ let managerObject = {
                 let unchEmpl = rspnDnsChckList.filter(rspn => rspn.dnsChckRslt == null);
                 let unChckDns = unchEmpl.length;
                 let unchPrcnDns = Math.ceil((unChckDns / allDnsChckList * 100) * 10) / 10;
+                DNSChecklistItem.style.borderBottom = '0';
                 DNSChecklistItem.querySelector('.cstm-dns').innerText = getCstmDprtName(rspnDnsChckList).substr(0, 4);
                 DNSChecklistItem.querySelector('.dprt-dns').innerText = getCstmDprtName(rspnDnsChckList).substr(4);
                 DNSChecklistItem.querySelector('.empl-cont').innerText = allDnsChckList;
@@ -233,12 +235,26 @@ let managerObject = {
         } catch (error) { console.error('error in join.js : ', error);
             window.location = '/';
         }
+}
+
+const getCstmDprtName = (objectWithCstmDprtCode) => {
+    let cstmDprt = objectWithCstmDprtCode[0].customs + objectWithCstmDprtCode[0].department;
+    return Object.keys(cstmDprtCode).find(key => cstmDprtCode[key] === cstmDprt);
+}
+
+let managerObject = {
+    init : function() {
+        document.querySelector("#dprt-chck-list").onclick = () => { this.search(); };
+    },
+
+    search : async function() {
+        
     }
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    resetUserValueSelectBefore(); heightResize(); managerObject.init()
-    managerObject.search();
+    resetUserValueSelectBefore(); heightResize(); managerObject.init();
+    setPage();
     let dropDownElmn = cstmDprt.querySelector('select.drop-down')
     dropDownElmn.addEventListener('change', (event) => {
         resetUserValueSelectBefore(); deleteSelectElement();

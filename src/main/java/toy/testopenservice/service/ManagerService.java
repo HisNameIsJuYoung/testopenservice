@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import toy.testopenservice.domain.ChecklistResult;
 import toy.testopenservice.domain.DNSChecklist;
 import toy.testopenservice.domain.User;
 import toy.testopenservice.dto.ManageChckRsltDTO;
+import toy.testopenservice.persistence.ChecklistRepository;
 import toy.testopenservice.persistence.ChecklistResultRepository;
 import toy.testopenservice.persistence.DNSChecklistRepository;
 import toy.testopenservice.persistence.UserRepository;
@@ -20,7 +22,7 @@ import toy.testopenservice.persistence.UserRepository;
 public class ManagerService {
     @Autowired
     private DNSChecklistRepository dNSChecklistRepository;
-
+    
     @Autowired
     private ChecklistResultRepository checklistResultRepository;
 
@@ -32,8 +34,8 @@ public class ManagerService {
         String customs = user.getCustoms();
         String department = user.getDepartment();
         List<ManageChckRsltDTO> listManagerChckRsltDTO = new ArrayList<>();
-        
         List<User> customsDepartment = userRepository.findByCustomsAndDepartment(customs, department);
+        
         for (User cstmDprt : customsDepartment) {
             ManageChckRsltDTO managerChckRsltDTO = new ManageChckRsltDTO();
             int chckAmnt = checklistResultRepository.countByUserId(cstmDprt.getUserId());
@@ -59,5 +61,20 @@ public class ManagerService {
         result.put("dnsChecklist", dnsChecklist);
 
         return result;
+    }
+    
+    @Transactional
+    public List<DNSChecklist> getAllCheckResult(String customs, String department) {
+        return null;
+    }
+    
+    @Transactional
+    public List<ChecklistResult> getAllChckListRslt() {
+        return checklistResultRepository.findAll();
+    }
+
+    @Transactional
+    public List<DNSChecklist> getDNSChecklist() {
+        return dNSChecklistRepository.findAll();
     }
 }

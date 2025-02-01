@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unipass 4.5</title>
-    <link rel="icon" href="/unipass45.ico" type="image/x-icon">
+    <link rel="icon" href="/image/unipass45.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/checklist.css">
     <script defer src="/js/checklist.js"></script>
@@ -47,9 +48,11 @@
                         <div class="item-fl fron-vari-id"></div>
                         <div class="item-fl fron-vari-step"></div>
                         <div class="item-fl vari-resu">
-                            <button id="noauthority">권한없음</button>
-                            <button id="resu-fail">오류발견</button>
-                            <button id="resu-pass">이상없음</button>
+                            <div class="cfadiv cfa">
+                                <div class="fl"><button id="resu-pass">이상없음</button></div>
+                                <div class="fl"><button id="resu-fail">오류발견</button></div>
+                                <div class="fl"><button id="noauthority">권한없음</button></div>
+                            </div>
                             <div class="resu-text"></div>
                             <div class="crea-date"></div>
                         </div>

@@ -25,8 +25,11 @@ const rest = async (method, url, data = null, isFormData = false) => {
 
 const heightResize = () => {
     let contentsHeight = (window.innerHeight - 270);
+    let widthCheck = window.innerWidth;
     document.querySelector('#contents').style.height = contentsHeight + 'px';
     document.querySelector('#contents').style.width = window.innerWidth + 'px';
+    document.querySelector('.nav-bottom').style.width = widthCheck + 'px';
+    document.querySelector('.thanks').style.width = widthCheck + 'px';
 };
 window.addEventListener('resize', heightResize);
 
@@ -86,6 +89,7 @@ const getChecklistItem = async () => {
                 checklistItem.querySelector('.resu-text').innerText = chckRsltValu[tempResult];
                 checklistItem.querySelector('.crea-date').innerText = timeFormat(res.createDate);
             } else checklistItem.querySelector('.resu-text').innerText = '미수행'
+            checklistItem.style.borderBottom = (itemNumber == response.data.length) ? '0' : null;
             itemNumber -= 1;
             checklistItemTemplate.after(checklistItem);
         });

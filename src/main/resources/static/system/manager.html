@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unipass 4.5</title>
-    <link rel="icon" href="/unipass45.ico" type="image/x-icon">
+    <link rel="icon" href="/image/unipass45.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/manager.css">
     <script defer src="/js/manager.js"></script>
 </head>
@@ -33,6 +34,8 @@
             <div class="cstm-dprt" id="dropdown1">
                 <select class="drop-down">
                     <option value="" disabled selected>세관을 선택해 주세요.</option>
+                    <option value="all">전체</option>
+                    <option value="daejeon">대전세관</option>
                     <option value="donghae">동해세관</option>
                     <option value="seoul">서울세관</option>
                     <option value="seongnam">성남세관</option>
@@ -44,7 +47,7 @@
                 </select>
             </div>
             <div class="bttn" style="float: right">
-                <button id="dprt-chck-list">검색</button>
+                <button id="dprt-chck-list">다운로드</button>
             </div>
         </div>
 

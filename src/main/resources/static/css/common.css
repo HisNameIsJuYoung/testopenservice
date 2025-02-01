@@ -1,0 +1,107 @@
+/* all */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium';
+  }
+html, body {
+    place-items: center;
+    overflow: hidden;
+    font-size: 18px;
+}
+input {
+    font-size: 18px;
+    margin: 4px 0;
+    padding: 0 10px;
+}
+textarea {
+    font-size: 18px;
+    padding: 10px;
+    line-height: 35px;
+}
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;     /* Arrange children vertically */
+}
+li, a {
+    text-decoration: none;
+    color: inherit;
+}
+button {
+    height: 30px;
+    margin: 4px 5px 10px;
+    padding: 0 20px;
+    font-size: 16px;
+}
+.fl {
+    float: left;
+}
+/* nav */
+.cfa::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.nav {
+    width: 900px;
+    height: 95px;
+}
+.toy-proj-name {
+    float: left;
+    margin-top: 30px;
+    font-size: 1.9em;
+    font-weight: 500;
+}
+.auth {
+    float: right;
+}
+.login {
+    margin: 50px 20px 0 0;
+}
+.user-id {
+    margin: 52px 50px 0 5px;
+    font-size: 17px;
+}
+.user-name {
+    margin: 50px 2px 0 0;   
+    font-size: 20px;
+}
+.nav-bottom {
+    height: 5px;
+    background-color: #FFE869;;
+}
+
+/* footer */
+.thanks {
+    padding: 30px;
+    margin-top: 10px;
+    border-top: 2px solid #FFE869;
+    text-align: center;
+}
+/* menu-contents */
+.menu {
+    margin-bottom: 30px;
+    background-color: #FFFBCB;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.menu-item {
+    float: left;
+    width: 250px;
+    height: 45px;
+    font-size: 21px;
+    text-align: center;
+    padding-top: 10px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.selected-menu, .menu-item:hover {
+    background-color: #FFE869;
+    font-weight: bold;
+}
+.item-fl {
+    float: left;
+    padding: 15px 0 10px;
+}

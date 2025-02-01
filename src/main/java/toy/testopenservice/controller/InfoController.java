@@ -34,9 +34,10 @@ public class InfoController {
         User user = ((User) session.getAttribute("loginUser"));
         String userId = user.getUserId();
         String userName = user.getUserName();
+        String role = user.getRole().toString();
         Object data = infoService.getInfo();
 
-        CommonResponseDTO commonResponseDTO = new CommonResponseDTO(userId, userName, data);
+        CommonResponseDTO commonResponseDTO = new CommonResponseDTO(userId, userName, role, data);
 
         return new ResponseDTO<>(HttpStatus.OK.value(), commonResponseDTO);
     }

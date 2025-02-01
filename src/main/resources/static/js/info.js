@@ -35,10 +35,14 @@ const restHandler = async (method, url, data = null, isFormData = false) => {
 
 const heightResize = () => {
     let contentsHeight = (window.innerHeight - 270);
+    let widthCheck = window.innerWidth;
     document.querySelector('#contents').style.height = contentsHeight + 'px';
     document.querySelector('#contents').style.width = window.innerWidth + 'px';
+    document.querySelector('.nav-bottom').style.width = widthCheck + 'px';
+    document.querySelector('.thanks').style.width = widthCheck + 'px';
 };
 window.addEventListener('resize', heightResize);
+
 
 let openedItem = {};
 
@@ -103,7 +107,7 @@ const getInfoItems = async () => {
             infoItem.querySelector('#modify').addEventListener('click', (event) => {
                 writeInfo(openedItem.element, event);
             });
-
+            infoItem.style.borderBottom = (itemNumber == 1) ? '0' : null;
             itemNumber += 1;
             infoTemplate.after(infoItem);
         });

@@ -12,12 +12,15 @@ optnCstm.seoul.josa2 = ['외환조사총괄과', '외환조사1관', '외환조�
 optnCstm.sokcho = ['통관지원과', '조사심사과', '고성지원센터']
 optnCstm.anYang = ['통관지원과', '조사심사과']
 optnCstm.cheonan = ['통관지원과', '조사심사과']
+optnCstm.daejeon = ['통관지원과', '조사심사과']
 optnCstm.cheongju = ['통관지원과', '조사심사과', '여행자통관과', '충주지원센터']
 optnCstm.paju = ['파주세관', '도라산지원센터', '의정부지원센터']
 const cstmDptmCode = {
-    '동해세관동해세관' : '100D9',  /***********/
+    '대전세관조사심사과' : '15064',
+    '대전세관통관지원과' : '150D9',
+    '동해세관동해세관' : '100D9',
     '동해세관원주지원센터' : '102D9',
-    '서울세관감사담당관' : '010CA',  /***********/
+    '서울세관감사담당관' : '010CA',
     '서울세관구로지원지원센터' : '130D9',
     '서울세관납세자보호담당관' : '010D2',
     '서울세관세관운영과' : '01071',
@@ -56,7 +59,7 @@ const cstmDptmCode = {
     '서울세관이사화물과' : '01019',
     '서울세관통관검사1과' : '010C1',
     '서울세관통관검사2과' : '010C2',
-    '성남세관성남세관' : '012D9',  /***********/
+    '성남세관성남세관' : '012D9',
     '속초세관고성지원센터' : '103D9',
     '속초세관조사심사과' : '10146',
     '속초세관통관지원과' : '101D9',
@@ -84,10 +87,14 @@ const resetUserValueSelectBefore = () => {
 
 const heightResize = () => {
     let contentsHeight = (window.innerHeight - 200);
+    let widthCheck = window.innerWidth;
     document.querySelector('.container').style.height = contentsHeight + 'px';
-    document.querySelector('.container').style.width = window.innerWidth + 'px';
+    document.querySelector('.container').style.width = widthCheck + 'px';
+    document.querySelector('.nav-bottom').style.width = widthCheck + 'px';
+    document.querySelector('.thanks').style.width = widthCheck + 'px';
 };
 window.addEventListener('resize', heightResize);
+window.setTimeout('window.location.reload()', 1700000);
 const customsDepartment = document.querySelector('.customsDepartment')
 
 const deleteSelectElement = () => {
