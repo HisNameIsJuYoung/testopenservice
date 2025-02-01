@@ -248,7 +248,15 @@ let managerObject = {
     },
 
     search : async function() {
-        
+        try {
+            let response = await rest('GET', '/auth/allResult', null);
+            if (response.status != 200) window.location = '/';
+            else {
+                console.log(response.data);
+            }
+        } catch (error) {
+            console.error('error in join.js : ', error);
+        }
     }
 }
 

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import toy.testopenservice.domain.Checklist;
 import toy.testopenservice.domain.ChecklistResult;
 import toy.testopenservice.domain.DNSChecklist;
 import toy.testopenservice.domain.User;
@@ -25,6 +26,9 @@ public class ManagerService {
     
     @Autowired
     private ChecklistResultRepository checklistResultRepository;
+
+    @Autowired
+    private ChecklistRepository checklistRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -62,19 +66,18 @@ public class ManagerService {
 
         return result;
     }
-    
-    @Transactional
-    public List<DNSChecklist> getAllCheckResult(String customs, String department) {
-        return null;
-    }
-    
-    @Transactional
-    public List<ChecklistResult> getAllChckListRslt() {
-        return checklistResultRepository.findAll();
-    }
 
     @Transactional
-    public List<DNSChecklist> getDNSChecklist() {
-        return dNSChecklistRepository.findAll();
+    public Map<String, Object> getAllResult() {
+        List<ChecklistResult> checklistResults = checklistResultRepository.findAll();
+        List<Checklist> checklists = checklistRepository.findAll();
+        List<DNSChecklist> dnsChecklists = dNSChecklistRepository.findAll();
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("checklistResult", checklistResults);
+        result.put("checklist", checklists);
+        result.put("dnsChecklist", dnsChecklists);
+
+        return result;
     }
 }
