@@ -21,7 +21,7 @@ const cstmDprtCode = {
     '동해세관동해세관' : '100D9',
     '동해세관원주지원센터' : '102D9',
     '서울세관감사담당관' : '010CA',
-    '서울세관구로지원지원센터' : '130D9',
+    '서울세관구로지원센터' : '130D9',
     '서울세관납세자보호담당관' : '010D2',
     '서울세관세관운영과' : '01071',
     '서울세관수출입기업지원센터' : '010DG',
@@ -180,61 +180,64 @@ const rest = async (method, url, data = null, isFormData = false) => {
 
 const setPage = async () => {
     const chckItemDetl = document.querySelector('.chck-item-detl');
-        const DNSChecklistItem = document.querySelector('.DNSChecklist-item');
-        try {
-            let response = await rest('GET', '/auth/manager', null);
-            if (response.status != 200) window.location = '/';
-            else {
-                console.log(response.data.role);
-                if (response.data.role != 'ADMIN') document.querySelector('.srch-cstm-dprt').remove()
-                document.querySelector('.user-name').innerText = response.data.username;
-                document.querySelector('.user-id').innerText = '(' + response.data.userid + ')';
-                var rspnChckList = response.data.data.checklist;
-                var rspnDnsChckList = response.data.data.dnsChecklist;
+    const DNSChecklistItem = document.querySelector('.DNSChecklist-item');
+    try {
+        let response = await rest('GET', '/auth/manager', null);
+        if (response.status != 200) window.location = '/';
+        else {
+            if (response.data.role != 'ADMIN') document.querySelector('.srch-cstm-dprt').remove()
+            document.querySelector('.user-name').innerText = response.data.username;
+            document.querySelector('.user-id').innerText = '(' + response.data.userid + ')';
+            var rspnChckList = response.data.data.checklist;
+            var rspnDnsChckList = response.data.data.dnsChecklist;
 
-                document.querySelector('.cstm-chck').innerText = getCstmDprtName(rspnChckList).substr(0, 4);
-                document.querySelector('.dprt-chck').innerText = getCstmDprtName(rspnChckList).substr(4);
+            document.querySelector('.cstm-chck').innerText = getCstmDprtName(rspnChckList).substr(0, 4);
+            document.querySelector('.dprt-chck').innerText = getCstmDprtName(rspnChckList).substr(4);
 
-                let itemNumber = 1;
-                rspnChckList.forEach(res => {
-                    let itemElement = chckItemDetl.cloneNode(true);
-                    let unchRate = Math.ceil((res.unChck / res.chckAmnt * 100) * 10) / 10;
-                    itemElement.querySelector('.empl-name').innerText = res.userName + '(' + res.userId + ')';
-                    itemElement.querySelector('.chck-amnt').innerText = res.chckAmnt;
-                    itemElement.querySelector('.chck-pass').innerText = res.chckPass;
-                    itemElement.querySelector('.chck-fail').innerText = res.chckFail;
-                    itemElement.querySelector('.chck-nthr').innerText = res.chckNthr;
-                    itemElement.querySelector('.un-chck').innerText = res.unChck;
-                    itemElement.querySelector('.chck-prcn').innerText = 100 - Number(unchRate);
-                    itemElement.querySelector('.unch-prcn').innerText = unchRate;
-                    itemElement.style.borderBottom = (itemNumber == rspnChckList.length) ? '0' : null;
-                    chckItemDetl.before(itemElement);
-                    itemNumber += 1;
-                });
-                chckItemDetl.remove();
-                
-                let allDnsChckList = rspnDnsChckList.length;
-                let unchEmpl = rspnDnsChckList.filter(rspn => rspn.dnsChckRslt == null);
-                let unChckDns = unchEmpl.length;
-                let unchPrcnDns = Math.ceil((unChckDns / allDnsChckList * 100) * 10) / 10;
-                DNSChecklistItem.style.borderBottom = '0';
-                DNSChecklistItem.querySelector('.cstm-dns').innerText = getCstmDprtName(rspnDnsChckList).substr(0, 4);
-                DNSChecklistItem.querySelector('.dprt-dns').innerText = getCstmDprtName(rspnDnsChckList).substr(4);
-                DNSChecklistItem.querySelector('.empl-cont').innerText = allDnsChckList;
-                DNSChecklistItem.querySelector('.chck-rslt-dns').innerText = allDnsChckList - unChckDns;
-                DNSChecklistItem.querySelector('.un-chck-dns').innerText = unChckDns;
-                DNSChecklistItem.querySelector('.chck-prcn-dns').innerText = 100 - Number(unchPrcnDns);
-                DNSChecklistItem.querySelector('.unch-prcn-dns').innerText = unchPrcnDns;
-                
-                let unchEmplName = '';
-                unchEmpl.forEach(rspn => {
-                    unchEmplName += rspn.userName + '(' + rspn.userId + ')<br>';
-                });
-                DNSChecklistItem.querySelector('.unch-empl').innerHTML = unchEmplName;
+            let itemNumber = 1;
+            rspnChckList.forEach(res => {
+                let itemElement = chckItemDetl.cloneNode(true);
+                let unchPrcn = ((res.unChck / res.chckAmnt * 100) + '').substr(0, 4);
+                let chckInner = {
+                    '.empl-name': (res.userName + '(' + res.userId + ')'),
+                    '.chck-amnt': res.chckAmnt,
+                    '.chck-pass': res.chckPass,
+                    '.chck-fail': res.chckFail,
+                    '.chck-nthr': res.chckNthr,
+                    '.un-chck': res.unChck,
+                    '.chck-prcn': (((100 - unchPrcn) + '').substr(0, 4)),
+                    '.unch-prcn': unchPrcn
+                };
+                for (let key in chckInner) itemElement.querySelector(key).innerText = chckInner[key];
+                itemElement.style.borderBottom = (itemNumber == rspnChckList.length) ? '0' : null;
+                chckItemDetl.before(itemElement);
+                itemNumber += 1;
+            });
+            chckItemDetl.remove();
+            
+            let allDnsChckList = rspnDnsChckList.length;
+            let unchEmpl = rspnDnsChckList.filter(rspn => rspn.dnsChckRslt == null);
+            let unChckDns = unchEmpl.length;
+            let unchPrcnDns = ((unChckDns / allDnsChckList * 100) + '').substr(0, 4);
+            let DNSinner = {
+                '.cstm-dns': (getCstmDprtName(rspnDnsChckList).substr(0, 4)),
+                '.dprt-dns': (getCstmDprtName(rspnDnsChckList).substr(4)),
+                '.empl-cont':  allDnsChckList,
+                '.chck-rslt-dns': (allDnsChckList - unChckDns),
+                '.un-chck-dns': unChckDns,
+                '.chck-prcn-dns': (((100 - unchPrcnDns) + '').substr(0, 4)),
+                '.unch-prcn-dns': unchPrcnDns
             }
-        } catch (error) { console.error('error in join.js : ', error);
-            window.location = '/';
+            DNSChecklistItem.style.borderBottom = '0';
+            for (let key in DNSinner) DNSChecklistItem.querySelector(key).innerText = DNSinner[key];
+            
+            let unchEmplName = '';
+            unchEmpl.forEach(rspn => { unchEmplName += rspn.userName + '(' + rspn.userId + ')<br>'; });
+            DNSChecklistItem.querySelector('.unch-empl').innerHTML = unchEmplName;
         }
+    } catch (error) { console.error('error in join.js : ', error);
+        window.location = '/';
+    }
 }
 
 const getCstmDprtName = (objectWithCstmDprtCode) => {
@@ -242,27 +245,141 @@ const getCstmDprtName = (objectWithCstmDprtCode) => {
     return Object.keys(cstmDprtCode).find(key => cstmDprtCode[key] === cstmDprt);
 }
 
-let managerObject = {
-    init : function() {
-        document.querySelector("#dprt-chck-list").onclick = () => { this.search(); };
-    },
+// function excelDown(fileName, sheetName, sheetHtml) {
 
-    search : async function() {
-        try {
-            let response = await rest('GET', '/auth/allResult', null);
-            if (response.status != 200) window.location = '/';
-            else {
-                console.log(response.data);
-            }
-        } catch (error) {
-            console.error('error in join.js : ', error);
-        }
-    }
+// 	let html = "";
+    	
+//     html += "<html xmlns:x='urn:schemas-microsoft-com:office:excel' >";
+//     html += "   <head>";
+//     html += "       <meta http-equiv='content-type' content='application/vnd.ms-excel; charset=UTF-8'>";
+//     html += "       <xml>";
+//     html += "           <x:ExcelWorkbook>";
+//     html += "               <x:ExcelWorksheets>";
+//     html += "                   <x:ExcelWorksheet>";
+//     html += "                       <x:name>"+sheetName+"</x:name>";
+//     html += "                       <x:WorksheetOptions><x:Panes></x:Panes></x:WorksheetOptions>";
+//     html += "                   </x:ExcelWorksheet>";
+//     html += "               </x:ExcelWorksheets>";
+//     html += "           </x:ExcelWorkbook>";
+//     html += "       </xml>";
+//     html += "   </haed>";
+//     html += "   <body>";
+//     html += sheetHtml;
+//     html += "   </body>";
+//     html += "</html>";
+
+//     let data_type = "data:application/vnd.ms-excel";
+//     let blob = new Blob([html], {type: "application/vnd.ms-excel; charset=utf-8"});
+
+//     let anchor = window.document.createElement('a');
+//     anchor.href = window.URL.createObjectURL(blob);
+//     anchor.download = fileName;
+//     document.body.appendChild(anchor);
+//     anchor.click();
+    
+//     // Remove the anchor element after download
+//     document.body.removeChild(anchor);
+// }
+
+// function download() {
+//     const list = [{no: 1, gubun: '통관', formula: 'A1+B1', calcFrq: '매일', collisMsg: '없음'},
+//         {no: 2, gubun: '심사', formula: 'A2+B2', calcFrq: '매일', collisMsg: '없음'},
+//         {no: 3, gubun: '조사', formula: 'A3+B3', calcFrq: '매일', collisMsg: '없음'},
+//         {no: 4, gubun: '통관', formula: 'A4+B4', calcFrq: '매일', collisMsg: '없음'},
+//         {no: 5, gubun: '심사', formula: 'A5+B5', calcFrq: '매일', collisMsg: '없음'},
+//         {no: 6, gubun: '조사', formula: 'A6+B6', calcFrq: '매일', collisMsg: '없음'},
+//         {no: 7, gubun: '통관', formula: 'A7+B7', calcFrq: '매일', collisMsg: '없음'},
+//         {no: 8, gubun: '심사', formula: 'A8+B8', calcFrq: '매일', collisMsg: '없음'},
+//         {no: 9, gubun: '조사', formula: 'A9+B9', calcFrq: '매일', collisMsg: '없음'},
+//         {no: 10, gubun: '통관', formula: 'A10+B10', calcFrq: '매일', collisMsg: '없음'}];
+
+// 	let excelTable = "";
+    
+//     	excelTable += "<table border='1'>";
+//         excelTable += "		<thead>";
+//         excelTable += "			<tr>";
+//         excelTable += "				<td>No</td>";
+//         excelTable += "				<td>구분</td>";
+//         excelTable += "				<td>수식</td>";
+//         excelTable += "				<td>계산주파수</td>";
+//         excelTable += "				<td>충돌여부</td>";
+//         excelTable += "			</tr>";
+//         excelTable += "		</thead>";
+//         excelTable += "		<tbody>";
+        
+//         if (list.length > 0) {
+//             for (let i = 0; i < list.length; i++) {
+//                 excelTable += "<tr>";
+//                 excelTable += "		<td>"+list[i].no+"</td>";
+//                 excelTable += "		<td>"+list[i].gubun+"</td>";
+//                 excelTable += "		<td>"+list[i].formula+"</td>";
+//                 excelTable += "		<td>"+list[i].calcFrq+"</td>";
+//                 excelTable += "		<td>"+list[i].collisMsg+"</td>";
+//                 excelTable += "</tr>";
+//             }
+//         } else {
+//             excelTable += "<tr>";
+//             excelTable += "		<td colspan='5'>데이터가 없습니다</td>";
+//             excelTable += "</tr>";
+//         }
+        
+//         excelTable += "		</tbody>";
+//         excelTable += "	</table>";
+        
+//         //파일명, 시트명, html
+//         excelDown("test.xlsx", "sheets1", excelTable);
+
+// }
+
+const download = async (workbook, fileName) => {
+    const buffer = await workbook.xlsx.writeBuffer();
+    const blob = new Blob([buffer], {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const url = window.URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = fileName + '.xlsx';
+    anchor.click();
+    window.URL.revokeObjectURL(url);
+};
+
+const getAllData = async () => {
+    let checklist = '', checklistResult = '', dnsChecklist =  '';
+
+    try { let response = await rest('GET', '/auth/allResult', null);
+        if (response.status != 200) window.location = '/';
+        else { checklist = response.data.data.checklist;
+            checklistResult = response.data.data.checklistResult;
+            dnsChecklist = response.data.data.dnsChecklist; }
+    } catch (error) { console.error('error in join.js : ', error); }
+
+    let allChckListRslt = [];
+    checklistResult.forEach((chckRslt) => {
+        let temp = {};
+        checklist.forEach((chck) => {
+            if (chckRslt.checListId == chck.checListId) {
+                for (e in chckRslt) chck[e] = chckRslt[e];
+                temp = chck; } });
+        allChckListRslt.push(temp);
+    });
+    return allChckListRslt;
+}
+let allChckListRslt = [];
+(async () => {
+    allChckListRslt = await getAllData();
+    console.log(allChckListRslt);
+})();
+
+const makeFile = () => {
+
+    const workbook = new ExcelJS.Workbook();
+    let sheet = workbook.addWorksheet('서울세관');
+
+    download(workbook, '시험운영').then(r => {});
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    resetUserValueSelectBefore(); heightResize(); managerObject.init();
-    setPage();
+    resetUserValueSelectBefore(); heightResize(); getAllData(); setPage();
     let dropDownElmn = cstmDprt.querySelector('select.drop-down')
     dropDownElmn.addEventListener('change', (event) => {
         resetUserValueSelectBefore(); deleteSelectElement();

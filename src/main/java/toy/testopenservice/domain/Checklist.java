@@ -47,9 +47,9 @@ public class Checklist {
     @Column(nullable = false, length = 2)
     private String department;
 
-    @Column(nullable = false, length = 3)
+    @Column(nullable = false, length = 10)
     private String cstmName;
     
-    @Column(nullable = false, length = 2)
+    @Column(nullable = false, length = 20)
     private String dprtName;
 }
