@@ -116,6 +116,7 @@ const userSelectResultProcprocess = (event) => {
 
 const userSelectSeoulProcess = (event) => {
     let userSelection = event.currentTarget.options[event.currentTarget.options.selectedIndex].value;
+    if(document.querySelector('#dropdown3')) document.querySelector('#dropdown3').remove(); userValue.number = 3;
     let optionList = optnCstm.seoul[userSelection];
     makeDropdownElement(optionList, userSelection);
 }
