@@ -3,6 +3,9 @@ package toy.testopenservice.service;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +35,11 @@ public class UserService {
     @Autowired
     private ChecklistResultRepository checklistResultRepository;
 
+    @Autowired
+    private Executor asyncExecutor;
+
+    private static final Logger LOGGER = Logger.getLogger(UserService.class.getName());
+
     @Transactional(readOnly = true)
     public User getUser(String userId) {
         return userRepository.findByUserId(userId).orElseGet(User::new);
@@ -46,28 +54,39 @@ public class UserService {
     @Transactional
     public CompletableFuture<Void> generateChecklistResult(User user) {
         return CompletableFuture.runAsync(() -> {
-            List<Checklist> findChecklist = checklistRepository.findChecListIdByCustomsAndDepartment(user.getCustoms(), user.getDepartment());
-            for (Checklist checklist : findChecklist) {
-                ChecklistResult checklistResult = new ChecklistResult();
-                checklistResult.setUserId(user.getUserId());
-                checklistResult.setUserName(user.getUserName());
-                checklistResult.setChecListId(checklist.getChecListId());
-                checklistResultRepository.save(checklistResult);
+            try {
+                List<Checklist> findChecklist = checklistRepository.findChecListIdByCustomsAndDepartment(user.getCustoms(), user.getDepartment());
+                for (Checklist checklist : findChecklist) {
+                    ChecklistResult checklistResult = new ChecklistResult();
+                    checklistResult.setUserId(user.getUserId());
+                    checklistResult.setUserName(user.getUserName());
+                    checklistResult.setChecListId(checklist.getChecListId());
+                    checklistResultRepository.save(checklistResult);
+                }
+            } catch (Exception e) {
+                LOGGER.log(Level.SEVERE, "Error generating checklist result", e);
+                throw new RuntimeException(e);
             }
-        });
+        }, asyncExecutor);
     }
 
     @Transactional
     public CompletableFuture<Void> generateDNSChecklist(User user) {
         return CompletableFuture.runAsync(() -> {
-            DNSChecklist dNSChecklist = new DNSChecklist();
-            dNSChecklist.setUserId(user.getUserId());
-            dNSChecklist.setUserName(user.getUserName());
-            dNSChecklist.setCustoms(user.getCustoms());
-            dNSChecklist.setDepartment(user.getDepartment());
-            dNSChecklistRepository.save(dNSChecklist);
-        });
+            try {
+                DNSChecklist dNSChecklist = new DNSChecklist();
+                dNSChecklist.setUserId(user.getUserId());
+                dNSChecklist.setUserName(user.getUserName());
+                dNSChecklist.setCustoms(user.getCustoms());
+                dNSChecklist.setDepartment(user.getDepartment());
+                dNSChecklistRepository.save(dNSChecklist);
+            } catch (Exception e) {
+                LOGGER.log(Level.SEVERE, "Error generating DNS checklist", e);
+                throw new RuntimeException(e);
+            }
+        }, asyncExecutor);
     }
+
     @Transactional
     public User putUser(User findUser, User user) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -77,7 +96,13 @@ public class UserService {
 
         CompletableFuture<Void> checklistFuture = generateChecklistResult(findUser);
         CompletableFuture<Void> dnsChecklistFuture = generateDNSChecklist(findUser);
-        CompletableFuture.allOf(checklistFuture, dnsChecklistFuture).join();
+
+        try {
+            CompletableFuture.allOf(checklistFuture, dnsChecklistFuture).join();
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Error completing checklist futures", e);
+            throw new RuntimeException(e);
+        }
 
         return userRepository.save(findUser);
     }
