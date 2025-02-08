@@ -5,8 +5,8 @@ optnCstm.seoul = ['직속', '통관국', '심사1국' ,'심사2국', '조사1국
 optnCstm.seoulEn = ['giksok', 'tongwan', 'simsa1' ,'simsa2', 'josa1', 'josa2']
 optnCstm.seoul.giksok = ['세관운영과', '납세자보호담당관', '감사담당관', '수출입기업지원센터', '구로지원센터']
 optnCstm.seoul.tongwan = ['수출입물류과', '이사화물과', '통관검사1과', '통관검사2과']
-optnCstm.seoul.simsa1 = ['심사총괄1과', '심사1관', '심사2관', '심사3관', '심사정보과', '환급심사과', '체납관리과', '분석실']
-optnCstm.seoul.simsa2 = ['심사총괄2과', '심사1관', '심사2관', '심사3관', '심사4관', '심사5관', '자유무역협정검증1과', '자유무역협정검증2과', '자유무역협정검증3과']
+optnCstm.seoul.simsa1 = ['심사총괄1과', '1국심사1관', '1국심사2관', '1국심사3관', '심사정보과', '환급심사과', '체납관리과', '분석실']
+optnCstm.seoul.simsa2 = ['심사총괄2과', '2국심사1관', '2국심사2관', '2국심사3관', '2국심사4관', '2국심사5관', '자유무역협정검증1과', '자유무역협정검증2과', '자유무역협정검증3과']
 optnCstm.seoul.josa1 = ['조사총괄과', '조사1관', '조사2관', '특수조사과', '디지털무역범죄조사과', '조사정보과']
 optnCstm.seoul.josa2 = ['외환조사총괄과', '외환조사1관', '외환조사2관', '외환조사3관', '외환검사과', '외환검사1관', '외환검사2관']
 optnCstm.sokcho = ['통관지원과', '조사심사과', '고성지원센터']
@@ -26,18 +26,18 @@ const cstmDprtCode = {
     '서울세관세관운영과' : '01071',
     '서울세관수출입기업지원센터' : '010DG',
     '서울세관분석실' : '01091',
-    '서울세관심사1관' : '01089',
-    '서울세관심사2관' : '01087',
-    '서울세관심사3관' : '01088',
+    '서울세관1국심사1관' : '01089',
+    '서울세관1국심사2관' : '01087',
+    '서울세관1국심사3관' : '01088',
     '서울세관심사정보과' : '01075',
     '서울세관심사총괄1과' : '01061',
     '서울세관체납관리과' : '01063',
     '서울세관환급심사과' : '01065',
-    '서울세관심사1관' : '010H1',
-    '서울세관심사2관' : '010H2',
-    '서울세관심사3관' : '010H3',
-    '서울세관심사4관' : '010H4',
-    '서울세관심사5관' : '010H5',
+    '서울세관2국심사1관' : '010H1',
+    '서울세관2국심사2관' : '010H2',
+    '서울세관2국심사3관' : '010H3',
+    '서울세관2국심사4관' : '010H4',
+    '서울세관2국심사5관' : '010H5',
     '서울세관심사총괄2과' : '010HH',
     '서울세관자유무역협정검증1과' : '01066',
     '서울세관자유무역협정검증2과' : '01067',
@@ -75,6 +75,67 @@ const cstmDprtCode = {
     '파주세관도라산지원센터' : '017D9',
     '파주세관의정부지원센터' : '011D9'
 }
+
+const contCstmDprt = {
+    '서울세관세관운영과':  { pc: 44, rslt: 0 },
+    '서울세관납세자보호담당관': { pc: 7, rslt: 0 },
+    '서울세관감사담당관': { pc: 8, rslt: 0 },
+    '서울세관수출입기업지원센터': { pc: 29, rslt: 0 },
+    '서울세관수출입물류과': { pc: 12, rslt: 0 },
+    '서울세관통관검사1과': { pc: 13, rslt: 0 },
+    '서울세관통관검사2과': { pc: 11, rslt: 0 },
+    '서울세관이사화물과': { pc: 15, rslt: 0 },
+    '서울세관심사총괄1과': { pc: 16, rslt: 0 },
+    '서울세관1국심사1관': { pc: 13, rslt: 0 },
+    '서울세관1국심사2관': { pc: 11, rslt: 0 },
+    '서울세관1국심사3관': { pc: 30, rslt: 0 },
+    '서울세관심사정보과': { pc: 12, rslt: 0 },
+    '서울세관환급심사과': { pc: 12, rslt: 0 },
+    '서울세관체납관리과': { pc: 12, rslt: 0 },
+    '서울세관분석실': { pc: 9, rslt: 0 },
+    '서울세관심사총괄2과': { pc: 21, rslt: 0 },
+    '서울세관2국심사1관': { pc: 16, rslt: 0 },
+    '서울세관2국심사2관': { pc: 15, rslt: 0 },
+    '서울세관2국심사3관': { pc: 13, rslt: 0 },
+    '서울세관2국심사4관': { pc: 11, rslt: 0 },
+    '서울세관2국심사5관': { pc: 16, rslt: 0 },
+    '서울세관자유무역협정검증1과': { pc: 19, rslt: 0 },
+    '서울세관자유무역협정검증2과': { pc: 21, rslt: 0 },
+    '서울세관자유무역협정검증3과': { pc: 21, rslt: 0 },
+    '서울세관조사총괄과': { pc: 16, rslt: 0 },
+    '서울세관조사1관': { pc: 11, rslt: 0 },
+    '서울세관조사2관': { pc: 12, rslt: 0 },
+    '서울세관특수조사과': { pc: 15, rslt: 0 },
+    '서울세관디지털무역범죄조사과': { pc: 20, rslt: 0 },
+    '서울세관조사정보과': { pc: 9, rslt: 0 },
+    '서울세관외환조사총괄과': { pc: 20, rslt: 0 },
+    '서울세관외환조사1관': { pc: 11, rslt: 0 },
+    '서울세관외환조사2관': { pc: 10, rslt: 0 },
+    '서울세관외환조사3관': { pc: 9, rslt: 0 },
+    '서울세관외환검사과': { pc: 17, rslt: 0 },
+    '서울세관외환검사1관': { pc: 16, rslt: 0 },
+    '서울세관외환검사2관': { pc: 15, rslt: 0 },
+    '서울세관구로지원센터': { pc: 14, rslt: 0 },
+    '안양세관통관지원과': { pc: 6, rslt: 0 },
+    '안양세관조사심사과': { pc: 14, rslt: 0 },
+    '천안세관통관지원과': { pc: 12, rslt: 0 },
+    '천안세관조사심사과': { pc: 12, rslt: 0 },
+    '청주세관통관지원과': { pc: 9, rslt: 0 },
+    '청주세관조사심사과': { pc: 11, rslt: 0 },
+    '청주세관여행자통관과': { pc: 24, rslt: 0 },
+    '청주세관충주지원센터': { pc: 5, rslt: 0 },
+    '대전세관통관지원과': { pc: 8, rslt: 0 },
+    '대전세관조사심사과': { pc: 6, rslt: 0 },
+    '속초세관통관지원과': { pc: 7, rslt: 0 },
+    '속초세관조사심사과': { pc: 20, rslt: 0 },
+    '속초세관고성지원센터': { pc: 2, rslt: 0 },
+    '동해세관동해세관': { pc: 23, rslt: 0 },
+    '동해세관원주지원센터': { pc: 5, rslt: 0 },
+    '성남세관성남세관': { pc: 23, rslt: 0 },
+    '파주세관파주세관': { pc: 15, rslt: 0 },
+    '파주세관의정부지원센터': { pc: 15, rslt: 0 },
+    '파주세관도라산지원센터': { pc: 5, rslt: 0 }  
+}
 let userValue = {};
 userValue.customsDepartment = null;  // 사용자가 선택한 세관 부서 코드, ajax로 넘겨주는 값
 
@@ -101,29 +162,25 @@ window.addEventListener('resize', heightResize);
 const cstmDprt = document.querySelector('.cstm-dprt')
 
 const deleteSelectElement = () => {
-    if (document.querySelector('#drop-down2')) document.querySelector('#drop-down2').remove();
-    if (document.querySelector('#drop-down3')) document.querySelector('#drop-down3').remove();
-}
-
-const keyboardFunction = (element, executeFunction) => {
-    if (element) { element.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') executeFunction;
-        });
-    }
+    if (document.querySelector('#dropdown2')) document.querySelector('#dropdown2').remove();
+    if (document.querySelector('#dropdown3')) document.querySelector('#dropdown3').remove();
 }
 
 const userSelectResultProcprocess = (event) => {
     let userSelection = event.currentTarget.options[event.currentTarget.options.selectedIndex].value;
     if (optnCstm[userSelection]) makeDropDownElmn(optnCstm[userSelection], userSelection);
 }
+
 const userSelectSeoulProcess = (event) => {
     let userSelection = event.currentTarget.options[event.currentTarget.options.selectedIndex].value;
+    if(document.querySelector('#dropdown3')) document.querySelector('#dropdown3').remove(); userValue.number = 3;
     let optionList = optnCstm.seoul[userSelection];
+    console.log(optionList);
     makeDropDownElmn(optionList, userSelection);
 }
 
 const slctElmnRest = (cstmDprtElmn, slctDropDown, userSlct) => {
-    cstmDprtElmn.id = 'drop-down' + userValue.number;
+    cstmDprtElmn.id = 'dropdown' + userValue.number;
     userValue.number++;
     let stageName = (userSlct == 'seoul') ? '국(局)/직속을' : '부서를';
     slctDropDown.innerHTML = `<option value="" disabled selected>${stageName} 선택해 주세요.</option>`;
@@ -197,7 +254,7 @@ const setPage = async () => {
             let itemNumber = 1;
             rspnChckList.forEach(res => {
                 let itemElement = chckItemDetl.cloneNode(true);
-                let unchPrcn = ((res.unChck / res.chckAmnt * 100) + '').substr(0, 4);
+                let unchPrcn = ((res.unChck / res.chckAmnt * 100).toFixed(1) + '');
                 let chckInner = {
                     '.empl-name': (res.userName + '(' + res.userId + ')'),
                     '.chck-amnt': res.chckAmnt,
@@ -205,27 +262,27 @@ const setPage = async () => {
                     '.chck-fail': res.chckFail,
                     '.chck-nthr': res.chckNthr,
                     '.un-chck': res.unChck,
-                    '.chck-prcn': (((100 - unchPrcn) + '').substr(0, 4)),
+                    '.chck-prcn': (((100 - unchPrcn).toFixed(1) + '')),
                     '.unch-prcn': unchPrcn
                 };
                 for (let key in chckInner) itemElement.querySelector(key).innerText = chckInner[key];
                 itemElement.style.borderBottom = (itemNumber == rspnChckList.length) ? '0' : null;
                 chckItemDetl.before(itemElement);
-                itemNumber += 1;
+                itemNumber++;
             });
             chckItemDetl.remove();
             
             let allDnsChckList = rspnDnsChckList.length;
             let unchEmpl = rspnDnsChckList.filter(rspn => rspn.dnsChckRslt == null);
             let unChckDns = unchEmpl.length;
-            let unchPrcnDns = ((unChckDns / allDnsChckList * 100) + '').substr(0, 4);
+            let unchPrcnDns = ((unChckDns / allDnsChckList * 100).toFixed(1) + '');
             let DNSinner = {
                 '.cstm-dns': (getCstmDprtName(rspnDnsChckList).substr(0, 4)),
                 '.dprt-dns': (getCstmDprtName(rspnDnsChckList).substr(4)),
                 '.empl-cont':  allDnsChckList,
                 '.chck-rslt-dns': (allDnsChckList - unChckDns),
                 '.un-chck-dns': unChckDns,
-                '.chck-prcn-dns': (((100 - unchPrcnDns) + '').substr(0, 4)),
+                '.chck-prcn-dns': (((100 - unchPrcnDns).toFixed(1) + '')),
                 '.unch-prcn-dns': unchPrcnDns
             }
             DNSChecklistItem.style.borderBottom = '0';
@@ -240,96 +297,21 @@ const setPage = async () => {
     }
 }
 
+const emplChckListAmnt = (allChckListRslt) => {
+    let empl = {};
+    allChckListRslt.forEach((chckListRslt) => {
+        let value = chckListRslt.userId;
+        if (value in empl) empl[value].chckListAmnt++;
+        else { empl[value] = {};
+            empl[value].chckListAmnt = 1; }
+    });
+    return empl;
+}
+
 const getCstmDprtName = (objectWithCstmDprtCode) => {
     let cstmDprt = objectWithCstmDprtCode[0].customs + objectWithCstmDprtCode[0].department;
     return Object.keys(cstmDprtCode).find(key => cstmDprtCode[key] === cstmDprt);
 }
-
-// function excelDown(fileName, sheetName, sheetHtml) {
-
-// 	let html = "";
-    	
-//     html += "<html xmlns:x='urn:schemas-microsoft-com:office:excel' >";
-//     html += "   <head>";
-//     html += "       <meta http-equiv='content-type' content='application/vnd.ms-excel; charset=UTF-8'>";
-//     html += "       <xml>";
-//     html += "           <x:ExcelWorkbook>";
-//     html += "               <x:ExcelWorksheets>";
-//     html += "                   <x:ExcelWorksheet>";
-//     html += "                       <x:name>"+sheetName+"</x:name>";
-//     html += "                       <x:WorksheetOptions><x:Panes></x:Panes></x:WorksheetOptions>";
-//     html += "                   </x:ExcelWorksheet>";
-//     html += "               </x:ExcelWorksheets>";
-//     html += "           </x:ExcelWorkbook>";
-//     html += "       </xml>";
-//     html += "   </haed>";
-//     html += "   <body>";
-//     html += sheetHtml;
-//     html += "   </body>";
-//     html += "</html>";
-
-//     let data_type = "data:application/vnd.ms-excel";
-//     let blob = new Blob([html], {type: "application/vnd.ms-excel; charset=utf-8"});
-
-//     let anchor = window.document.createElement('a');
-//     anchor.href = window.URL.createObjectURL(blob);
-//     anchor.download = fileName;
-//     document.body.appendChild(anchor);
-//     anchor.click();
-    
-//     // Remove the anchor element after download
-//     document.body.removeChild(anchor);
-// }
-
-// function download() {
-//     const list = [{no: 1, gubun: '통관', formula: 'A1+B1', calcFrq: '매일', collisMsg: '없음'},
-//         {no: 2, gubun: '심사', formula: 'A2+B2', calcFrq: '매일', collisMsg: '없음'},
-//         {no: 3, gubun: '조사', formula: 'A3+B3', calcFrq: '매일', collisMsg: '없음'},
-//         {no: 4, gubun: '통관', formula: 'A4+B4', calcFrq: '매일', collisMsg: '없음'},
-//         {no: 5, gubun: '심사', formula: 'A5+B5', calcFrq: '매일', collisMsg: '없음'},
-//         {no: 6, gubun: '조사', formula: 'A6+B6', calcFrq: '매일', collisMsg: '없음'},
-//         {no: 7, gubun: '통관', formula: 'A7+B7', calcFrq: '매일', collisMsg: '없음'},
-//         {no: 8, gubun: '심사', formula: 'A8+B8', calcFrq: '매일', collisMsg: '없음'},
-//         {no: 9, gubun: '조사', formula: 'A9+B9', calcFrq: '매일', collisMsg: '없음'},
-//         {no: 10, gubun: '통관', formula: 'A10+B10', calcFrq: '매일', collisMsg: '없음'}];
-
-// 	let excelTable = "";
-    
-//     	excelTable += "<table border='1'>";
-//         excelTable += "		<thead>";
-//         excelTable += "			<tr>";
-//         excelTable += "				<td>No</td>";
-//         excelTable += "				<td>구분</td>";
-//         excelTable += "				<td>수식</td>";
-//         excelTable += "				<td>계산주파수</td>";
-//         excelTable += "				<td>충돌여부</td>";
-//         excelTable += "			</tr>";
-//         excelTable += "		</thead>";
-//         excelTable += "		<tbody>";
-        
-//         if (list.length > 0) {
-//             for (let i = 0; i < list.length; i++) {
-//                 excelTable += "<tr>";
-//                 excelTable += "		<td>"+list[i].no+"</td>";
-//                 excelTable += "		<td>"+list[i].gubun+"</td>";
-//                 excelTable += "		<td>"+list[i].formula+"</td>";
-//                 excelTable += "		<td>"+list[i].calcFrq+"</td>";
-//                 excelTable += "		<td>"+list[i].collisMsg+"</td>";
-//                 excelTable += "</tr>";
-//             }
-//         } else {
-//             excelTable += "<tr>";
-//             excelTable += "		<td colspan='5'>데이터가 없습니다</td>";
-//             excelTable += "</tr>";
-//         }
-        
-//         excelTable += "		</tbody>";
-//         excelTable += "	</table>";
-        
-//         //파일명, 시트명, html
-//         excelDown("test.xlsx", "sheets1", excelTable);
-
-// }
 
 const download = async (workbook, fileName) => {
     const buffer = await workbook.xlsx.writeBuffer();
@@ -343,8 +325,18 @@ const download = async (workbook, fileName) => {
     window.URL.revokeObjectURL(url);
 };
 
-const getAllData = async () => {
-    let checklist = '', checklistResult = '', dnsChecklist =  '';
+const timeFormatForManager = () => {
+    let date = new Date();
+    return ('' + date.getFullYear()).slice(-2) + ('0' + (date.getMonth() + 1)).slice(-2)
+        + ('0' + date.getDate()).slice(-2)
+}
+
+const makeFile = async (e) => {
+    let fileName = timeFormatForManager() + '시험운영결과보고(서울)';
+    let workbook = new ExcelJS.Workbook();
+    let sheet = workbook.addWorksheet('서울세관');
+    let checklist = '', checklistResult = '', dnsChecklist =  '', rowNum = 1;
+    const allChckListRslt = [];
 
     try { let response = await rest('GET', '/auth/allResult', null);
         if (response.status != 200) window.location = '/';
@@ -353,33 +345,38 @@ const getAllData = async () => {
             dnsChecklist = response.data.data.dnsChecklist; }
     } catch (error) { console.error('error in join.js : ', error); }
 
-    let allChckListRslt = [];
     checklistResult.forEach((chckRslt) => {
         let temp = {};
         checklist.forEach((chck) => {
             if (chckRslt.checListId == chck.checListId) {
-                for (e in chckRslt) chck[e] = chckRslt[e];
-                temp = chck; } });
+                for (key in chck) chckRslt[key] = chck[key];
+                temp = chckRslt; } });
         allChckListRslt.push(temp);
     });
-    return allChckListRslt;
+
+    for (key in contCstmDprt) {
+        sheet.getCell('A' + rowNum).value = key.substr(0, 4);
+        sheet.getCell('B' + rowNum).value = key.substr(4);
+        rowNum++;
+    }
+    rowNum = 1;
+
+    console.log(emplChckListAmnt(allChckListRslt));
+    
+    allChckListRslt.forEach((chckListRslt) => {
+        sheet.getCell('C' + rowNum).value = chckListRslt.userName;
+        sheet.getCell('D' + rowNum).value = chckListRslt.userId;
+        sheet.getCell('E' + rowNum).value = chckListRslt.chckRslt;
+        rowNum++;
+    });
+
+    download(workbook, fileName).then(r => {});
 }
-let allChckListRslt = [];
-(async () => {
-    allChckListRslt = await getAllData();
-    console.log(allChckListRslt);
-})();
 
-const makeFile = () => {
-
-    const workbook = new ExcelJS.Workbook();
-    let sheet = workbook.addWorksheet('서울세관');
-
-    download(workbook, '시험운영').then(r => {});
-}
+document.querySelector('#dprt-chck-list').addEventListener('click', makeFile);
 
 document.addEventListener('DOMContentLoaded', async () => {
-    resetUserValueSelectBefore(); heightResize(); getAllData(); setPage();
+    resetUserValueSelectBefore(); heightResize(); setPage();
     let dropDownElmn = cstmDprt.querySelector('select.drop-down')
     dropDownElmn.addEventListener('change', (event) => {
         resetUserValueSelectBefore(); deleteSelectElement();

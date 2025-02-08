@@ -1,3 +1,9 @@
+#contents {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: auto;
+}
 .menu-DNSChecklist {
     background-color: #FFE869;
 }
