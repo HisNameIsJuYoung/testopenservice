@@ -77,64 +77,64 @@ const cstmDprtCode = {
 }
 
 const contCstmDprt = {
-    '서울세관세관운영과':  { pc: 44, rslt: 0 },
-    '서울세관납세자보호담당관': { pc: 7, rslt: 0 },
-    '서울세관감사담당관': { pc: 8, rslt: 0 },
-    '서울세관수출입기업지원센터': { pc: 29, rslt: 0 },
-    '서울세관수출입물류과': { pc: 12, rslt: 0 },
-    '서울세관통관검사1과': { pc: 13, rslt: 0 },
-    '서울세관통관검사2과': { pc: 11, rslt: 0 },
-    '서울세관이사화물과': { pc: 15, rslt: 0 },
-    '서울세관심사총괄1과': { pc: 16, rslt: 0 },
-    '서울세관1국심사1관': { pc: 13, rslt: 0 },
-    '서울세관1국심사2관': { pc: 11, rslt: 0 },
-    '서울세관1국심사3관': { pc: 30, rslt: 0 },
-    '서울세관심사정보과': { pc: 12, rslt: 0 },
-    '서울세관환급심사과': { pc: 12, rslt: 0 },
-    '서울세관체납관리과': { pc: 12, rslt: 0 },
-    '서울세관분석실': { pc: 9, rslt: 0 },
-    '서울세관심사총괄2과': { pc: 21, rslt: 0 },
-    '서울세관2국심사1관': { pc: 16, rslt: 0 },
-    '서울세관2국심사2관': { pc: 15, rslt: 0 },
-    '서울세관2국심사3관': { pc: 13, rslt: 0 },
-    '서울세관2국심사4관': { pc: 11, rslt: 0 },
-    '서울세관2국심사5관': { pc: 16, rslt: 0 },
-    '서울세관자유무역협정검증1과': { pc: 19, rslt: 0 },
-    '서울세관자유무역협정검증2과': { pc: 21, rslt: 0 },
-    '서울세관자유무역협정검증3과': { pc: 21, rslt: 0 },
-    '서울세관조사총괄과': { pc: 16, rslt: 0 },
-    '서울세관조사1관': { pc: 11, rslt: 0 },
-    '서울세관조사2관': { pc: 12, rslt: 0 },
-    '서울세관특수조사과': { pc: 15, rslt: 0 },
-    '서울세관디지털무역범죄조사과': { pc: 20, rslt: 0 },
-    '서울세관조사정보과': { pc: 9, rslt: 0 },
-    '서울세관외환조사총괄과': { pc: 20, rslt: 0 },
-    '서울세관외환조사1관': { pc: 11, rslt: 0 },
-    '서울세관외환조사2관': { pc: 10, rslt: 0 },
-    '서울세관외환조사3관': { pc: 9, rslt: 0 },
-    '서울세관외환검사과': { pc: 17, rslt: 0 },
-    '서울세관외환검사1관': { pc: 16, rslt: 0 },
-    '서울세관외환검사2관': { pc: 15, rslt: 0 },
-    '서울세관구로지원센터': { pc: 14, rslt: 0 },
-    '안양세관통관지원과': { pc: 6, rslt: 0 },
-    '안양세관조사심사과': { pc: 14, rslt: 0 },
-    '천안세관통관지원과': { pc: 12, rslt: 0 },
-    '천안세관조사심사과': { pc: 12, rslt: 0 },
-    '청주세관통관지원과': { pc: 9, rslt: 0 },
-    '청주세관조사심사과': { pc: 11, rslt: 0 },
-    '청주세관여행자통관과': { pc: 24, rslt: 0 },
-    '청주세관충주지원센터': { pc: 5, rslt: 0 },
-    '대전세관통관지원과': { pc: 8, rslt: 0 },
-    '대전세관조사심사과': { pc: 6, rslt: 0 },
-    '속초세관통관지원과': { pc: 7, rslt: 0 },
-    '속초세관조사심사과': { pc: 20, rslt: 0 },
-    '속초세관고성지원센터': { pc: 2, rslt: 0 },
-    '동해세관동해세관': { pc: 23, rslt: 0 },
-    '동해세관원주지원센터': { pc: 5, rslt: 0 },
-    '성남세관성남세관': { pc: 23, rslt: 0 },
-    '파주세관파주세관': { pc: 15, rslt: 0 },
-    '파주세관의정부지원센터': { pc: 15, rslt: 0 },
-    '파주세관도라산지원센터': { pc: 5, rslt: 0 }  
+    '서울세관세관운영과': { pc: 44, chckListAmnt: 18, emplRslt: 0 },
+    '서울세관납세자보호담당관': { pc: 7, chckListAmnt: 26, emplRslt: 0 },
+    '서울세관감사담당관': { pc: 8, chckListAmnt: 28, emplRslt: 0 },
+    '서울세관수출입기업지원센터': { pc: 29, chckListAmnt: 44, emplRslt: 0 },
+    '서울세관수출입물류과': { pc: 12, chckListAmnt: 48, emplRslt: 0 },
+    '서울세관통관검사1과': { pc: 13, chckListAmnt: 49, emplRslt: 0 },
+    '서울세관통관검사2과': { pc: 11, chckListAmnt: 31, emplRslt: 0 },
+    '서울세관이사화물과': { pc: 15, chckListAmnt: 55, emplRslt: 0 },
+    '서울세관심사총괄1과': { pc: 16, chckListAmnt: 76, emplRslt: 0 },
+    '서울세관1국심사1관': { pc: 13, chckListAmnt: 53, emplRslt: 0 },
+    '서울세관1국심사2관': { pc: 11, chckListAmnt: 69, emplRslt: 0 },
+    '서울세관1국심사3관': { pc: 30, chckListAmnt: 35, emplRslt: 0 },
+    '서울세관심사정보과': { pc: 12, chckListAmnt: 32, emplRslt: 0 },
+    '서울세관환급심사과': { pc: 12, chckListAmnt: 7, emplRslt: 0 },
+    '서울세관체납관리과': { pc: 12, chckListAmnt: 23, emplRslt: 0 },
+    '서울세관분석실': { pc: 9, chckListAmnt: 18, emplRslt: 0 },
+    '서울세관심사총괄2과': { pc: 21, chckListAmnt: 66, emplRslt: 0 },
+    '서울세관2국심사1관': { pc: 16, chckListAmnt: 54, emplRslt: 0 },
+    '서울세관2국심사2관': { pc: 15, chckListAmnt: 69, emplRslt: 0 },
+    '서울세관2국심사3관': { pc: 13, chckListAmnt: 68, emplRslt: 0 },
+    '서울세관2국심사4관': { pc: 11, chckListAmnt: 74, emplRslt: 0 },
+    '서울세관2국심사5관': { pc: 16, chckListAmnt: 40, emplRslt: 0 },
+    '서울세관자유무역협정검증1과': { pc: 19, chckListAmnt: 39, emplRslt: 0 },
+    '서울세관자유무역협정검증2과': { pc: 21, chckListAmnt: 67, emplRslt: 0 },
+    '서울세관자유무역협정검증3과': { pc: 21, chckListAmnt: 64, emplRslt: 0 },
+    '서울세관조사총괄과': { pc: 16, chckListAmnt: 20, emplRslt: 0 },
+    '서울세관조사1관': { pc: 11, chckListAmnt: 57, emplRslt: 0 },
+    '서울세관조사2관': { pc: 12, chckListAmnt: 30, emplRslt: 0 },
+    '서울세관특수조사과': { pc: 15, chckListAmnt: 71, emplRslt: 0 },
+    '서울세관디지털무역범죄조사과': { pc: 20, chckListAmnt: 78, emplRslt: 0 },
+    '서울세관조사정보과': { pc: 9, chckListAmnt: 77, emplRslt: 0 },
+    '서울세관외환조사총괄과': { pc: 20, chckListAmnt: 49, emplRslt: 0 },
+    '서울세관외환조사1관': { pc: 11, chckListAmnt: 67, emplRslt: 0 },
+    '서울세관외환조사2관': { pc: 10, chckListAmnt: 22, emplRslt: 0 },
+    '서울세관외환조사3관': { pc: 9, chckListAmnt: 71, emplRslt: 0 },
+    '서울세관외환검사과': { pc: 17, chckListAmnt: 50, emplRslt: 0 },
+    '서울세관외환검사1관': { pc: 16, chckListAmnt: 67, emplRslt: 0 },
+    '서울세관외환검사2관': { pc: 15, chckListAmnt: 50, emplRslt: 0 },
+    '서울세관구로지원센터': { pc: 14, chckListAmnt: 70, emplRslt: 0 },
+    '안양세관통관지원과': { pc: 6, chckListAmnt: 47, emplRslt: 0 },
+    '안양세관조사심사과': { pc: 14, chckListAmnt: 50, emplRslt: 0 },
+    '천안세관통관지원과': { pc: 12, chckListAmnt: 39, emplRslt: 0 },
+    '천안세관조사심사과': { pc: 12, chckListAmnt: 79, emplRslt: 0 },
+    '청주세관통관지원과': { pc: 9, chckListAmnt: 31, emplRslt: 0 },
+    '청주세관조사심사과': { pc: 11, chckListAmnt: 53, emplRslt: 0 },
+    '청주세관여행자통관과': { pc: 24, chckListAmnt: 27, emplRslt: 0 },
+    '청주세관충주지원센터': { pc: 5, chckListAmnt: 72, emplRslt: 0 },
+    '대전세관통관지원과': { pc: 8, chckListAmnt: 61, emplRslt: 0 },
+    '대전세관조사심사과': { pc: 6, chckListAmnt: 60, emplRslt: 0 },
+    '속초세관통관지원과': { pc: 7, chckListAmnt: 31, emplRslt: 0 },
+    '속초세관조사심사과': { pc: 20, chckListAmnt: 63, emplRslt: 0 },
+    '속초세관고성지원센터': { pc: 2, chckListAmnt: 38, emplRslt: 0 },
+    '동해세관동해세관': { pc: 23, chckListAmnt: 83, emplRslt: 0 },
+    '동해세관원주지원센터': { pc: 5, chckListAmnt: 66, emplRslt: 0 },
+    '성남세관성남세관': { pc: 23, chckListAmnt: 81, emplRslt: 0 },
+    '파주세관파주세관': { pc: 15, chckListAmnt: 54, emplRslt: 0 },
+    '파주세관의정부지원센터': { pc: 15, chckListAmnt: 57, emplRslt: 0 },
+    '파주세관도라산지원센터': { pc: 5, chckListAmnt: 54, emplRslt: 0 } 
 }
 let userValue = {};
 userValue.customsDepartment = null;  // 사용자가 선택한 세관 부서 코드, ajax로 넘겨주는 값
@@ -262,7 +262,7 @@ const setPage = async () => {
                     '.chck-fail': res.chckFail,
                     '.chck-nthr': res.chckNthr,
                     '.un-chck': res.unChck,
-                    '.chck-prcn': (((100 - unchPrcn).toFixed(1) + '')),
+                    '.chck-prcn': ((100 - unchPrcn).toFixed(1) + ''),
                     '.unch-prcn': unchPrcn
                 };
                 for (let key in chckInner) itemElement.querySelector(key).innerText = chckInner[key];
@@ -282,7 +282,7 @@ const setPage = async () => {
                 '.empl-cont':  allDnsChckList,
                 '.chck-rslt-dns': (allDnsChckList - unChckDns),
                 '.un-chck-dns': unChckDns,
-                '.chck-prcn-dns': (((100 - unchPrcnDns).toFixed(1) + '')),
+                '.chck-prcn-dns': ((100 - unchPrcnDns).toFixed(1) + ''),
                 '.unch-prcn-dns': unchPrcnDns
             }
             DNSChecklistItem.style.borderBottom = '0';
@@ -297,13 +297,21 @@ const setPage = async () => {
     }
 }
 
-const emplChckListAmnt = (allChckListRslt) => {
+const emplChckData = (allChckListRslt, objcElmn) => {
     let empl = {};
     allChckListRslt.forEach((chckListRslt) => {
-        let value = chckListRslt.userId;
-        if (value in empl) empl[value].chckListAmnt++;
-        else { empl[value] = {};
-            empl[value].chckListAmnt = 1; }
+        let value = chckListRslt[objcElmn];
+        if (value in empl) { 
+            empl[value].allList++;
+            if (chckListRslt.chckRslt != '') empl[value].chck++;
+            else empl[value].unch++;
+        } else {
+            empl[value] = {};
+            empl[value].allList = 1;
+            empl[value].chck = (chckListRslt.chckRslt != '') ? 1 : 0;
+            empl[value].unch = (chckListRslt.chckRslt != '') ? 0 : 1;
+        }
+        empl[value].cstmDprtName = chckListRslt.cstmDprtName;
     });
     return empl;
 }
@@ -334,8 +342,8 @@ const timeFormatForManager = () => {
 const makeFile = async (e) => {
     let fileName = timeFormatForManager() + '시험운영결과보고(서울)';
     let workbook = new ExcelJS.Workbook();
-    let sheet = workbook.addWorksheet('서울세관');
-    let checklist = '', checklistResult = '', dnsChecklist =  '', rowNum = 1;
+    let sheet1 = workbook.addWorksheet('서울세관');
+    let checklist = '', checklistResult = '', dnsChecklist =  '', rowNum = 2;
     const allChckListRslt = [];
 
     try { let response = await rest('GET', '/auth/allResult', null);
@@ -350,34 +358,46 @@ const makeFile = async (e) => {
         checklist.forEach((chck) => {
             if (chckRslt.checListId == chck.checListId) {
                 for (key in chck) chckRslt[key] = chck[key];
+                chckRslt.cstmDprtName = chckRslt.cstmName + chckRslt.dprtName;
                 temp = chckRslt; } });
         allChckListRslt.push(temp);
     });
-
-    for (key in contCstmDprt) {
-        sheet.getCell('A' + rowNum).value = key.substr(0, 4);
-        sheet.getCell('B' + rowNum).value = key.substr(4);
-        rowNum++;
-    }
-    rowNum = 1;
-
-    console.log(emplChckListAmnt(allChckListRslt));
     
-    allChckListRslt.forEach((chckListRslt) => {
-        sheet.getCell('C' + rowNum).value = chckListRslt.userName;
-        sheet.getCell('D' + rowNum).value = chckListRslt.userId;
-        sheet.getCell('E' + rowNum).value = chckListRslt.chckRslt;
-        rowNum++;
+    const finlRslt = {};
+    const unchRslt = {};
+    let emplChckRslt = emplChckData(allChckListRslt, 'userId');
+    Object.values(emplChckRslt).forEach((empl) => {
+        let value = empl.cstmDprtName;
+        if (value in finlRslt) {
+            if ((empl.allList - empl.chck) == 0) finlRslt[value]++;
+            else unchRslt[value]++;
+        } else {
+            finlRslt[value] = {};
+            finlRslt[value] = ((empl.allList - empl.chck) == 0) ? 1 : 0
+            unchRslt[value] = ((empl.allList - empl.chck) != 0) ? 1 : 0;
+        }
     });
 
+    sheet1.getCell('A1').value = '세관부서명';
+    sheet1.getCell('B1').value = '전체PC';
+    sheet1.getCell('C1').value = '완료PC';
+    sheet1.getCell('D1').value = '미완료PC';
+    for (key in contCstmDprt) {
+        sheet1.getCell('A' + rowNum).value = key;
+        sheet1.getCell('B' + rowNum).value = contCstmDprt[key].pc;
+        sheet1.getCell('C' + rowNum).value = finlRslt[key];
+        sheet1.getCell('D' + rowNum).value = unchRslt[key];
+        rowNum++;
+    }
+    rowNum = 2;
     download(workbook, fileName).then(r => {});
 }
 
-document.querySelector('#dprt-chck-list').addEventListener('click', makeFile);
-
 document.addEventListener('DOMContentLoaded', async () => {
     resetUserValueSelectBefore(); heightResize(); setPage();
-    let dropDownElmn = cstmDprt.querySelector('select.drop-down')
+    let dropDownElmn = cstmDprt.querySelector('select.drop-down');
+    let dprtChckList = document.querySelector('#dprt-chck-list');
+    dprtChckList.addEventListener('click', makeFile);
     dropDownElmn.addEventListener('change', (event) => {
         resetUserValueSelectBefore(); deleteSelectElement();
         let userSelectedIndex = event.currentTarget.options[event.currentTarget.options.selectedIndex]

@@ -47,15 +47,17 @@ window.addEventListener('resize', heightResize);
 let openedItem = {};
 
 const contentOpen = (infoItem) => {
+    let modifyDelete = infoItem.querySelector('.modify-delete');
     infoItem.style.backgroundColor = '#d1f1ee';
     infoItem.style.borderRadius = '10px';
-    infoItem.querySelector('.modify-delete').classList.remove('dspnon');
+    if (modifyDelete) modifyDelete.classList.remove('dspnon');
     infoItem.querySelector('.content').classList.remove('dspnon');
 };
 
 const contentClose = (infoItem) => {
+    let modifyDelete = infoItem.querySelector('.modify-delete');
     infoItem.removeAttribute('style');
-    infoItem.querySelector('.modify-delete').classList.add('dspnon');
+    if (modifyDelete) modifyDelete.classList.add('dspnon');
     infoItem.querySelector('.content').classList.add('dspnon');
 };
 
@@ -69,9 +71,11 @@ const getInfoItems = async () => {
         response = response.data;
         userId.innerText = '(' + response.userid + ')';
         userName.innerText = response.username;
+        if (response.role != 'ADMIN') document.querySelector('.info-button').remove();
         
         response.data.forEach(res => {
             let infoItem = infoTemplate.cloneNode(true);
+            let modifyDelete = infoItem.querySelector('.modify-delete');
             infoItem.id = 'item' + res.id;
             infoItem.querySelector('.number').innerText = itemNumber;
             infoItem.querySelector('.date').innerText = res.createDate.substr(0, 10);
@@ -90,25 +94,32 @@ const getInfoItems = async () => {
                 }
             });
 
-            infoItem.querySelector('#delete').addEventListener('click', async () => {
-                if (confirm(message.infoDeleteConfirm) == true) {
-                    try {
-                        await restHandler('DELETE', '/deleteInfo', { id: res.id });
-                        alert((openedItem.number) + '번 ' + message.infoDeleteComplete);
-                        location.reload();
-                    } catch (error) {
-                        alert(message.infoDeleteError);
+            if (response.role == 'ADMIN') {
+                // modifyDelete.innerHTML = `<button id="modify">수정</button>`;
+                // modifyDelete.innerHTML = `<button id="delete">삭제</button>`;
+                let deleteButton = document.createElement('button');
+                deleteButton.id = 'delete';
+                deleteButton.innerText = '삭제';
+                deleteButton.addEventListener('click', async () => {
+                    if (confirm(message.infoDeleteConfirm) == false) return false;
+                    else {
+                        try {
+                            await restHandler('DELETE', '/deleteInfo', { id: res.id });
+                            alert((openedItem.number) + '번 ' + message.infoDeleteComplete);
+                            location.reload();
+                        } catch (error) { alert(message.infoDeleteError); }
                     }
-                } else {
-                    return false;
-                }
-            });
+                });
+                modifyDelete.appendChild(deleteButton);
 
-            infoItem.querySelector('#modify').addEventListener('click', (event) => {
-                writeInfo(openedItem.element, event);
-            });
+                let modifyButton = document.createElement('button');
+                modifyButton.id = 'modify';
+                modifyButton.innerText = '수정';
+                modifyButton.addEventListener('click', (event) => { writeInfo(openedItem.element, event); });
+                modifyDelete.appendChild(modifyButton);
+            } else modifyDelete.remove();
             infoItem.style.borderBottom = (itemNumber == 1) ? '0' : null;
-            itemNumber += 1;
+            itemNumber++;
             infoTemplate.after(infoItem);
         });
         infoTemplate.remove();
@@ -229,6 +240,5 @@ const putInfo = async () => {
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
-    heightResize();
-    getInfoItems();
+    heightResize(); getInfoItems();
 });

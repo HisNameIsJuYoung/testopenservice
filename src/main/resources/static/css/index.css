@@ -101,16 +101,14 @@
     border-radius: 10px;
 }
 .modify-delete {
-    width: 890px;
-    padding: 0 0 0 710px;
-    border-left: #d1f1ee 2px solid;
+    float: right;
     border-right:  #d1f1ee 2px solid;
     background-color: white;
 }
 .content {
-    width: 890px;
+    width: 900px;
     height: auto;
-    padding: 0 30px 20px;
+    padding: 20px 30px;
     border: #d1f1ee 2px solid;
     border-top: 0px;
     background-color: white;

@@ -15,64 +15,64 @@ userId: "202675"
 userName: "백재은"
 
 
-'서울세관세관운영과':  { pc: 44, rslt: 0 },
-'서울세관납세자보호담당관': { pc: 7, rslt: 0 },
-'서울세관감사담당관': { pc: 8, rslt: 0 },
-'서울세관수출입기업지원센터': { pc: 29, rslt: 0 },
-'서울세관수출입물류과': { pc: 12, rslt: 0 },
-'서울세관통관검사1과': { pc: 13, rslt: 0 },
-'서울세관통관검사2과': { pc: 11, rslt: 0 },
-'서울세관이사화물과': { pc: 15, rslt: 0 },
-'서울세관심사총괄1과': { pc: 16, rslt: 0 },
-'서울세관1국심사1관': { pc: 13, rslt: 0 },
-'서울세관1국심사2관': { pc: 11, rslt: 0 },
-'서울세관1국심사3관': { pc: 30, rslt: 0 },
-'서울세관심사정보과': { pc: 12, rslt: 0 },
-'서울세관환급심사과': { pc: 12, rslt: 0 },
-'서울세관체납관리과': { pc: 12, rslt: 0 },
-'서울세관분석실': { pc: 9, rslt: 0 },
-'서울세관심사총괄2과': { pc: 21, rslt: 0 },
-'서울세관2국심사1관': { pc: 16, rslt: 0 },
-'서울세관2국심사2관': { pc: 15, rslt: 0 },
-'서울세관2국심사3관': { pc: 13, rslt: 0 },
-'서울세관2국심사4관': { pc: 11, rslt: 0 },
-'서울세관2국심사5관': { pc: 16, rslt: 0 },
-'서울세관자유무역협정검증1과': { pc: 19, rslt: 0 },
-'서울세관자유무역협정검증2과': { pc: 21, rslt: 0 },
-'서울세관자유무역협정검증3과': { pc: 21, rslt: 0 },
-'서울세관조사총괄과': { pc: 16, rslt: 0 },
-'서울세관조사1관': { pc: 11, rslt: 0 },
-'서울세관조사2관': { pc: 12, rslt: 0 },
-'서울세관특수조사과': { pc: 15, rslt: 0 },
-'서울세관디지털무역범죄조사과': { pc: 20, rslt: 0 },
-'서울세관조사정보과': { pc: 9, rslt: 0 },
-'서울세관외환조사총괄과': { pc: 20, rslt: 0 },
-'서울세관외환조사1관': { pc: 11, rslt: 0 },
-'서울세관외환조사2관': { pc: 10, rslt: 0 },
-'서울세관외환조사3관': { pc: 9, rslt: 0 },
-'서울세관외환검사과': { pc: 17, rslt: 0 },
-'서울세관외환검사1관': { pc: 16, rslt: 0 },
-'서울세관외환검사2관': { pc: 15, rslt: 0 },
-'서울세관구로지원센터': { pc: 14, rslt: 0 },
-'안양세관통관지원과': { pc: 6, rslt: 0 },
-'안양세관조사심사과': { pc: 14, rslt: 0 },
-'천안세관통관지원과': { pc: 12, rslt: 0 },
-'천안세관조사심사과': { pc: 12, rslt: 0 },
-'청주세관통관지원과': { pc: 9, rslt: 0 },
-'청주세관조사심사과': { pc: 11, rslt: 0 },
-'청주세관여행자통관과': { pc: 24, rslt: 0 },
-'청주세관충주지원센터': { pc: 5, rslt: 0 },
-'대전세관통관지원과': { pc: 8, rslt: 0 },
-'대전세관조사심사과': { pc: 6, rslt: 0 },
-'속초세관통관지원과': { pc: 7, rslt: 0 },
-'속초세관조사심사과': { pc: 20, rslt: 0 },
-'속초세관고성지원센터': { pc: 2, rslt: 0 },
-'동해세관동해세관': { pc: 23, rslt: 0 },
-'동해세관원주지원센터': { pc: 5, rslt: 0 },
-'성남세관성남세관': { pc: 23, rslt: 0 },
-'파주세관파주세관': { pc: 15, rslt: 0 },
-'파주세관의정부지원센터': { pc: 15, rslt: 0 },
-'파주세관도라산지원센터': { pc: 5, rslt: 0 }  
+'서울세관세관운영과': { pc: 44, chckListAmnt: 18, emplRslt: 0 },
+'서울세관납세자보호담당관': { pc: 7, chckListAmnt: 26, emplRslt: 0 },
+'서울세관감사담당관': { pc: 8, chckListAmnt: 28, emplRslt: 0 },
+'서울세관수출입기업지원센터': { pc: 29, chckListAmnt: 44, emplRslt: 0 },
+'서울세관수출입물류과': { pc: 12, chckListAmnt: 48, emplRslt: 0 },
+'서울세관통관검사1과': { pc: 13, chckListAmnt: 49, emplRslt: 0 },
+'서울세관통관검사2과': { pc: 11, chckListAmnt: 31, emplRslt: 0 },
+'서울세관이사화물과': { pc: 15, chckListAmnt: 55, emplRslt: 0 },
+'서울세관심사총괄1과': { pc: 16, chckListAmnt: 76, emplRslt: 0 },
+'서울세관1국심사1관': { pc: 13, chckListAmnt: 53, emplRslt: 0 },
+'서울세관1국심사2관': { pc: 11, chckListAmnt: 69, emplRslt: 0 },
+'서울세관1국심사3관': { pc: 30, chckListAmnt: 35, emplRslt: 0 },
+'서울세관심사정보과': { pc: 12, chckListAmnt: 32, emplRslt: 0 },
+'서울세관환급심사과': { pc: 12, chckListAmnt: 7, emplRslt: 0 },
+'서울세관체납관리과': { pc: 12, chckListAmnt: 23, emplRslt: 0 },
+'서울세관분석실': { pc: 9, chckListAmnt: 18, emplRslt: 0 },
+'서울세관심사총괄2과': { pc: 21, chckListAmnt: 66, emplRslt: 0 },
+'서울세관2국심사1관': { pc: 16, chckListAmnt: 54, emplRslt: 0 },
+'서울세관2국심사2관': { pc: 15, chckListAmnt: 69, emplRslt: 0 },
+'서울세관2국심사3관': { pc: 13, chckListAmnt: 68, emplRslt: 0 },
+'서울세관2국심사4관': { pc: 11, chckListAmnt: 74, emplRslt: 0 },
+'서울세관2국심사5관': { pc: 16, chckListAmnt: 40, emplRslt: 0 },
+'서울세관자유무역협정검증1과': { pc: 19, chckListAmnt: 39, emplRslt: 0 },
+'서울세관자유무역협정검증2과': { pc: 21, chckListAmnt: 67, emplRslt: 0 },
+'서울세관자유무역협정검증3과': { pc: 21, chckListAmnt: 64, emplRslt: 0 },
+'서울세관조사총괄과': { pc: 16, chckListAmnt: 20, emplRslt: 0 },
+'서울세관조사1관': { pc: 11, chckListAmnt: 57, emplRslt: 0 },
+'서울세관조사2관': { pc: 12, chckListAmnt: 30, emplRslt: 0 },
+'서울세관특수조사과': { pc: 15, chckListAmnt: 71, emplRslt: 0 },
+'서울세관디지털무역범죄조사과': { pc: 20, chckListAmnt: 78, emplRslt: 0 },
+'서울세관조사정보과': { pc: 9, chckListAmnt: 77, emplRslt: 0 },
+'서울세관외환조사총괄과': { pc: 20, chckListAmnt: 49, emplRslt: 0 },
+'서울세관외환조사1관': { pc: 11, chckListAmnt: 67, emplRslt: 0 },
+'서울세관외환조사2관': { pc: 10, chckListAmnt: 22, emplRslt: 0 },
+'서울세관외환조사3관': { pc: 9, chckListAmnt: 71, emplRslt: 0 },
+'서울세관외환검사과': { pc: 17, chckListAmnt: 50, emplRslt: 0 },
+'서울세관외환검사1관': { pc: 16, chckListAmnt: 67, emplRslt: 0 },
+'서울세관외환검사2관': { pc: 15, chckListAmnt: 50, emplRslt: 0 },
+'서울세관구로지원센터': { pc: 14, chckListAmnt: 70, emplRslt: 0 },
+'안양세관통관지원과': { pc: 6, chckListAmnt: 47, emplRslt: 0 },
+'안양세관조사심사과': { pc: 14, chckListAmnt: 50, emplRslt: 0 },
+'천안세관통관지원과': { pc: 12, chckListAmnt: 39, emplRslt: 0 },
+'천안세관조사심사과': { pc: 12, chckListAmnt: 79, emplRslt: 0 },
+'청주세관통관지원과': { pc: 9, chckListAmnt: 31, emplRslt: 0 },
+'청주세관조사심사과': { pc: 11, chckListAmnt: 53, emplRslt: 0 },
+'청주세관여행자통관과': { pc: 24, chckListAmnt: 27, emplRslt: 0 },
+'청주세관충주지원센터': { pc: 5, chckListAmnt: 72, emplRslt: 0 },
+'대전세관통관지원과': { pc: 8, chckListAmnt: 61, emplRslt: 0 },
+'대전세관조사심사과': { pc: 6, chckListAmnt: 60, emplRslt: 0 },
+'속초세관통관지원과': { pc: 7, chckListAmnt: 31, emplRslt: 0 },
+'속초세관조사심사과': { pc: 20, chckListAmnt: 63, emplRslt: 0 },
+'속초세관고성지원센터': { pc: 2, chckListAmnt: 38, emplRslt: 0 },
+'동해세관동해세관': { pc: 23, chckListAmnt: 83, emplRslt: 0 },
+'동해세관원주지원센터': { pc: 5, chckListAmnt: 66, emplRslt: 0 },
+'성남세관성남세관': { pc: 23, chckListAmnt: 81, emplRslt: 0 },
+'파주세관파주세관': { pc: 15, chckListAmnt: 54, emplRslt: 0 },
+'파주세관의정부지원센터': { pc: 15, chckListAmnt: 57, emplRslt: 0 },
+'파주세관도라산지원센터': { pc: 5, chckListAmnt: 54, emplRslt: 0 } 
 
 
 
@@ -82,31 +82,28 @@ DB서버 : 10.132.46.115
 (완) 할일1. checListId가 10으로 시작하는 건 010으로 변경
  1.1. checklist테이블, chckListRslt테이블 두 곳 모두
 
-할일2. DNS 변경 체크리스트 화면  스크롤 안됨.
+(완) 할일2. DNS 변경 체크리스트 화면  스크롤 안됨.
 
-할일3. 관리자 게시판 왼쪽으로 치우쳐짐.
+(완) 할일3. 관리자 게시판 왼쪽으로 치우쳐짐.
 
 (완) 할일4. 운영DB 부서 이름 수정
-
 update checklist set dprtName = ‘1국심사1관’ where customs = '010' and department = '89';
 update checklist set dprtName = ‘1국심사2관’ where customs = '010' and department = '87';
 update checklist set dprtName = ‘1국심사3관’ where customs = '010' and department = '88';
-    서울세관1국심사1관 : 01089
-    서울세관1국심사2관 : 01087
-    서울세관1국심사3관 : 01088
-
 update checklist set dprtName = ‘2국심사1관’ where customs = '010' and department = 'H1';
 update checklist set dprtName = ‘2국심사2관’ where customs = '010' and department = 'H2';
 update checklist set dprtName = ‘2국심사3관’ where customs = '010' and department = 'H3';
 update checklist set dprtName = ‘2국심사4관’ where customs = '010' and department = 'H4';
 update checklist set dprtName = ‘2국심사5관’ where customs = '010' and department = 'H5';
-    서울세관2국심사1관 : 010H1
-    서울세관2국심사2관 : 010H2
-    서울세관2국심사3관 : 010H3
-    서울세관2국심사4관 : 010H4
-    서울세관2국심사5관 : 010H5
- 
 
-할일 5. 체크리스트에 서울세관 외환검사2과 자료 없음.
+( 미 완 료 )    할일5. 체크리스트에 서울세관 외환검사2과 자료 없음.   ***************
 
- 
+(완) 할일5. 공지사항 작성버튼 삭제
+
+(완) 할일6. 상세보기 버튼 누르면 수정/삭제가 버튼이 층으로 쌓여보임.
+
+( 미 완 료 )    할일7. 관리자기능 - 엑셀 체크리스트 결과보고서 완성
+
+( 미 완 료 )    할일8. 부서별 체크리스트 갯수 확인
+
+( 미 완 료 )    할일9. DB다운로드, 로컬에 넣기, 
